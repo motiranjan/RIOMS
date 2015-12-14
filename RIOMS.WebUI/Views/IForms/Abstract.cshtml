@@ -1,0 +1,426 @@
+﻿@using RIOMS.Domain;
+@model IEnumerable<RIOMS.Domain.IForm>
+@{
+    ViewBag.Title = "Abstract";
+}
+
+<h2>Abstract</h2>
+@{int slNo = 1; decimal gt = 0;}
+<table class="villageWari">
+    <tr class="header">
+
+        <th rowspan="2">
+           
+        </th>
+        <th rowspan="2">
+            ch No
+        </th>
+        <th colspan="7">
+            ଖଜଣା
+        </th>
+        <th colspan="7">
+            ଜଳ କର
+
+        </th>
+        <th colspan="7">
+            ସେସ୍
+        </th>
+        <th colspan="2">
+            ବିବିଧ ଆଦାୟ
+        </th>
+        <th rowspan="2" class="vertical">Interest On LR</th>
+        <th rowspan="2" class="vertical">ଜଳ ସୁଧ</th>
+        <th rowspan="2" class="vertical">ସେସ୍ ସୁଧ</th>
+        <th rowspan="2" class="vertical">Int On Misc</th>
+        <th rowspan="2" class="vertical">DF</th>
+        <th rowspan="2" class="vertical">OLR Premium</th>
+        <th rowspan="2" class="vertical">ମୋଟ</th>
+    </tr>
+    <tr class="header">
+        <th class="vertical">
+            <span> ତିନି ବର୍ଷରୁ ଊର୍ଦ୍ଧ୍ଵ</span>
+        </th>
+        <th class="vertical">
+            ତୃତୀୟ ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ଦ୍ଵିତୀୟ ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ପୂର୍ବ ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ହାଲ୍
+        </th>
+        <th></th>
+        <th class="vertical">ମୋଟ</th>
+        <th class="vertical">
+            ତିନି ବର୍ଷରୁ ଊର୍ଦ୍ଧ୍ଵ
+        </th>
+        <th class="vertical">
+            ତୃତୀୟ ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ଦ୍ଵିତୀୟ ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ପୂର୍ବ ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ହାଲ୍
+        </th>
+        <th></th>
+        <th class="vertical">ମୋଟ</th>
+        <th class="vertical">
+            ତିନି ବର୍ଷରୁ ଊର୍ଦ୍ଧ୍ଵ
+        </th>
+        <th class="vertical">
+            ତୃତୀୟ ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ଦ୍ଵିତୀୟ ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ପୂର୍ବ ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ହାଲ୍
+        </th>
+        <th></th>
+        <th class="vertical">ମୋଟ</th>
+        <th class="vertical">
+            ବକେୟା
+        </th>
+        <th class="vertical">
+            ହାଲ୍
+        </th>
+
+    </tr>
+
+    @{
+        decimal tmoreThanThreeLr = 0;
+        decimal tthirdLr = 0;
+        decimal tsecondlr = 0;
+        decimal tpreviouslr = 0;
+        decimal tcurrentlr = 0;
+        decimal ttlr = 0;
+        decimal tmoreThanThreecess = 0;
+        decimal tthirdcess = 0;
+        decimal tsecondcess = 0;
+        decimal tpreviouscess = 0;
+        decimal tcurrentcess = 0;
+        decimal ttcess = 0;
+        decimal tmoreThanThreecbwr = 0;
+        decimal tthirdcbwr = 0;
+        decimal tsecondcbwr = 0;
+        decimal tpreviouscbwr = 0;
+        decimal tcurrentcbwr = 0;
+        decimal ttcbwr = 0;
+        decimal tarrearmisc = 0;
+        decimal tcurrentmisc = 0;
+        decimal tinterestlr = 0;
+        decimal tinterestcbwr = 0;
+        decimal tinterestcess = 0;
+        decimal tinterestmisc = 0;
+        decimal tdf = 0;
+        decimal tpremium = 0;
+        decimal ttotal = 0;
+    }
+
+    @foreach (IForm iform in Model)
+    {
+
+
+
+
+        <tr>
+
+            <td style="width:150px;">@iform.DepositeDate.ToShortDateString()</td>
+            <td>
+
+
+                @Html.DisplayFor(modelItem => iform.IFormNo)
+            </td>
+
+            <td>
+                @{decimal moreThanThreeLr = iform.IFormDetailLandRevenues.Sum(lr => lr.MoreThanThree).GetValueOrDefault();}
+                @if (moreThanThreeLr > 0)
+                {
+                    tmoreThanThreeLr+=moreThanThreeLr;
+                    @moreThanThreeLr
+                }
+
+            </td>
+            <td>
+
+                @{decimal thirdLr = iform.IFormDetailLandRevenues.Sum(lr => lr.Third).GetValueOrDefault();}
+                @if (thirdLr > 0)
+                {
+                    tthirdLr+=thirdLr;
+                    @thirdLr
+                }
+            </td>
+            <td>
+                @{decimal secondlr = iform.IFormDetailLandRevenues.Sum(lr => lr.Second).GetValueOrDefault();}
+                @if (secondlr > 0)
+                {
+                    tsecondlr+=secondlr;
+                    @secondlr
+                }
+
+            </td>
+            <td>
+                @{decimal previouslr = iform.IFormDetailLandRevenues.Sum(lr => lr.Previous).GetValueOrDefault();}
+                @if (previouslr > 0)
+                {
+                    tpreviouslr+=previouslr;
+                    @previouslr
+                }
+
+            </td>
+            <td>
+                @{decimal currentlr = iform.IFormDetailLandRevenues.Sum(lr => lr.Current).GetValueOrDefault();}
+                @if (currentlr > 0)
+                {
+                    tcurrentlr+=currentlr;
+                    @currentlr
+                }
+            </td>
+            <td></td>
+            <td>
+                @{decimal tlr = moreThanThreeLr + thirdLr + secondlr + previouslr + currentlr;}
+                @if (tlr > 0)
+                {
+                    ttlr+=tlr;
+                    @tlr
+                }
+            </td>
+            <td>
+                @{decimal moreThanThreecbwr = iform.IFormDetailWaterTaxes.Sum(cbwr => cbwr.MoreThanThree).GetValueOrDefault();}
+                @if (moreThanThreecbwr > 0)
+                {
+                    tmoreThanThreecbwr += moreThanThreecbwr;
+                    @moreThanThreecbwr
+                }
+
+            </td>
+            <td>
+
+                @{decimal thirdcbwr = iform.IFormDetailWaterTaxes.Sum(cbwr => cbwr.Third).GetValueOrDefault();}
+                @if (thirdcbwr > 0)
+                {
+                    tthirdcbwr += thirdcbwr;
+                    @thirdcbwr
+                }
+            </td>
+            <td>
+                @{decimal secondcbwr = iform.IFormDetailWaterTaxes.Sum(cbwr => cbwr.Second).GetValueOrDefault();}
+                @if (secondcbwr > 0)
+                {
+                    tsecondcbwr += secondcbwr;
+                    @secondcbwr
+                }
+
+            </td>
+            <td>
+                @{decimal previouscbwr = iform.IFormDetailWaterTaxes.Sum(cbwr => cbwr.Previous).GetValueOrDefault();}
+                @if (previouscbwr > 0)
+                {
+                    tpreviouscbwr += previouscbwr;
+                    @previouscbwr
+                }
+
+            </td>
+            <td>
+                @{decimal currentcbwr = iform.IFormDetailWaterTaxes.Sum(cbwr => cbwr.Current).GetValueOrDefault();}
+                @if (currentcbwr > 0)
+                {
+                    tcurrentcbwr += currentcbwr;
+                    @currentcbwr
+                }
+            </td>
+            <td></td>
+            <td>
+                @{decimal tcbwr = moreThanThreecbwr + thirdcbwr + secondcbwr + previouscbwr + currentcbwr;}
+                @if (tcbwr > 0)
+                {
+                    ttcbwr += tcbwr;
+                    @tcbwr
+                }
+            </td>
+            <td>
+                @{decimal moreThanThreecess = iform.IFormDetailCesses.Sum(cess => cess.MoreThanThree).GetValueOrDefault();}
+                @if (moreThanThreecess > 0)
+                {
+                    tmoreThanThreecess += moreThanThreecess;
+                    @moreThanThreecess
+                }
+
+            </td>
+            <td>
+
+                @{decimal thirdcess = iform.IFormDetailCesses.Sum(cess => cess.Third).GetValueOrDefault();}
+                @if (thirdcess > 0)
+                {
+                    tthirdcess += thirdcess;
+                    @thirdcess
+                }
+            </td>
+            <td>
+                @{decimal secondcess = iform.IFormDetailCesses.Sum(cess => cess.Second).GetValueOrDefault();}
+                @if (secondcess > 0)
+                {
+                    tsecondcess += secondcess;
+                    @secondcess
+                }
+
+            </td>
+            <td>
+                @{decimal previouscess = iform.IFormDetailCesses.Sum(cess => cess.Previous).GetValueOrDefault();}
+                @if (previouscess > 0)
+                {
+                    tpreviouscess += previouscess;
+                    @previouscess
+                }
+
+            </td>
+            <td>
+                @{decimal currentcess = iform.IFormDetailCesses.Sum(cess => cess.Current).GetValueOrDefault();}
+                @if (currentcess > 0)
+                {
+                    tcurrentcess += currentcess;
+                    @currentcess
+                }
+            </td>
+            <td></td>
+            <td>
+                @{decimal tcess = moreThanThreecess + thirdcess + secondcess + previouscess + currentcess;}
+                @if (tcess > 0)
+                {
+                    ttcess += tcess;
+                    @tcess
+                }
+            </td>
+            <td>
+                 @{decimal arrearmisc = iform.IFormDetailMiscRevenues.Sum(misc => misc.Arrear).GetValueOrDefault();}
+                @if (arrearmisc > 0)
+                {
+                    tarrearmisc+=arrearmisc;
+                    @arrearmisc
+                }
+            </td>
+            <td>
+                 @{decimal currentmisc = iform.IFormDetailMiscRevenues.Sum(misc => misc.Current).GetValueOrDefault();}
+                @if (currentmisc > 0)
+                {
+                    tcurrentmisc+=currentmisc;
+                    @currentmisc
+                }
+            </td>
+            <td>
+                @{decimal interestlr = iform.IFormDetailLandRevenues.Sum(lr => lr.InterestTotal).GetValueOrDefault();}
+                @if (interestlr > 0)
+                {
+                    tinterestlr+=interestlr;
+                    @interestlr
+                }
+
+            </td>
+            <td>
+               
+                @{decimal interestcbwr = iform.IFormDetailWaterTaxes.Sum(cbwr => cbwr.InterestTotal).GetValueOrDefault();}
+                @if (interestcbwr > 0)
+                {
+                    tinterestcbwr+=interestcbwr;
+                    @interestcbwr
+                }
+            </td>
+            <td>
+                 @{decimal interestcess = iform.IFormDetailCesses.Sum(cess => cess.InterestTotal).GetValueOrDefault();}
+                @if (interestcess > 0)
+                {
+                    tinterestcess+=interestcess;
+                    @interestcess
+                }
+
+            </td>
+            <td>
+                @{decimal interestmisc = iform.IFormDetailMiscRevenues.Sum(misc => misc.Interest).GetValueOrDefault();}
+                @if (interestmisc > 0)
+                {
+                    tinterestmisc+=interestmisc;
+                    @interestcess
+                }
+            </td>
+            <td>
+                @{decimal df = iform.IFormDetailOLRs.Sum(olr=>olr.DemarcationFee).GetValueOrDefault() + iform.IFormDetailOthers.Sum(o=>o.Amount).GetValueOrDefault();}
+
+                @if (df > 0)
+                {
+                    tdf+=df;
+                    @df
+                }
+            </td>
+            <td>
+                @{decimal premium = iform.IFormDetailOLRs.Sum(olr => olr.Premium).GetValueOrDefault();}
+                @if (premium> 0)
+                {
+                    tpremium+=premium;
+                   @premium
+                }
+            </td>
+            <td>
+                @{decimal total = tlr + tcbwr + tcess + arrearmisc + currentmisc + interestlr+interestcbwr + interestcess +  interestmisc + df + premium;
+                gt = gt + total;
+                ttotal += total;
+                }
+                @total
+            </td>
+        </tr>
+    }
+    }
+    <tr class="total">
+        <td colspan="2">Total</td>
+
+        <td>@tmoreThanThreeLr</td>
+        <td>@tthirdLr</td>
+        <td>@tsecondlr</td>
+        <td>@tpreviouslr</td>
+        <td>@tcurrentlr</td>
+        <td></td>
+        <td>
+           @ttlr
+        </td>
+
+        <td>@tmoreThanThreecbwr</td>
+        <td>@tthirdcbwr</td>
+        <td>@tsecondcbwr</td>
+        <td>@tpreviouscbwr</td>
+        <td>@tcurrentcbwr</td>
+        <td></td>
+        <td>
+            @ttcbwr
+        </td>
+
+        <td>@tmoreThanThreecess</td>
+        <td>@tthirdcess</td>
+        <td>@tsecondcess</td>
+        <td>@tpreviouscess</td>
+        <td>@tcurrentcess</td>
+        <td></td>
+        <td>
+            @ttcess
+        </td>
+        <td>@tarrearmisc</td>
+        <td>@tcurrentmisc</td>
+        <td>@tinterestlr</td>
+        <td>@tinterestcbwr</td>
+        <td>@tinterestcess</td>
+        <td>@tinterestmisc</td>
+        <td>
+            @tdf
+        </td>
+        <td>@tpremium</td>
+        <td>@ttotal</td>
+    </tr>
+</table>

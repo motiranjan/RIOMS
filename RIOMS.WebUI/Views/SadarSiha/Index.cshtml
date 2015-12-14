@@ -1,0 +1,321 @@
+﻿@using RIOMS.Domain;
+@model RIOMS.WebUI.Models.ReceiptViewModel
+
+@{
+    ViewBag.Title = "SadarSiha";
+}
+
+<h2>SadarSiha</h2>
+
+
+<table class="sadarSiha">
+    <tr>
+        <th rowspan="2">
+            ତାରିଖ
+        </th>
+        <th rowspan="2">
+            ରସିଦ ସଂଖ୍ୟା
+        </th>
+        <th rowspan="2">
+            ମୌଜା
+        </th>
+        <th rowspan="2">
+            ଖଜଣା
+        </th>
+        <th rowspan="2">
+            ଜଳକର
+        </th>
+        <th rowspan="2">
+            ସେସ
+        </th>
+
+        <th rowspan="2">ନିସ୍ତାର ସେସ</th>
+        <th colspan="2">
+            ସାଇରତ
+        </th>
+        <th colspan="2">
+            ବିବିଧ ଅଦାୟ
+        </th>
+        <th colspan="2">
+            ସୁଧ
+        </th>
+        <th rowspan="2">ଅନ୍ୟାନ</th>
+        <th rowspan="2">ମୋଟ</th>
+        <th rowspan="2">ମନ୍ତବ୍ୟ</th>
+    </tr>
+    <tr>
+        <th>
+            ବକେୟା
+        </th>
+        <th>
+            ହାଳ
+        </th>
+        <th>
+            ବକେୟା
+        </th>
+        <th>
+            ହାଳ
+        </th>
+        <th>
+            ଖଜଣା ଓ ଜଳକର ବାବଦ
+        </th>
+        <th>
+            ସେସ
+        </th>
+
+
+
+    </tr>
+    <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+        <th>11</th>
+        <th>12</th>
+        <th>13</th>
+        <th>14</th>
+        <th>15</th>
+        <td>16</td>
+    </tr>
+    @{
+        Receipt total;
+        Receipt grandTotal = null;
+        Receipt previousTotal;
+    }
+    @for (int i = 0; i < Model.Totals.Count(); i++)
+    {
+        total = Model.Totals.ElementAt(i);
+
+        if (i == 0)
+        {
+            grandTotal = total;
+        }
+        var receipts = Model.Receipts.Where(r => r.Date == total.Date).ToList();
+        foreach (var item in receipts)
+        {
+            var index = receipts.IndexOf(item);
+            <tr class="@(index%2==0? "row-even" : "row-odd")">
+                <td>
+                    @(receipts.IndexOf(item) == 0 ? @item.Date.ToString("dd/MM/yy") : "\"")
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.ReceiptNo)</td>
+                <td>
+                    @( index > 0 && item.Village.Name == receipts.ElementAt(index - 1).Village.Name ? "" : item.Village.Name)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CollectionLandRevenue.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CollectionWaterTax.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CollectionCess.Total)
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@Html.DisplayFor(modelItem => item.CollectionMiscRevenue.Arrear)</td>
+                <td>@Html.DisplayFor(modelItem => item.CollectionMiscRevenue.Current)</td>
+                <td>
+                    @{var t = (item.HasLandRevenue ? item.CollectionLandRevenue.InterestTotal : 0) + (item.HasWaterTax ? item.CollectionWaterTax.InterestTotal : 0) + (item.HasMiscRevenue ? item.CollectionMiscRevenue.Interest : 0); }
+                    @if (t > 0)
+                    {
+                        @t
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CollectionCess.InterestTotal)
+                </td>
+                <td>
+
+                    @{
+                        var other = (item.HasOLR ? item.CollectionOLR.Premium + item.CollectionOLR.DemarcationFee : 0) + (item.HasOthers ? item.CollectionOther.Amount : 0)+(item.HasOPDR?item.CollectionOPDR .Amount:0);
+                    }
+                    @if (other > 0)
+                    {
+                        @other
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @if (item.HasMiscRevenue)
+                    {
+                        @Html.DisplayFor(modelItem => item.CollectionMiscRevenue.Type)
+                        @Html.Raw("-")
+                        @Html.DisplayFor(modelItem => item.CollectionMiscRevenue.CaseNo)
+                    }
+                    @if (item.HasOthers)
+                    {
+                        @Html.DisplayFor(modelItem => item.CollectionOther.Type)
+                        @Html.Raw("-")
+                        @Html.DisplayFor(modelItem => item.CollectionOther.CaseNo)
+                    }
+                </td>
+            </tr>
+        }
+        <tr class="total">
+            <td colspan="3">ମୋଟ</td>
+
+
+            <td>
+                @if (total.CollectionLandRevenue.Total > 0)
+                {
+                    @Html.DisplayFor(modelItem => total.CollectionLandRevenue.Total)
+                }
+            </td>
+            <td>
+                @if (total.CollectionWaterTax.Total > 0)
+                {
+                    @Html.DisplayFor(modelItem => total.CollectionWaterTax.Total)
+                }
+            </td>
+            <td>
+                @if (total.CollectionCess.Total > 0)
+                {
+                    @Html.DisplayFor(modelItem => total.CollectionCess.Total)
+                }
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                @if (total.CollectionMiscRevenue.Arrear > 0)
+                {
+                    @Html.DisplayFor(modelItem => total.CollectionMiscRevenue.Arrear)
+                }
+            </td>
+            <td>
+                @if (total.CollectionMiscRevenue.Current > 0)
+                {
+                    @Html.DisplayFor(modelItem => total.CollectionMiscRevenue.Current)
+                }
+            </td>
+            <td>
+                @{var tt = total.CollectionLandRevenue.InterestTotal + total.CollectionWaterTax.InterestTotal + total.CollectionMiscRevenue.Interest;}
+                @tt
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => total.CollectionCess.InterestTotal)
+            </td>
+            <td>
+                @{var otherTotal = total.CollectionOLR.Premium + total.CollectionOLR.DemarcationFee + total.CollectionOther.Amount+total.CollectionOPDR.Amount;}
+            @otherTotal;
+        </td>
+        <td>
+            @if (total.Total == (total.CollectionCess.Total + total.CollectionLandRevenue.Total + total.CollectionWaterTax.Total + total.CollectionMiscRevenue.Current + total.CollectionMiscRevenue.Arrear + total.CollectionMiscRevenue.Interest + total.CollectionOther.Amount + total.CollectionCess.InterestTotal + total.CollectionWaterTax.InterestTotal + total.CollectionLandRevenue.InterestTotal + total.CollectionOLR.Premium + total.CollectionOLR.DemarcationFee+total.CollectionOPDR.Amount))
+            {
+                @Html.DisplayFor(modelItem => total.Total)
+            }
+            else
+            {
+                <span>Error</span>
+            }
+        </td>
+    </tr>
+        if (i > 0)
+        {
+
+            previousTotal = grandTotal;
+            <tr class="total">
+                <td colspan="3">ପୂର୍ବ ମୋଟ</td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => previousTotal.CollectionLandRevenue.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => previousTotal.CollectionWaterTax.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => previousTotal.CollectionCess.Total)
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@Html.DisplayFor(modelItem => grandTotal.CollectionMiscRevenue.Arrear)</td>
+                <td>@Html.DisplayFor(modelItem => previousTotal.CollectionMiscRevenue.Current)</td>
+                <td>
+                    @{var pt = previousTotal.CollectionLandRevenue.InterestTotal + previousTotal.CollectionWaterTax.InterestTotal + previousTotal.CollectionMiscRevenue.Interest;}
+                    @pt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => previousTotal.CollectionCess.InterestTotal)
+                </td>
+                <td>
+                    @{var otherPTotal = previousTotal.CollectionOLR.Premium + previousTotal.CollectionOLR.DemarcationFee + previousTotal.CollectionOther.Amount+previousTotal.CollectionOPDR.Amount;}
+                @otherPTotal;
+            </td>
+            <td>
+                @if (previousTotal.Total == (previousTotal.CollectionCess.Total + previousTotal.CollectionLandRevenue.Total + previousTotal.CollectionWaterTax.Total + previousTotal.CollectionMiscRevenue.Current + previousTotal.CollectionMiscRevenue.Arrear + previousTotal.CollectionOther.Amount + previousTotal.CollectionCess.InterestTotal + previousTotal.CollectionWaterTax.InterestTotal + previousTotal.CollectionLandRevenue.InterestTotal + previousTotal.CollectionMiscRevenue.Interest + previousTotal.CollectionOLR.Premium + previousTotal.CollectionOLR.DemarcationFee+previousTotal.CollectionOPDR.Amount))
+                {
+                    @Html.DisplayFor(modelItem => previousTotal.Total)
+                }
+                else
+                {
+                    <span>Error</span>
+                }
+            </td>
+        </tr>
+
+            grandTotal = previousTotal + total;
+            <tr class="total">
+                <td colspan="3">ସର୍ବ ମୋଟ</td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => grandTotal.CollectionLandRevenue.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => grandTotal.CollectionWaterTax.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => grandTotal.CollectionCess.Total)
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@Html.DisplayFor(modelItem => grandTotal.CollectionMiscRevenue.Arrear)</td>
+                <td>@Html.DisplayFor(modelItem => grandTotal.CollectionMiscRevenue.Current)</td>
+                <td>
+                    @{var gt = grandTotal.CollectionLandRevenue.InterestTotal + grandTotal.CollectionWaterTax.InterestTotal + grandTotal.CollectionMiscRevenue.Interest;}
+                    @gt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => grandTotal.CollectionCess.InterestTotal)
+                </td>
+                <td>
+                    @{var otherGTotal = grandTotal.CollectionOLR.Premium + grandTotal.CollectionOLR.DemarcationFee + grandTotal.CollectionOther.Amount+grandTotal.CollectionOPDR.Amount;}
+                @otherGTotal;
+            </td>
+            <td>
+                @if (grandTotal.Total == (grandTotal.CollectionCess.Total + grandTotal.CollectionLandRevenue.Total + grandTotal.CollectionWaterTax.Total + grandTotal.CollectionMiscRevenue.Current + grandTotal.CollectionMiscRevenue.Arrear + grandTotal.CollectionMiscRevenue.Interest + grandTotal.CollectionOther.Amount + grandTotal.CollectionCess.InterestTotal + grandTotal.CollectionWaterTax.InterestTotal + grandTotal.CollectionLandRevenue.InterestTotal + grandTotal.CollectionOLR.Premium + grandTotal.CollectionOLR.DemarcationFee+grandTotal.CollectionOPDR.Amount))
+                {
+                    @Html.DisplayFor(modelItem => grandTotal.Total)
+                }
+                else
+                {
+                    <span>Error</span>
+                }
+            </td>
+        </tr>
+        }
+
+    }
+
+
+
+
+    }
+
+</table>

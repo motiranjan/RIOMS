@@ -1,0 +1,93 @@
+﻿@model IEnumerable<RIOMS.Domain.Khata>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KhataNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VillageId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameOfRT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Khajana)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cess)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JalaKara)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpecialCase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasPlots)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KhataNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VillageId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameOfRT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Khajana)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cess)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JalaKara)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpecialCase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasPlots)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

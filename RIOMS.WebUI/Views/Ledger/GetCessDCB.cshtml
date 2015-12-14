@@ -1,0 +1,99 @@
+﻿@model IEnumerable<RIOMS.Domain.CessDCB>
+
+@{
+    ViewBag.Title = "GetCessDCB";
+}
+
+<h2>GetCessDCB</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KhataNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameOfRT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Demand_MoreThanThree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Demand_Third)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Demand_Second)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Demand_Previous)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Demand_Current)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Collection_MoreThanThree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Collection_Third)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Collection_Second)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Collection_Previous)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Collection_Current)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KhataNo)
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Demand_MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Demand_Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Demand_Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Demand_Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Demand_Current)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Collection_MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Collection_Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Collection_Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Collection_Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Collection_Current)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

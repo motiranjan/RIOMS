@@ -1,0 +1,122 @@
+﻿@model IEnumerable<RIOMS.Domain.PlotsWithRT>
+
+@{
+    ViewBag.Title = @Model.ElementAt(0).Name;
+}
+
+
+<div style="border:none;border-color:white;">
+    <span>
+        <span>Village</span>
+        <span>@Model.ElementAt(0).Name</span>
+    </span>
+
+</div>
+
+<table>
+    <tr>
+        <th style="width:20px;text-align:center;">Sl No.</th>
+
+        <th style="width:20px;">
+            @Html.DisplayNameFor(model => model.KhataNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlotNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kisam)
+        </th>
+        <th>
+            % of Loss
+        </th>
+        <th style="width:250px;">
+            Name of RT and Parentage
+        </th>
+        <th style="width:200px">
+            Name of Cultivator and Parentage
+        </th>
+        <th style="width:200px;">
+            A/C No. of the Cultivator
+        </th>
+
+
+    </tr>
+    @{int count = 0;
+    decimal totalArea = 0;
+    }
+    @foreach (var items in Model.GroupBy(k => new { k.KhataNo, k.NameOfRT }))
+    {
+        ++count;
+
+        foreach (var item in items)
+        {
+            <tr>
+                                @if (items.ElementAtOrDefault(0) == item)
+                {
+                    <td style="width:20px;text-align:center;" rowspan="@items.Count()">
+                        @(count)
+                    </td>
+                }
+
+
+                @if (items.ElementAtOrDefault(0) == item)
+                {
+                    <td style="text-align:center;width:20px;" rowspan="@items.Count()">
+                        @Html.DisplayFor(modelItem => items.Key.KhataNo)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlotNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Area)
+                    @{totalArea = totalArea + item.Area.GetValueOrDefault();}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kisam)
+                </td>
+                <td></td>
+                @if (items.ElementAtOrDefault(0) == item)
+                {
+                    <td rowspan="@items.Count()">
+                        @Html.DisplayFor(modelItem => items.Key.NameOfRT)
+                    </td>
+                }
+                <td></td>
+                <td></td>
+
+
+            </tr>
+        }
+        <tr>
+        @*<th class="total" colspan="3">
+           Khata Total
+        </th>
+        <th>
+            @totalArea
+        </th>*@
+
+    </tr>
+    }
+    <tr>
+        <th class="total" colspan="3">
+            Total
+        </th>
+        <th>
+            @Model.Sum(p=>p.Area.GetValueOrDefault())
+        </th>
+
+    </tr>
+    <tr>
+        <th class="total" colspan="3">
+            Total In hactor
+        </th>
+        <th>
+            @((Model.Sum(p => p.Area.GetValueOrDefault()) / Convert.ToDecimal(2.47)).ToString("0.00"))
+        </th>
+
+    </tr>
+</table>

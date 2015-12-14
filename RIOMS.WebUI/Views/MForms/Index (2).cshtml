@@ -1,0 +1,162 @@
+﻿@model IEnumerable<RIOMS.Domain.CessDefaulter>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<table class="villageWari">
+    <tr>
+
+        <th rowspan="2">
+            Khata No
+        </th>
+        <th rowspan="2">
+            Name Of Tanent
+        </th>
+        <th colspan="7">
+            Land Revenue
+        </th>
+        <th colspan="7">
+            Water Tax
+        </th>
+        <th colspan="7">
+            Cess
+        </th>
+
+
+    </tr>
+    <tr>
+        <th>
+            More Than Three
+        </th>
+        <th>
+            Third
+        </th>
+        <th>
+            Second
+        </th>
+        <th>
+            Previous
+        </th>
+        <th>
+            Current
+        </th>
+        <th></th>
+        <th>Total</th>
+        <th>
+            More Than Three
+        </th>
+        <th>
+            Third
+        </th>
+        <th>
+            Second
+        </th>
+        <th>
+            Previous
+        </th>
+        <th>
+            Current
+        </th>
+        <th></th>
+        <th>Total</th>
+        <th>
+            More Than Three
+        </th>
+        <th>
+            Third
+        </th>
+        <th>
+            Second
+        </th>
+        <th>
+            Previous
+        </th>
+        <th>
+            Current
+        </th>
+        <th></th>
+
+        <th>Total</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        var index = Model.ToList().IndexOf(item);
+        <tr class="@(index%2==0? "row-even" : "row-odd")">
+
+            <td>@(index + 1)</td>
+            <td class="nameOfRT">
+
+                @if (item.NameOfRT != null)
+                {
+
+                    if (item.NameOfRT.Length > 20)
+                    {
+                        @item.NameOfRT.Substring(0, 20)
+                    }
+                    else
+                    {
+                        @item.NameOfRT
+                    }
+                }
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.KhataNo)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.MoreThanThree)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Third)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Second)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Previous)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Current)*@
+            </td>
+            <td></td>
+            <td>@*@Html.DisplayFor(modelItem => item.CollectionWaterTax.Total)*@</td>
+            <td>
+               @if (item.MoreThanThree>0)
+               {
+                 @item.MoreThanThree  
+               }
+            </td>
+            <td>
+                @if (item.Third>0)
+                {
+                    @item.Third
+                }
+            </td>
+            <td>
+               @if (item.Second>0)
+               {
+                   @item.Second;
+               }
+            </td>
+            <td>
+              @if (item.Previous>0)
+              {
+                  @item.Previous
+              }
+            </td>
+            <td>
+                @if (item.Current>0)
+                {
+                    @item.Current;
+                }
+            </td>
+            
+        </tr>
+    }
+</table>

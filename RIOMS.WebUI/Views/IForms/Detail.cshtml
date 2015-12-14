@@ -1,0 +1,589 @@
+﻿@using RIOMS.Domain;
+@model RIOMS.Domain.IForm
+
+@{
+    ViewBag.Title = "Detail";
+}
+<div id="iform">
+    <div class="header">
+        <h1>ରାଜସ୍ୱ ନିରୀକ୍ଷକ ମଣ୍ଡଳ ଅର୍ଡା</h1>
+    </div>
+    <div>
+        <div id="chNo">ଚା:ନଂ @Model.IFormNo</div>
+        <div id="dt">ତାରିଖ @Model.DepositeDate.ToShortDateString()</div>
+    </div>
+    @{int slNo = 1; decimal gt = 0;}
+    <table class="villageWari">
+        <tr class="header">
+
+            <th rowspan="2">
+                କ୍ର:ନଂ
+            </th>
+            <th rowspan="2">
+                ଗ୍ରାମ
+            </th>
+            <th colspan="6">
+                ଖଜଣା
+            </th>
+            <th colspan="6">
+                ଜଳ କର
+
+            </th>
+            <th colspan="6">
+                ସେସ୍
+            </th>
+            <th colspan="2">
+                ବିବିଧ ଆଦାୟ
+            </th>
+            <th colspan="4">ସୁଧ</th>
+
+            <th rowspan="2" class="vertical">ଡି:ଫି</th>
+            <th rowspan="2" class="vertical">OLR&nbsp;ପ୍ରିମିୟମ</th>
+            <th rowspan="2" class="vertical">ମୋଟ</th>
+        </tr>
+        <tr class="header">
+            <th class="vertical">
+                <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ</span>
+            </th>
+            <th class="vertical">
+                ତୃତୀୟ&nbsp;ବର୍ଷ
+            </th>
+            <th class="vertical">
+                ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷ
+            </th>
+            <th class="vertical">
+                ପୂର୍ବ&nbsp;ବର୍ଷ
+            </th>
+            <th class="vertical">
+                ହାଲ୍
+            </th>
+
+            <th class="vertical">ମୋଟ</th>
+            <th class="vertical">
+                <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ</span>
+            </th>
+            <th class="vertical">
+                ତୃତୀୟ&nbsp;ବର୍ଷ
+            </th>
+            <th class="vertical">
+                ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷ
+            </th>
+            <th class="vertical">
+                ପୂର୍ବ&nbsp;ବର୍ଷ
+            </th>
+            <th class="vertical">
+                ହାଲ୍
+            </th>
+
+            <th class="vertical">ମୋଟ</th>
+            <th class="vertical">
+                <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ</span>
+            </th>
+            <th class="vertical">
+                ତୃତୀୟ&nbsp;ବର୍ଷ
+            </th>
+            <th class="vertical">
+                ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷ
+            </th>
+            <th class="vertical">
+                ପୂର୍ବ&nbsp;ବର୍ଷ
+            </th>
+            <th class="vertical">
+                ହାଲ୍
+            </th>
+
+            <th class="vertical">ମୋଟ</th>
+            <th class="vertical">
+                ବକେୟା
+            </th>
+            <th class="vertical">
+                ହାଲ୍
+            </th>
+            <th class="vertical">ଖଜଣା </th>
+            <th class="vertical">ଜଳକର</th>
+            <th class="vertical">ସେସ</th>
+            <th class="vertical">ବିବିଧ</th>
+        </tr>
+
+
+
+        @foreach (Village village in ViewBag.Villages)
+        {
+
+            IFormDetailLandRevenue landRevenue = Model.IFormDetailLandRevenues.SingleOrDefault(v => v.VillageId == village.Id);
+
+
+            IFormDetailWaterTax waterTax = Model.IFormDetailWaterTaxes.SingleOrDefault(v => v.VillageId == village.Id);
+
+            IFormDetailMiscRevenue miscRevenue = Model.IFormDetailMiscRevenues.SingleOrDefault(v => v.VillageId == village.Id);
+
+            IFormDetailOLR olr = Model.IFormDetailOLRs.SingleOrDefault(v => v.VillageId == village.Id);
+
+            IFormDetailCess cess = Model.IFormDetailCesses.SingleOrDefault(v => v.VillageId == village.Id);
+
+            IFormDetailOther other = Model.IFormDetailOthers.SingleOrDefault(v => v.VillageId == village.Id);
+
+
+            if (!(landRevenue == null && waterTax == null && cess == null && miscRevenue == null && other == null && olr == null))
+            {
+                if (landRevenue == null)
+                {
+                    landRevenue = new IFormDetailLandRevenue { VillageId = village.Id, Year = Model.Year, IFormNo = Model.IFormNo };
+                }
+                if (waterTax == null)
+                {
+                    waterTax = new IFormDetailWaterTax { VillageId = village.Id, Year = Model.Year, IFormNo = Model.IFormNo };
+                }
+                if (miscRevenue == null)
+                {
+                    miscRevenue = new IFormDetailMiscRevenue { VillageId = village.Id, Year = Model.Year, IFormNo = Model.IFormNo };
+                }
+                if (olr == null)
+                {
+                    olr = new IFormDetailOLR { VillageId = village.Id, Year = Model.Year, IFormNo = Model.IFormNo };
+                }
+                if (cess == null)
+                {
+                    cess = new IFormDetailCess { VillageId = village.Id, Year = Model.Year, IFormNo = Model.IFormNo };
+                }
+                if (other == null)
+                {
+                    other = new IFormDetailOther { VillageId = village.Id, Year = Model.Year, IFormNo = Model.IFormNo };
+                }
+
+                <tr style="font-family:OR-TTSarala;">
+
+                    <td>@slNo @{slNo++;} </td>
+                    <th>
+
+
+                        @Html.DisplayFor(modelItem => village.Name)
+                    </th>
+                    <td>
+
+                        @if (landRevenue.MoreThanThree > 0)
+                        {
+                            @Html.DisplayFor(modelItem => landRevenue.MoreThanThree)
+                        }
+
+
+                    </td>
+                    <td>
+
+                        @if (landRevenue.Third > 0)
+                        {
+                            @Html.DisplayFor(modelItem => landRevenue.Third)
+                        }
+
+                    </td>
+                    <td>
+
+                        @if (landRevenue.Second > 0)
+                        {
+                            @Html.DisplayFor(modelItem => landRevenue.Second)
+                        }
+
+                    </td>
+                    <td>
+
+                        @if (landRevenue.Previous > 0)
+                        {
+                            @Html.DisplayFor(modelItem => landRevenue.Previous)
+                        }
+
+                    </td>
+                    <td>
+
+                        @if (landRevenue.Current > 0)
+                        {
+                            @Html.DisplayFor(modelItem => landRevenue.Current)
+                        }
+
+                    </td>
+
+                    <td>
+                        @{decimal tlr = landRevenue.MoreThanThree.GetValueOrDefault() + landRevenue.Third.GetValueOrDefault() + landRevenue.Second.GetValueOrDefault() + landRevenue.Previous.GetValueOrDefault() + landRevenue.Current.GetValueOrDefault();}
+                        @if (tlr > 0)
+                        {
+                            @tlr
+                        }
+                    </td>
+                    <td>
+
+                        @if (waterTax.MoreThanThree > 0)
+                        {
+                            @Html.DisplayFor(modelItem => waterTax.MoreThanThree)
+                        }
+
+
+                    </td>
+                    <td>
+
+                        @if (waterTax.Third > 0)
+                        {
+                            @Html.DisplayFor(modelItem => waterTax.Third)
+                        }
+
+                    </td>
+                    <td>
+
+                        @if (waterTax.Second > 0)
+                        {
+                            @Html.DisplayFor(modelItem => waterTax.Second)
+                        }
+
+                    </td>
+                    <td>
+
+                        @if (waterTax.Previous > 0)
+                        {
+                            @Html.DisplayFor(modelItem => waterTax.Previous)
+                        }
+
+                    </td>
+                    <td>
+
+                        @if (waterTax.Current > 0)
+                        {
+                            @Html.DisplayFor(modelItem => waterTax.Current)
+                        }
+
+                    </td>
+
+                    <td>
+                        @{decimal tw = waterTax.MoreThanThree.GetValueOrDefault() + waterTax.Third.GetValueOrDefault() + waterTax.Second.GetValueOrDefault() + waterTax.Previous.GetValueOrDefault() + waterTax.Current.GetValueOrDefault();}
+                        @if (tw > 0)
+                        {
+                            @tw
+                        }
+
+                    </td>
+                    <td>
+
+                        @if (cess.MoreThanThree > 0)
+                        {
+                            @Html.DisplayFor(modelItem => cess.MoreThanThree)
+                        }
+                    </td>
+                    <td>
+                        @if (cess.Third > 0)
+                        {
+                            @Html.DisplayFor(modelItem => cess.Third)
+                        }
+                    </td>
+                    <td>
+                        @if (cess.Second > 0)
+                        {
+                            @Html.DisplayFor(modelItem => cess.Second)
+                        }
+                    </td>
+                    <td>
+                        @if (cess.Previous > 0)
+                        {
+                            @Html.DisplayFor(modelItem => cess.Previous)
+                        }
+                    </td>
+                    <td>
+                        @if (cess.Current > 0)
+                        {
+                            @Html.DisplayFor(modelItem => cess.Current)
+                        }
+                    </td>
+
+                    <td>
+                        @{decimal tc = cess.MoreThanThree.GetValueOrDefault() + cess.Third.GetValueOrDefault() + cess.Second.GetValueOrDefault() + cess.Previous.GetValueOrDefault() + cess.Current.GetValueOrDefault();}
+                        @if (tc > 0)
+                        {
+                            @tc
+                        }
+                    </td>
+                    <td>
+                        @if (miscRevenue.Arrear > 0)
+                        {
+
+                            @Html.DisplayFor(modelItem => miscRevenue.Arrear)
+                        }
+                    </td>
+                    <td>
+                        @if (miscRevenue.Current > 0)
+                        {
+                            @Html.DisplayFor(modelItem => miscRevenue.Current)
+                        }
+                    </td>
+                    <td>
+                        @if (landRevenue.InterestTotal > 0)
+                        {
+                            @Html.DisplayFor(modelItem => landRevenue.InterestTotal)
+                        }
+
+                    </td>
+                    <td>
+                        @if (waterTax.InterestTotal > 0)
+                        {
+                            @Html.DisplayFor(modelItem => waterTax.InterestTotal)
+                        }
+                    </td>
+                    <td>
+                        @if (cess.InterestTotal > 0)
+                        {
+                            @Html.DisplayFor(modelItem => cess.InterestTotal)
+                        }
+
+                    </td>
+                    <td>
+                        @if (miscRevenue.Interest > 0)
+                        {
+                            @Html.DisplayFor(modelItem => miscRevenue.Interest)
+                        }
+
+                    </td>
+                    <td>
+                        @{Decimal df = olr.DemarcationFee.GetValueOrDefault() + other.Amount.GetValueOrDefault();}
+
+                        @if (df > 0)
+                        {
+                            @df
+                        }
+                    </td>
+                    <td>
+                        @if (olr.Premium > 0)
+                        {
+                            @Html.DisplayFor(modelItem => olr.Premium)
+                        }
+                    </td>
+                    <td>
+                        @{decimal total = tlr + tw + tc + miscRevenue.Arrear.GetValueOrDefault() + miscRevenue.Current.GetValueOrDefault() + landRevenue.InterestTotal.GetValueOrDefault() + waterTax.InterestTotal.GetValueOrDefault() + cess.InterestTotal.GetValueOrDefault() + miscRevenue.Interest.GetValueOrDefault() + df + olr.Premium.GetValueOrDefault();
+                        gt = gt + total;
+                        }
+                        @total
+                    </td>
+                </tr>
+            }
+        }
+        <tr class="total">
+            <td colspan="2">ମୋଟ</td>
+
+            <td>
+                @if (Model.IFormDetailLandRevenues.Sum(l => l.MoreThanThree) > 0)
+                {
+                    @Model.IFormDetailLandRevenues.Sum(l => l.MoreThanThree)
+                }
+            </td>
+            <td>
+                @if (Model.IFormDetailLandRevenues.Sum(l => l.Third) > 0)
+                {
+                    @Model.IFormDetailLandRevenues.Sum(l => l.Third)
+                }
+            </td>
+            <td>
+                @if (Model.IFormDetailLandRevenues.Sum(l => l.Second) > 0)
+                {
+                    @Model.IFormDetailLandRevenues.Sum(l => l.Second)
+                }
+            </td>
+            <td>
+                @if (Model.IFormDetailLandRevenues.Sum(l => l.Previous) > 0)
+                {
+                    @Model.IFormDetailLandRevenues.Sum(l => l.Previous)
+                }
+            </td>
+            <td>
+                @if (Model.IFormDetailLandRevenues.Sum(l => l.Current) > 0)
+                {
+                    @Model.IFormDetailLandRevenues.Sum(l => l.Current)
+                }
+            </td>
+
+            <td>
+                @{decimal ttlr = Model.IFormDetailLandRevenues.Sum(landRevenue => landRevenue.MoreThanThree + landRevenue.Third + landRevenue.Second + landRevenue.Previous + landRevenue.Current).GetValueOrDefault();}
+                @if (ttlr > 0)
+                {
+                    @ttlr
+                }
+            </td>
+            <td>@if (Model.IFormDetailWaterTaxes.Sum(l => l.MoreThanThree)>0)
+                {
+                    @Model.IFormDetailWaterTaxes.Sum(l => l.MoreThanThree)
+                }</td>
+            <td>@if (Model.IFormDetailWaterTaxes.Sum(l => l.Third)>0)
+                {
+                    @Model.IFormDetailWaterTaxes.Sum(l => l.Third)
+                }</td>
+            <td>@if (Model.IFormDetailWaterTaxes.Sum(l => l.Second)>0)
+                {
+                    @Model.IFormDetailWaterTaxes.Sum(l => l.Second)
+                }</td>
+            <td>@if (Model.IFormDetailWaterTaxes.Sum(l => l.Previous)>0)
+                {
+                    @Model.IFormDetailWaterTaxes.Sum(l => l.Previous)
+                }</td>
+            <td>@if (Model.IFormDetailWaterTaxes.Sum(l => l.Current)>0)
+                {
+                    @Model.IFormDetailWaterTaxes.Sum(l => l.Current)
+                }</td>
+
+            <td>
+                @{decimal ttw = Model.IFormDetailWaterTaxes.Sum(waterTax => waterTax.MoreThanThree + waterTax.Third + waterTax.Second + waterTax.Previous + waterTax.Current).GetValueOrDefault();}
+                @if (ttw > 0)
+                {
+                    @ttw
+                }
+
+
+            </td>
+            <td>@if (Model.IFormDetailCesses.Sum(l => l.MoreThanThree)>0)
+                {
+                    @Model.IFormDetailCesses.Sum(l => l.MoreThanThree)
+                }</td>
+            <td>@if (Model.IFormDetailCesses.Sum(l => l.Third)>0)
+                {
+                    @Model.IFormDetailCesses.Sum(l => l.Third)
+                }</td>
+            <td>@if (Model.IFormDetailCesses.Sum(l => l.Second)>0)
+                {
+                    @Model.IFormDetailCesses.Sum(l => l.Second)
+                }</td>
+            <td>@if (Model.IFormDetailCesses.Sum(l => l.Previous)>0)
+                {
+                    @Model.IFormDetailCesses.Sum(l => l.Previous)
+                }</td>
+            <td>@if (Model.IFormDetailCesses.Sum(l => l.Current)>0)
+                {
+                    @Model.IFormDetailCesses.Sum(l => l.Current)
+                }</td>
+
+            <td>
+                @{decimal ttc = Model.IFormDetailCesses.Sum(cess => cess.MoreThanThree + cess.Third + cess.Second + cess.Previous + cess.Current).GetValueOrDefault();}
+                @if (ttc > 0)
+                {
+                    @ttc
+                }
+            </td>
+            <td>@if (Model.IFormDetailMiscRevenues.Sum(m => m.Arrear)>0)
+                {
+                    @Model.IFormDetailMiscRevenues.Sum(m => m.Arrear)
+                }</td>
+            <td>@if (Model.IFormDetailMiscRevenues.Sum(m => m.Current)>0)
+                {
+                    @Model.IFormDetailMiscRevenues.Sum(m => m.Current)
+                }</td>
+            <td>@if (Model.IFormDetailLandRevenues.Sum(l => l.InterestTotal)>0)
+                {
+                    @Model.IFormDetailLandRevenues.Sum(l => l.InterestTotal)
+                }</td>
+            <td>@if (Model.IFormDetailWaterTaxes.Sum(l => l.InterestTotal)>0)
+                {
+                    @Model.IFormDetailWaterTaxes.Sum(l => l.InterestTotal)
+                }</td>
+            <td>@if (Model.IFormDetailCesses.Sum(l => l.InterestTotal)>0)
+                {
+                    @Model.IFormDetailCesses.Sum(l => l.InterestTotal)
+                }</td>
+            <td>@if (Model.IFormDetailMiscRevenues.Sum(m => m.Interest)>0)
+                {
+                    @Model.IFormDetailMiscRevenues.Sum(m => m.Interest)
+                }</td>
+            <td>
+                @{decimal dft = Model.IFormDetailOLRs.Sum(o => o.DemarcationFee).GetValueOrDefault() + Model.IFormDetailOthers.Sum(o => o.Amount).GetValueOrDefault();}
+                @dft
+            </td>
+            <td>@if (Model.IFormDetailOLRs.Sum(o => o.Premium)>0)
+                {
+                    @Model.IFormDetailOLRs.Sum(o => o.Premium)
+                }</td>
+            <td>@gt</td>
+        </tr>
+    </table>
+
+    <div>
+      
+        @{
+            decimal arrearLR = Model.IFormDetailLandRevenues.Sum(lr => lr.MoreThanThree + lr.Third + lr.Second + lr.Previous).GetValueOrDefault();
+            decimal currentLR = Model.IFormDetailLandRevenues.Sum(lr => lr.Current).GetValueOrDefault();
+            decimal arrearCBWR = Model.IFormDetailWaterTaxes.Sum(cbwr => cbwr.MoreThanThree + cbwr.Third + cbwr.Second + cbwr.Previous).GetValueOrDefault();
+            decimal currentCBWR = Model.IFormDetailWaterTaxes.Sum(cbwr => cbwr.Current).GetValueOrDefault();
+            decimal arrearCess = Model.IFormDetailCesses.Sum(cess => cess.MoreThanThree + cess.Third + cess.Second + cess.Previous).GetValueOrDefault();
+            decimal currentCess = Model.IFormDetailCesses.Sum(cess => cess.Current).GetValueOrDefault();
+            decimal interestLR = Model.IFormDetailLandRevenues.Sum(lr => lr.InterestTotal).GetValueOrDefault();
+            decimal interestCess = Model.IFormDetailCesses.Sum(cess => cess.InterestTotal).GetValueOrDefault();
+            decimal interestCBWR = Model.IFormDetailWaterTaxes.Sum(cbwr => cbwr.InterestTotal).GetValueOrDefault();
+            decimal arrearMisc = Model.IFormDetailMiscRevenues.Sum(m => m.Arrear).GetValueOrDefault();
+            decimal currentMisc = Model.IFormDetailMiscRevenues.Sum(m => m.Current).GetValueOrDefault();
+            decimal intMisc = Model.IFormDetailMiscRevenues.Sum(m => m.Interest).GetValueOrDefault();
+            decimal olrpremium = Model.IFormDetailOLRs.Sum(o => o.Premium).GetValueOrDefault();
+        }
+        <br />
+        <br />
+        <div id="abstract" >
+            <span>Abstract</span>
+            @if(arrearLR > 0)
+            {
+                <div><span>Arrear LR </span><span>@arrearLR</span></div>
+            }
+            @if(currentLR > 0)
+            {
+                <div><span>Current LR </span><span>@currentLR</span></div>
+            }
+            @if(arrearCBWR > 0)
+            {
+                <div><span>Arrear CBWR </span><span>@arrearCBWR</span></div>
+            }
+            @if(currentCBWR > 0)
+            {
+                <div><span>Current CBWR </span><span>@currentCBWR</span></div>
+            }
+
+            @if(arrearCess > 0)
+            {
+                <div><span>Arrear Cess </span><span>@arrearCess</span></div>
+            }
+            @if(currentCess > 0)
+            {
+                <div><span>Current Cess </span><span>@currentCess</span></div>
+            }
+            @if(interestLR > 0)
+            {
+                <div><span>Interest On CBWR </span><span>@interestLR</span></div>
+            }
+            @if(interestCBWR > 0)
+            {
+                <div><span>Interest On CBWR </span><span>@interestCBWR</span></div>
+            }
+            @if(interestCess > 0)
+            {
+                <div><span>Interest On Cess </span><span>@interestCess</span></div>
+            }
+            @if(arrearMisc > 0)
+            {
+                <div><span>Arrear Misc Revenue </span><span>@arrearMisc</span></div>
+            }
+            @if(currentMisc > 0)
+            {
+                <div><span>Current Misc Revenue </span><span>@currentMisc</span></div>
+            }
+            @if(intMisc > 0)
+            {
+                <div><span>Intrest on Misc Revenue </span><span>@intMisc</span></div>
+            }
+            @if(dft > 0)
+            {
+                <div><span>Demarcation Fee </span><span>@dft</span></div>
+            }
+            @if(olrpremium > 0)
+            {
+                <div><span>OLR Premium </span><span>@olrpremium</span></div>
+            }
+            <hr  />
+            @{ decimal gtotal = arrearLR + currentLR + interestLR + arrearCBWR + currentCBWR + interestCBWR + arrearMisc + intMisc + currentMisc + arrearCess + currentCess + interestCess + dft + olrpremium; }
+            <div style="color:red;"><span>Total </span><span>@gtotal</span></div>
+        </div>
+        <br />
+        
+        <div class="word">@RIOMS.WebUI.Util.Util.ConvertAmountToWordOdia(gtotal)</div>
+        <br />
+        <div id="dur">ତା <span class="date">@Model.FromDate.ToShortDateString()</span> ରୁ ତା <span class="date">@Model.ToDate.ToShortDateString()</span> ପର୍ଯ୍ୟନ୍ତ ସମସ୍ତ ଅସୁଲି ଏହି ଚାଲାଣ ରେ ଜମା କରାଗଲା ।</div>
+        <br />
+        <br />
+        <div id="receive">Received Rs. @gtotal (@RIOMS.WebUI.Util.Util.ConvertAmountToWords(gtotal)) vide MR No.________________________ dated_________________________ Book No.__________________________</div>
+    </div>
+</div>

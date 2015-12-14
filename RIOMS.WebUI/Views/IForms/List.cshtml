@@ -1,0 +1,47 @@
+﻿@using RIOMS.Domain;
+@model IEnumerable<RIOMS.Domain.IForm>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IFormNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToDate)
+        </th>
+
+        <th>SadarSiha</th>
+        <th colspan="6">VillageWari</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IFormNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToDate)
+            </td>
+            <td>@Html.ActionLink("Generate Challan", "GenerateIForm", new { iform = item, }, new { target = "_blank" }) </td>
+            <td>
+                @Html.ActionLink("SadarSiha", "SadarSiha", "Registers", new { cNo = item.IFormNo }, new { target = "_blank" })
+            </td>
+            @foreach (Village village in ViewBag.Villages)
+            {
+                <td>@Html.ActionLink(village.Name, "VillageWari", "Registers", new { vid = village.Id, cNo = item.IFormNo }, new { target = "_blank" })</td>
+            }
+        </tr>
+    }
+
+</table>

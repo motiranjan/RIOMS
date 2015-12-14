@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d5bd70ae601c44b996165188fc861ecc" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="RIOMS.Domain.DemandCess" Width="1.5" PointX="10.625" PointY="28.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.DemandWaterTax" Width="1.5" PointX="13.625" PointY="27.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.IForm" Width="2.375" PointX="8.25" PointY="16.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.Khata" Width="1.5" PointX="8.375" PointY="25.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.Village" Width="3.5" PointX="4.125" PointY="18" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_DemandCesses_Khatas" ManuallyRouted="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_DemandWaterTaxes_Khatas" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.PlotDetail" Width="1.5" PointX="13.625" PointY="25.125" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_PlotDetails_Khatas" />
+        <AssociationConnector Association="RIOMS.Domain.FK_Khatas_Villages" />
+        <AssociationConnector Association="RIOMS.Domain.FK_PlotDetails_Villages" />
+        <EntityTypeShape EntityType="RIOMS.Domain.CollectionCess" Width="1.5" PointX="18.875" PointY="29" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.CollectionLandRevenue" Width="1.5" PointX="18.875" PointY="18.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.CollectionMiscRevenue" Width="1.5" PointX="18.875" PointY="31.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.CollectionOther" Width="1.5" PointX="18.875" PointY="27.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.CollectionWaterTax" Width="1.5" PointX="18.875" PointY="30.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.Receipt" Width="1.5" PointX="16.625" PointY="25.125" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_Receipts_Khatas" />
+        <AssociationConnector Association="RIOMS.Domain.FK_Receipts_Villages" />
+        <AssociationConnector Association="RIOMS.Domain.FK_dbo_Cesses_dbo_Receipts_ReceiptNo" />
+        <AssociationConnector Association="RIOMS.Domain.FK_dbo_LandRevenues_dbo_Receipts_ReceiptNo" />
+        <AssociationConnector Association="RIOMS.Domain.FK_MiscRevenues_Receipts" />
+        <AssociationConnector Association="RIOMS.Domain.FK_Others_Receipts" />
+        <AssociationConnector Association="RIOMS.Domain.FK_dbo_WaterTaxes_dbo_Receipts_ReceiptNo" />
+        <EntityTypeShape EntityType="RIOMS.Domain.MiscRevenue" Width="1.5" PointX="11.375" PointY="24.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.RICircle" Width="1.5" PointX="1.875" PointY="32.375" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_MiscRevenues_Villages" />
+        <AssociationConnector Association="RIOMS.Domain.FK_Villages_RICircles" />
+        <EntityTypeShape EntityType="RIOMS.Domain.TypesOfMiscRev" Width="1.5" PointX="9.125" PointY="14.125" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_MiscRevenues_TypesOfMiscRev" />
+        <EntityTypeShape EntityType="RIOMS.Domain.OLRCas" Width="2.25" PointX="8.375" PointY="30" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_OLRCases_Villages" />
+        <EntityTypeShape EntityType="RIOMS.Domain.CollectionOLR" Width="1.5" PointX="18.875" PointY="32.375" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_CollectionOLR_Receipts" />
+        <EntityTypeShape EntityType="RIOMS.Domain.IFormDetailMiscRevenue" Width="1.5" PointX="11.375" PointY="18.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.IFormDetailOLR" Width="1.5" PointX="11.375" PointY="22.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.IFormDetailOther" Width="1.75" PointX="11.375" PointY="20.125" IsExpanded="true" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFormDetailMiscRevenues_IForms" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFormDetailMiscRevenues_Villages" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFormDetailOLR_IForms" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFormDetailOLR_Villages" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFormDetailOthers_IForms" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFormDetailOthers_Villages" />
+        <EntityTypeShape EntityType="RIOMS.Domain.IFormDetailCess" Width="1.5" PointX="11.375" PointY="26.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.IFormDetailLandRevenue" Width="1.5" PointX="8.375" PointY="21.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.IFormDetailWaterTax" Width="1.5" PointX="8.375" PointY="19.125" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFomrDetailCesses_IFomrDetailCesses2" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFomrDetailCesses_IFomrDetailCesses11" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFomrDetailLandRevenues_IForms11" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFomrDetailLandRevenues_Villages1" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFomrDetailWaterTaxes_IForms1" />
+        <AssociationConnector Association="RIOMS.Domain.FK_IFomrDetailWaterTaxes_Villages1" />
+        <EntityTypeShape EntityType="RIOMS.Domain.CollectionOPDR" Width="1.5" PointX="18.875" PointY="33.625" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_OPDR_Receipts" />
+        <AssociationConnector Association="RIOMS.Domain.FK_DemandCesses_Villages" />
+        <AssociationConnector Association="RIOMS.Domain.FK_DemandWaterTaxes_Villages" />
+        <EntityTypeShape EntityType="RIOMS.Domain.VillageWiseDemandCess" Width="2.25" PointX="8.375" PointY="33.5" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_VillageWiseDemandCesses_Villages" />
+        <EntityTypeShape EntityType="RIOMS.Domain.AdvanceCollectionCess" Width="1.5" PointX="8.375" PointY="31.25" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.VillageAdvanceCollectionCess" />
+        <EntityTypeShape EntityType="RIOMS.Domain.AdvanceAdjustmentCess" Width="1.5" PointX="8.375" PointY="28.875" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.AdvanceAdjustmentCessDemandCess" />
+        <AssociationConnector Association="RIOMS.Domain.VillageAdvanceAdjustmentCess" />
+        <EntityTypeShape EntityType="RIOMS.Domain.AdvanceAdjustmentWaterTax" Width="1.5" PointX="1.875" PointY="26" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.WaterTaxDefaulter" Width="1.5" PointX="1.875" PointY="22.125" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.WaterTaxDefaulterVillage" />
+        <AssociationConnector Association="RIOMS.Domain.WaterTaxDefaulterDemandWaterTax" />
+        <AssociationConnector Association="RIOMS.Domain.WaterTaxDefaulterKhata" />
+        <AssociationConnector Association="RIOMS.Domain.AdvanceAdjustmentWaterTaxDemandWaterTax" />
+        <AssociationConnector Association="RIOMS.Domain.AdvanceAdjustmentWaterTaxVillage" />
+        <AssociationConnector Association="RIOMS.Domain.FromVillageCollectionMovementCess" />
+        <EntityTypeShape EntityType="RIOMS.Domain.CollectionMovementCess" Width="2.5" PointX="0.875" PointY="27.125" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.CollectionMovementCessVillage" />
+        <AssociationConnector Association="RIOMS.Domain.CollectionMovementCessVillage1" />
+        <EntityTypeShape EntityType="RIOMS.Domain.Defaulter" Width="1.5" PointX="1.875" PointY="24.875" IsExpanded="true" />
+        <AssociationConnector Association="RIOMS.Domain.DefaulterVillage" />
+        <EntityTypeShape EntityType="RIOMS.Domain.VillageWiseDemandLandRevenue" Width="1.5" PointX="8.375" PointY="32.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.VillageWiseDemandWaterTax" Width="2.25" PointX="8.375" PointY="26.625" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_VillageWiseDemandLandRevenue_Villages" />
+        <AssociationConnector Association="RIOMS.Domain.FK_VillageWiseDemandWaterTax_Villages" />
+        <EntityTypeShape EntityType="RIOMS.Domain.AdvanceCollectionWaterTax" Width="1.5" PointX="1.875" PointY="31.25" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.AdvanceCollectionWaterTaxDemandWaterTax" />
+        <AssociationConnector Association="RIOMS.Domain.AdvanceCollectionWaterTaxVillage" />
+        <EntityTypeShape EntityType="RIOMS.Domain.DemandLandRevenue" Width="1.5" PointX="13.625" PointY="19.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.TahCollectionCess" Width="1.5" PointX="18.875" PointY="24.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.TahCollectionLandRevenue" Width="1.5" PointX="18.875" PointY="25.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.TahCollectionMiscRevenue" Width="1.5" PointX="18.875" PointY="21.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.TahCollectionWaterTax" Width="1.5" PointX="18.875" PointY="20.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.TahReceipt" Width="1.5" PointX="16.625" PointY="23.125" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_DemandLandRevenues_Khatas" />
+        <AssociationConnector Association="RIOMS.Domain.FK_DemandLandRevenues_Villages" />
+        <AssociationConnector Association="RIOMS.Domain.FK_TahReceipts_Khatas" />
+        <AssociationConnector Association="RIOMS.Domain.FK_TahCollectionCesses_TahReceipts" />
+        <AssociationConnector Association="RIOMS.Domain.FK_TahCollectionLandRevenues_TahReceipts" />
+        <AssociationConnector Association="RIOMS.Domain.FK_TahCollectionMiscRevenues_TahReceipts" />
+        <AssociationConnector Association="RIOMS.Domain.FK_TahCollectionWaterTaxes_TahReceipts" />
+        <AssociationConnector Association="RIOMS.Domain.FK_TahReceipts_Villages" />
+        <EntityTypeShape EntityType="RIOMS.Domain.VillageWiseTahCollectionCess" Width="1.5" PointX="1.875" PointY="18.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.VillageWiseTahCollectionLandRevenue" Width="1.5" PointX="8.375" PointY="23.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.VillageWiseTahCollectionMiscRevenue" Width="1.5" PointX="1.875" PointY="20.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="RIOMS.Domain.VillageWiseTahCollectionWaterTax" Width="1.5" PointX="1.875" PointY="23.75" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.VillageVillageWiseTahCollectionLandRevenue" />
+        <AssociationConnector Association="RIOMS.Domain.VillageWiseTahCollectionCessVillage" />
+        <AssociationConnector Association="RIOMS.Domain.VillageWiseTahCollectionWaterTaxVillage" />
+        <AssociationConnector Association="RIOMS.Domain.VillageWiseTahCollectionMiscRevenueVillage" />
+        <EntityTypeShape EntityType="RIOMS.Domain.AdvanceCollectionLandRevenue" Width="2.625" PointX="0.75" PointY="19.375" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.AdvanceCollectionLandRevenueVillage" />
+        <AssociationConnector Association="RIOMS.Domain.AdvanceCollectionLandRevenueDemandLandRevenue" />
+        <AssociationConnector Association="RIOMS.Domain.AdvanceCollectionCessDemandCess" />
+        <EntityTypeShape EntityType="RIOMS.Domain.IFormDetailOPDR" Width="1.25" PointX="1.875" PointY="17.125" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.IFormDetailOPDRIForm" />
+        <AssociationConnector Association="RIOMS.Domain.IFormDetailOPDRVillage" />
+        <AssociationConnector Association="RIOMS.Domain.FK_Receipts_MiscRevenues" />
+        <EntityTypeShape EntityType="RIOMS.Domain.DemandMiscRevenue" Width="1.5" PointX="13.625" PointY="21.125" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.FK_DemandMiscRevenues_MiscRevenues" />
+        <AssociationConnector Association="RIOMS.Domain.FK_DemandMiscRevenues_Villages" />
+        <AssociationConnector Association="RIOMS.Domain.FK_TahReceipts_MiscRevenues" />
+        <EntityTypeShape EntityType="RIOMS.Domain.CollectionMovementMiscRevenue" Width="2.25" PointX="1.125" PointY="13.875" IsExpanded="false" />
+        <AssociationConnector Association="RIOMS.Domain.CollectionMovementMiscRevenueVillage" />
+        <AssociationConnector Association="RIOMS.Domain.CollectionMovementMiscRevenueVillage1" />
+        <EntityTypeShape EntityType="RIOMS.Domain.PlotsWithRT" Width="1.5" PointX="0.75" PointY="0.75" />
+        </Diagram>
+      <Diagram DiagramId="5bf62725cafb4e3184a53859a61f3db8" Name="Diagram2" >
+        <EntityTypeShape EntityType="RIOMS.Domain.Receipt" Width="1.5" PointX="0.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

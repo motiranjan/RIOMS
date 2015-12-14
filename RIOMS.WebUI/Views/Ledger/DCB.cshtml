@@ -1,0 +1,1145 @@
+﻿@using RIOMS.Domain
+@model RIOMS.WebUI.Models.DCBViewModel
+
+@{
+    ViewBag.Title = "DCB";
+}
+
+<h2>DCB @Model.Village.Name</h2>
+
+<table class="villageWari">
+    <tr class="header">
+        <th rowspan="2" class="date">
+            Date
+        </th>
+        <th rowspan="2">
+            ଚାଲାଣ ନ
+        </th>
+        <th colspan="6">
+            ଖଜଣା
+        </th>
+        <th colspan="6">
+            ଜଳକର
+        </th>
+        <th colspan="6">
+            ସେସ
+        </th>
+
+    </tr>
+    <tr class="header">
+        <th class="vertical">
+            <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ</span>
+        </th>
+        <th class="vertical">
+            ତୃତୀୟ&nbsp;ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ପୂର୍ବ&nbsp;ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ହାଲ୍
+        </th>
+
+        <th class="vertical">ଅଗ୍ରିମ</th>
+        <th class="vertical">
+            <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ</span>
+        </th>
+        <th class="vertical">
+            ତୃତୀୟ&nbsp;ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ପୂର୍ବ&nbsp;ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ହାଲ୍
+        </th>
+
+        <th class="vertical">ଅଗ୍ରିମ</th>
+        <th class="vertical">
+            <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ</span>
+        </th>
+        <th class="vertical">
+            ତୃତୀୟ&nbsp;ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ପୂର୍ବ&nbsp;ବର୍ଷ
+        </th>
+        <th class="vertical">
+            ହାଲ୍
+        </th>
+
+        <th class="vertical">ଅଗ୍ରିମ</th>
+
+    </tr>
+    <tr>
+        <td>	1	</td>
+        <td>	2	</td>
+        <td>	3	</td>
+        <td>	4	</td>
+        <td>	5	</td>
+        <td>	6	</td>
+        <td>	7	</td>
+        <td>	8	</td>
+        <td>	9	</td>
+        <td>	10	</td>
+        <td>	11	</td>
+        <td>	12	</td>
+        <td>	13	</td>
+        <td>	14	</td>
+        <td>	15	</td>
+        <td>	16	</td>
+        <td>	17	</td>
+        <td>	18	</td>
+        <td>	19	</td>
+        <td>	20	</td>
+
+    </tr>
+    <tr style="color:red;">
+        <td colspan="2">ଦାବୀ</td>
+        @if (Model.Village.VillageWiseDemandLandRevenues.Count > 0)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Previous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Current)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Advance)
+
+            </td>
+        }
+        else
+        {
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        }
+
+        @if (Model.Village.VillageWiseDemandWaterTaxes.Count > 0)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Previous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Current)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Advance)
+
+            </td>
+        }
+        else
+        {
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.Current)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.Advance)
+        </td>
+    </tr>
+    @if (Model.DemandCess.Increase+Model.DemandLandRevenue.Increase > 0)
+    {
+        <tr style="color:red;">
+            <td colspan="2">ଦାବୀ ବୃଦ୍ଧି</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>(+) @Model.DemandLandRevenue.Increase</td>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                (+) @Model.DemandCess.Increase
+            </td>
+
+            <td>@*@Html.DisplayFor(modelItem => Model.DemandCess.Total)*@</td>
+        </tr>
+  
+    <tr style="color:red;">
+        <td colspan="2">ମୋଟ ଦାବୀ</td>
+    @if (Model.Village.VillageWiseDemandLandRevenues.Count>0)
+	{
+		     <td>
+            @Model.Village.VillageWiseDemandLandRevenues.Sum(d=>d.MoreThanThree)
+        </td>
+        <td>
+            @Model.Village.VillageWiseDemandLandRevenues.Sum(d=>d.Third)
+        </td>
+        <td>
+            @Model.Village.VillageWiseDemandLandRevenues.Sum(d=>d.Second)
+        </td>
+        <td>
+            @Model.Village.VillageWiseDemandLandRevenues.Sum(d=>d.Previous)
+        </td>
+        <td>
+            @{
+        var lrt = Model.Village.VillageWiseDemandLandRevenues.Sum(d=>d.Current +d.Increase);}
+            @lrt
+        </td>
+
+
+
+        <td></td>
+	}
+        else
+        {
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        }
+        @if (Model.Village.VillageWiseDemandWaterTaxes.Count > 0)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).Previous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).Current)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).Advance)
+
+            </td>
+        }
+        else
+        {
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandCesses.ElementAt(0).MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandCesses.ElementAt(0).Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandCesses.ElementAt(0).Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandCesses.ElementAt(0).Previous)
+        </td>
+        <td>
+            @{
+                var ct = Model.Village.VillageWiseDemandCesses.ElementAt(0).Current + Model.Village.VillageWiseDemandCesses.ElementAt(0).Increase;}
+            @ct
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandCesses.ElementAt(0).Advance)
+        </td>
+    </tr>
+    }
+
+    <tr style="color:red;">
+        <td colspan="2">actual ଦାବୀ</td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Current)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Advance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.Current)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.Advance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.Current)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandCess.Advance)
+        </td>
+    </tr>
+    <tr style="color:red;">
+        <td colspan="2">ଅଗ୍ରିମ ପୂରଣ</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceAdjustmentWaterTax.Current)</td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            (-) @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentCess.Current)
+        </td>
+
+        <td>@*@Html.DisplayFor(modelItem => Model.DemandCess.Total)*@</td>
+    </tr>
+    <tr style="color:red;">
+        <td colspan="2">ନେଟ  ଦାବୀ</td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandLandRevenue.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandLandRevenue.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandLandRevenue.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandLandRevenue.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandLandRevenue.Current)
+        </td>
+
+        <td>@Html.DisplayFor(modelItem => Model.NetDemandLandRevenue.Advance)</td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandWaterTax.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandWaterTax.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandWaterTax.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandWaterTax.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandWaterTax.Current)
+        </td>
+
+        <td>@Html.DisplayFor(modelItem => Model.NetDemandWaterTax.Advance)</td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandCess.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandCess.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandCess.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandCess.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.NetDemandCess.Current)
+        </td>
+
+        <td>@Html.DisplayFor(modelItem => Model.NetDemandCess.Advance)</td>
+    </tr>
+    @{int index = 0;
+    }
+    @foreach (IForm item in Model.IForms)
+    {
+        if (item.IFormDetailCesses.Count + item.IFormDetailLandRevenues.Count + item.IFormDetailWaterTaxes.Count > 0)
+        {
+            index = index + 1;
+            <tr class="@(index%2==0? "row-even" : "row-odd")">
+                <td class="date">
+                    @item.DepositeDate.ToString("dd/MM/yy")
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.IFormNo)</td>
+
+                <td>
+                    @if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).MoreThanThree.GetValueOrDefault() > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).MoreThanThree
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Third > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Third
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Second > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Second
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Previous > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Previous
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Current > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Current
+                    }
+                </td>
+
+                <td>
+                   
+                </td>
+                <td>
+                    @if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).MoreThanThree > 0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).MoreThanThree
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Third > 0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Third
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Second > 0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Second
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Previous > 0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Previous
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Current > 0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Current
+                    }
+                </td>
+
+                <td>
+                   
+                </td>
+                <td>
+                    @if (item.IFormDetailCesses.ElementAtOrDefault(0).MoreThanThree > 0)
+                    {
+                        @item.IFormDetailCesses.ElementAtOrDefault(0).MoreThanThree
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailCesses.ElementAtOrDefault(0).Third > 0)
+                    {
+                        @item.IFormDetailCesses.ElementAtOrDefault(0).Third
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailCesses.ElementAtOrDefault(0).Second > 0)
+                    {
+                        @item.IFormDetailCesses.ElementAtOrDefault(0).Second
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailCesses.ElementAtOrDefault(0).Previous > 0)
+                    {
+                        @item.IFormDetailCesses.ElementAtOrDefault(0).Previous
+                    }
+                </td>
+                <td>
+                    @if (item.IFormDetailCesses.ElementAtOrDefault(0).Current > 0)
+                    {
+                        @item.IFormDetailCesses.ElementAtOrDefault(0).Current
+                    }
+                </td>
+
+                <td></td>
+
+            </tr>
+        }
+
+    }
+    <tr style="color:red;">
+        <td colspan="2">ମୋଟ </td>
+        <td>
+
+            @Model.TotalCollectionLandRevenue.MoreThanThree
+        </td>
+        <td>
+            @Model.TotalCollectionLandRevenue.Third
+        </td>
+        <td>
+            @Model.TotalCollectionLandRevenue.Second
+        </td>
+        <td>
+            @Model.TotalCollectionLandRevenue.Previous
+        </td>
+        <td>
+            @Model.TotalCollectionLandRevenue.Current
+        </td>
+
+        <td></td>
+        <td>
+
+            @Model.TotalCollectionWaterTax.MoreThanThree
+        </td>
+        <td>
+            @Model.TotalCollectionWaterTax.Third
+        </td>
+        <td>
+            @Model.TotalCollectionWaterTax.Second
+        </td>
+        <td>
+            @Model.TotalCollectionWaterTax.Previous
+        </td>
+        <td>
+            @Model.TotalCollectionWaterTax.Current
+        </td>
+
+        <td></td>
+        <td>
+
+            @Model.TotalCollectionCess.MoreThanThree
+        </td>
+        <td>
+            @Model.TotalCollectionCess.Third
+        </td>
+        <td>
+            @Model.TotalCollectionCess.Second
+        </td>
+        <td>
+            @Model.TotalCollectionCess.Previous
+        </td>
+        <td>
+            @Model.TotalCollectionCess.Current
+        </td>
+
+        <td></td>
+    </tr>
+
+
+    @foreach (var item in Model.Village.CollectionMovementCessesFrom)
+    {
+        <tr>
+            <td colspan="2">
+                ମୌଜା @item.FromVillage.Name  ରୁ ଆସିଲା
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).MoreThanThree.GetValueOrDefault() > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).MoreThanThree
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Third > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Third
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Second > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Second
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Previous > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Previous
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Current > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Current
+                    }*@
+            </td>
+
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Total > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Total
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).MoreThanThree>0)
+                    {
+                            @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).MoreThanThree
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Third>0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Third
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Second>0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Second
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Previous>0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Previous
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Current>0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Current
+                    }*@
+            </td>
+
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Total>0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Total
+                    }*@
+            </td>
+            <td>
+                @if (item.MoreThanThree > 0)
+                {
+
+                    @item.MoreThanThree
+                }
+            </td>
+            <td>
+                @if (item.Third > 0)
+                {
+
+                    @item.Third
+                }
+            </td>
+            <td>
+                @if (item.Second > 0)
+                {
+
+                    @item.Second
+                }
+            </td>
+            <td>
+                @if (item.Previous > 0)
+                {
+
+                    @item.Previous
+                }
+            </td>
+            <td>
+                @if (item.Current > 0)
+                {
+
+                    @item.Current
+                }
+            </td>
+
+            <td></td>
+
+        </tr>
+    }
+
+    @foreach (var item in Model.Village.CollectionMovementCessesTo)
+    {
+        <tr>
+            <td colspan="2">
+                ମୌଜା  @item.ToVillage.Name  କୁ ଗଲା
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).MoreThanThree.GetValueOrDefault() > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).MoreThanThree
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Third > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Third
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Second > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Second
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Previous > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Previous
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Current > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Current
+                    }*@
+            </td>
+
+            <td>
+                @*@if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).Total > 0)
+                    {
+                        @item.IFormDetailLandRevenues.ElementAtOrDefault(0).Total
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).MoreThanThree>0)
+                    {
+                            @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).MoreThanThree
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Third>0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Third
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Second>0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Second
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Previous>0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Previous
+                    }*@
+            </td>
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Current>0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Current
+                    }*@
+            </td>
+
+            <td>
+                @*@if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Total>0)
+                    {
+                        @item.IFormDetailWaterTaxes.ElementAtOrDefault(0).Total
+                    }*@
+            </td>
+            <td>
+                @if (item.MoreThanThree > 0)
+                {
+
+                    @item.MoreThanThree
+                }
+            </td>
+            <td>
+                @if (item.Third > 0)
+                {
+
+                    @item.Third
+                }
+            </td>
+            <td>
+                @if (item.Second > 0)
+                {
+
+                    @item.Second
+                }
+            </td>
+            <td>
+                @if (item.Previous > 0)
+                {
+
+                    @item.Previous
+                }
+            </td>
+            <td>
+                @if (item.Current > 0)
+                {
+
+                    @item.Current
+                }
+            </td>
+
+            <td></td>
+
+        </tr>
+    }
+    @if (Model.GoToVillagesCess.Count() + Model.ComeFromVillagesCess.Count() > 0)
+    {
+        <tr style="color:red;">
+            <td colspan="2">ମୋଟ ଅସୁଲି</td>
+            <td>
+                @Model.TotalCollectionLandRevenueAfterMovement.MoreThanThree
+            </td>
+            <td>
+                @Model.TotalCollectionLandRevenueAfterMovement.Third
+            </td>
+            <td>
+                @Model.TotalCollectionLandRevenueAfterMovement.Second
+            </td>
+            <td>
+                @Model.TotalCollectionLandRevenueAfterMovement.Previous
+            </td>
+            <td>
+                @Model.TotalCollectionLandRevenueAfterMovement.Current
+            </td>
+
+            <td></td>
+            <td>
+                @Model.TotalCollectionWaterTaxAfterMovement.MoreThanThree
+            </td>
+            <td>
+                @Model.TotalCollectionWaterTaxAfterMovement.Third
+            </td>
+            <td>
+                @Model.TotalCollectionWaterTaxAfterMovement.Second
+            </td>
+            <td>
+                @Model.TotalCollectionWaterTaxAfterMovement.Previous
+            </td>
+            <td>
+                @Model.TotalCollectionWaterTaxAfterMovement.Current
+            </td>
+
+            <td></td>
+            <td>
+
+                @Model.TotalCollectionCessAfterMovement.MoreThanThree
+            </td>
+            <td>
+                @Model.TotalCollectionCessAfterMovement.Third
+            </td>
+            <td>
+                @Model.TotalCollectionCessAfterMovement.Second
+            </td>
+            <td>
+                @Model.TotalCollectionCessAfterMovement.Previous
+            </td>
+            <td>
+                @Model.TotalCollectionCessAfterMovement.Current
+            </td>
+
+            <td>@*@Html.DisplayFor(modelItem => Model.DemandCess.Total)*@</td>
+        </tr>
+    }
+    @if (Model.HasTahCollection)
+    {
+        <tr>
+            <td colspan="2">ତହସିଲ ଅଫିସ ଅସୁଲି</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionLanadRevenue.MoreThanThree)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionLanadRevenue.Third)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionLanadRevenue.Second)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionLanadRevenue.Previous)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionLanadRevenue.Current)</td>
+
+            <td></td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionWaterTax.MoreThanThree)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionWaterTax.Third)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionWaterTax.Second)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionWaterTax.Previous)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionWaterTax.Current)</td>
+
+            <td></td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionCess.MoreThanThree)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionCess.Third)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionCess.Second)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionCess.Previous)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TahCollectionCess.Current)</td>
+
+            <td></td>
+        </tr>
+
+        <tr class="total">
+            <td colspan="2">ମୋଟ</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterTah.MoreThanThree)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterTah.Third)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterTah.Second)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterTah.Previous)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterTah.Current)</td>
+
+            <td></td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterTah.MoreThanThree)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterTah.Third)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterTah.Second)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterTah.Previous)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterTah.Current)</td>
+
+            <td></td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterTah.MoreThanThree)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterTah.Third)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterTah.Second)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterTah.Previous)</td>
+            <td>@Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterTah.Current)</td>
+
+            <td></td>
+        </tr>
+    }
+    <tr style="color:red;">
+        <td colspan="2">ଅଗ୍ରିମ ଅସୁଲି</td>
+        <td>
+            @Model.AdvanceCollectionLandRevenue.MoreThanThree
+        </td>
+        <td>
+            @Model.AdvanceCollectionLandRevenue.Third
+        </td>
+        <td>
+            @Model.AdvanceCollectionLandRevenue.Second
+        </td>
+        <td>
+            @Model.AdvanceCollectionLandRevenue.Previous
+        </td>
+        <td>
+            @Model.AdvanceCollectionLandRevenue.Current
+        </td>
+
+        <td>@Model.AdvanceCollectionLandRevenue.Total</td>
+        <td>
+            @Model.AdvanceCollectionWaterTax.MoreThanThree
+        </td>
+        <td>
+            @Model.AdvanceCollectionWaterTax.Third
+        </td>
+        <td>
+            @Model.AdvanceCollectionWaterTax.Second
+        </td>
+        <td>
+            @Model.AdvanceCollectionWaterTax.Previous
+        </td>
+        <td>
+            @Model.AdvanceCollectionWaterTax.Current
+        </td>
+
+        <td>
+            @Model.AdvanceCollectionWaterTax.Total
+        </td>
+        <td>
+            @Model.AdvanceCollectionCess.MoreThanThree
+        </td>
+        <td>
+            @Model.AdvanceCollectionCess.Third
+        </td>
+        <td>
+            @Model.AdvanceCollectionCess.Second
+        </td>
+        <td>
+            @Model.AdvanceCollectionCess.Previous
+        </td>
+        <td>
+            @Model.AdvanceCollectionCess.Current
+        </td>
+
+        <td>
+            @Model.AdvanceCollectionCess.Total
+        </td>
+    </tr>
+    <tr style="color:red;">
+        <td colspan="2">ନେଟ ଅସୁଲି</td>
+        <td>
+            @Model.NetCollectionLandRevenue.MoreThanThree
+        </td>
+        <td>
+            @Model.NetCollectionLandRevenue.Third
+        </td>
+        <td>
+            @Model.NetCollectionLandRevenue.Second
+        </td>
+        <td>
+            @Model.NetCollectionLandRevenue.Previous
+        </td>
+        <td>
+            @Model.NetCollectionLandRevenue.Current
+        </td>
+
+        <td></td>
+        <td>
+            @Model.NetCollectionWaterTax.MoreThanThree
+        </td>
+        <td>
+            @Model.NetCollectionWaterTax.Third
+        </td>
+        <td>
+            @Model.NetCollectionWaterTax.Second
+        </td>
+        <td>
+            @Model.NetCollectionWaterTax.Previous
+        </td>
+        <td>
+            @Model.NetCollectionWaterTax.Current
+        </td>
+
+        <td></td>
+        <td>
+            @Model.NetCollectionCess.MoreThanThree
+        </td>
+        <td>
+            @Model.NetCollectionCess.Third
+        </td>
+        <td>
+            @Model.NetCollectionCess.Second
+        </td>
+        <td>
+            @Model.NetCollectionCess.Previous
+        </td>
+        <td>
+            @Model.NetCollectionCess.Current
+        </td>
+
+        <td>@*@Html.DisplayFor(modelItem => Model.DemandCess.Total)*@</td>
+    </tr>
+    <tr>
+        <td colspan="2">ବାକୀ</td>
+        <td>
+            @Model.BalanceLandRevenue.MoreThanThree
+        </td>
+        <td>
+            @Model.BalanceLandRevenue.Third
+        </td>
+        <td>
+            @Model.BalanceLandRevenue.Second
+        </td>
+        <td>
+            @Model.BalanceLandRevenue.Previous
+        </td>
+        <td>
+            @Model.BalanceLandRevenue.Current
+        </td>
+
+        <td>@Model.BalanceLandRevenue.Advance</td>
+        <td>
+            @Model.BalanceWaterTax.MoreThanThree
+        </td>
+        <td>
+            @Model.BalanceWaterTax.Third
+        </td>
+        <td>
+            @Model.BalanceWaterTax.Second
+        </td>
+        <td>
+            @Model.BalanceWaterTax.Previous
+        </td>
+        <td>
+            @Model.BalanceWaterTax.Current
+        </td>
+
+        <td>@Model.BalanceWaterTax.Advance</td>
+        <td>
+            @Model.BalanceCess.MoreThanThree
+        </td>
+        <td>
+            @Model.BalanceCess.Third
+        </td>
+        <td>
+            @Model.BalanceCess.Second
+        </td>
+        <td>
+            @Model.BalanceCess.Previous
+        </td>
+        <td>
+            @Model.BalanceCess.Current
+        </td>
+
+        <td style="color:red;">@Model.BalanceCess.Advance</td>
+    </tr>
+</table>

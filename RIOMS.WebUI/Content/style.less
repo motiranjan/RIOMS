@@ -1,0 +1,222 @@
+﻿#receipt {
+    margin: 0 auto;
+
+    input {
+        width: 50px;
+    }
+}
+.date
+{
+    font-family:OR-TTSarala;
+    font-size:15px;
+}
+.nameOfRT {
+    font-family: ORBW-TTMuktaEN;
+    font-size: 15px;
+    width: 250px;
+}
+
+.row-even {
+    background-color: #e8e8ec;
+}
+
+.row-odd {
+    background-color: #FFF;
+}
+
+#container {
+    margin: 0 auto;
+}
+
+.ledger-part1 {
+    width: 100%;
+    border: none;
+    text-align: center;
+}
+
+.header {
+    text-align: center;
+
+    .vertical {
+        -ms-transform: rotate(-90deg); /* IE 9 */
+        -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+        transform: rotate(-90deg);
+        transform-origin: left top 1;
+        text-wrap: none;
+        height: 85px;
+    }
+}
+
+table {
+    border: 2px solid;
+    border-collapse: collapse;
+    text-align: right;
+
+    tr {
+        border: 1px solid;
+
+        &:hover {
+            background-color: #f5ea77;
+        }
+
+        td, th {
+            border: 1px solid #000;
+            width: 60px;
+            /*font-family:OR-TTSarala;
+            font-size:20px;*/
+        }
+    }
+}
+
+.receipt {
+    width: 600px;
+
+    input {
+        width: 60px;
+    }
+}
+
+td.date {
+    width: 100px !important;
+}
+
+.sadarSiha {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.villageWari {
+    width: 1320px;
+    margin: 0;
+
+}
+
+    tr.total {
+        color: red;
+        font-family:OR-TTSarala;
+        font-size:18px;
+    }
+
+    #ledger {
+        .demand {
+            color: red;
+
+            input {
+                width: 50px;
+            }
+        }
+        table#part1{
+            width:100%;
+            td{
+                width:auto;
+            }
+        }
+    }
+
+    #iform {
+        .chNdt {
+            width: 200px;
+            font-family: OR-TTSarala;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .villageWari {
+            font-family: "eOdissa Bahuda";
+
+            td {
+                font-size: 15px;
+                font-weight:bold;
+                text-align:center;
+            }
+        }
+
+        #chNo {
+            .chNdt();
+            float: left;
+        }
+
+        #dt {
+            .chNdt();
+            float: right;
+        }
+
+        #receive {
+            width: 450px;
+            margin-right: 350px;
+            float: right;
+            text-align: center;
+
+        }
+
+        #dur {
+            #receive
+            ();
+        }
+
+        #abstract {
+            float: left;
+            width: 250px;
+            text-align: end;
+            margin-left: 50px;
+
+            hr {
+                width: 200px;
+                text-align: right;
+            }
+
+            span {
+                font-weight: bold;
+                margin: 0 5px;
+            }
+        }
+    }
+
+    .word {
+        font-size: 20px;
+        font-weight: bold;
+        color: red;
+        text-align: center;
+    }
+@media only print  {
+    .diaster {
+        margin:auto;
+    }
+}
+    .diaster{
+         margin:auto;
+        height:297mm;
+        width:210mm;
+        font-size:15px;
+        .witness{
+            width:30%;
+            float:left;
+        }
+        .genealogy
+        {
+            height:400px;
+        }
+        .mouza{
+            width:10%;
+        }
+        .totalAre{
+            width:10%;
+        }
+        .nameOfRT{
+            width:70%;
+        }
+        .khataNo{
+            width:7%;
+        }
+        table{
+            width:95%;
+            th,td{
+                text-align:center;
+                height:30px;
+            }
+        }
+        .heading{
+            text-align:center;
+        }
+    }
