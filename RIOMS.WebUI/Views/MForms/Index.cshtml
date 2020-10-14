@@ -1,0 +1,285 @@
+﻿@using RIOMS.Domain;
+@model IEnumerable<Defaulter>
+@{
+    ViewBag.Title = "MFORM";
+}
+
+<h2>MFORM @ViewBag.VillageName</h2>
+<h3><span style="background-color: #FF9B9B">More Than 100</span>
+    <span style="background-color: #AFFFAA">More Than 50 less than 100</span>
+    <span style="background-color: #A3BDFF">More Than 10 less than 50</span>
+    </h3>
+<table class="villageWari">
+    <tr>
+
+        <th rowspan="2">SL No.</th>
+
+        <th rowspan="2" style="width:400px;">
+            Name Of Tanent
+        </th>
+        <th rowspan="2">
+            Khata No
+        </th>
+        @*<th rowspan="2">Area</th>*@
+
+        <th colspan="5">
+            Water Tax
+        </th>
+        <th colspan="5">
+            Cess
+        </th>
+
+
+    </tr>
+    <tr>
+
+
+        <th>
+            More Than Three
+        </th>
+        <th>
+            Third
+        </th>
+        <th>
+            Second
+        </th>
+        <th>
+            Previous
+        </th>
+        <th>
+            Current
+        </th>
+
+        <th>
+            More Than Three
+        </th>
+        <th>
+            Third
+        </th>
+        <th>
+            Second
+        </th>
+        <th>
+            Previous
+        </th>
+        <th>
+            Current
+        </th>
+
+
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>	5	</td>
+        <td>	6	</td>
+        <td>	7	</td>
+        <td>	8	</td>
+        <td>	9	</td>
+        <td>	10	</td>
+        <td>	11	</td>
+        <td>	12	</td>
+        <td>	13	</td>
+        <td>	14	</td>
+      
+
+
+    </tr>
+    @{ var index = 0;
+
+       CessDefaulter totalCess = new CessDefaulter();
+       CBWRDefaulter totalCbwr = new CBWRDefaulter();
+       
+       }
+    @foreach (var item in Model)
+    {
+
+
+        decimal arrearCess = item.Cess.Third + item.Cess.Second + item.Cess.Previous+item.Cess.MoreThanThree;
+        decimal arrearCBWR = item.CBWR.Third + item.CBWR.Second + item.CBWR.Previous+item.CBWR.MoreThanThree;
+        
+        string bgColor=string.Empty;
+        if (arrearCess+arrearCBWR > Convert.ToDecimal(100))
+        {
+            bgColor = "#FF9B9B";
+        }
+        else if (arrearCess + arrearCBWR > Convert.ToDecimal(50) && arrearCess + arrearCBWR <= Convert.ToDecimal(100))
+        {
+            bgColor = "#AFFFAA";
+        }
+        else if (arrearCess + arrearCBWR > Convert.ToDecimal(10) && arrearCess + arrearCBWR <= Convert.ToDecimal(50))
+        {
+            bgColor = "#A3BDFF";
+        }
+
+      
+      
+           
+            <tr class="@(index%2==0? "row-even" : "row-odd")" style="background-color: @bgColor ">
+
+            <td>@(++index)</td>
+
+            <td class="nameOfRT">
+
+                @if (item.NameOfRT != null)
+                {
+
+                    @*if (item.NameOfRT.Length > 70)
+                    {
+                        @item.NameOfRT.Substring(0, 70)
+                    }
+                    else
+                    {*@
+                        @item.NameOfRT
+                    //}
+                }
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.KhataNo)</td>
+            @*<td>@Html.DisplayFor(modelItem => item.Area)</td>*@
+
+
+            <td>
+                @if (item.CBWR.MoreThanThree > 0)
+                {
+                    totalCbwr.MoreThanThree=totalCbwr.MoreThanThree+item.CBWR.MoreThanThree;
+                    @item.CBWR.MoreThanThree
+                }
+            </td>
+            <td>
+                @if (item.CBWR.Third > 0)
+                {
+                    totalCbwr.Third = totalCbwr.Third + item.CBWR.Third;
+                    @item.CBWR.Third
+                }
+            </td>
+            <td>
+                @if (item.CBWR.Second > 0)
+                {
+                    totalCbwr.Second = totalCbwr.Second + item.CBWR.Second;
+                    @item.CBWR.Second;
+                }
+            </td>
+            <td>
+                @if (item.CBWR.Previous > 0)
+                {
+                    totalCbwr.Previous = totalCbwr.Previous + item.CBWR.Previous;
+                    @item.CBWR.Previous
+                }
+            </td>
+            <td>
+                @if (item.CBWR.Current > 0)
+                {
+                    totalCbwr.Current = totalCbwr.Current + item.CBWR.Current;
+                    @item.CBWR.Current;
+                }
+            </td>
+
+            <td>
+                @if (item.Cess.MoreThanThree > 0)
+                {
+                    totalCess.MoreThanThree = totalCess.MoreThanThree + item.Cess.MoreThanThree;
+                    @item.Cess.MoreThanThree
+                }
+            </td>
+            <td>
+                @if (item.Cess.Third > 0)
+                {
+                    totalCess.Third = totalCess.Third + item.Cess.Third;
+                    @item.Cess.Third
+                }
+            </td>
+            <td>
+                @if (item.Cess.Second > 0)
+                {
+                    totalCess.Second = totalCess.Second + item.Cess.Second;
+                    @item.Cess.Second;
+                }
+            </td>
+            <td>
+                @if (item.Cess.Previous > 0)
+                {
+                    totalCess.Previous = totalCess.Previous + item.Cess.Previous;
+                    @item.Cess.Previous
+                }
+            </td>
+            <td>
+                @if (item.Cess.Current > 0)
+                {
+                    totalCess.Current = totalCess.Current + item.Cess.Current;
+                    @item.Cess.Current;
+                }
+            </td>
+
+        </tr>
+       
+        
+    }
+    <tr>
+        <td colspan="3"></td>
+        <td>
+            @if (totalCbwr.MoreThanThree > 0)
+            {
+                @totalCbwr.MoreThanThree
+            }
+        </td>
+        <td>
+            @if (totalCbwr.Third > 0)
+            {
+                @totalCbwr.Third
+            }
+        </td>
+        <td>
+            @if (totalCbwr.Second > 0)
+            {
+                @totalCbwr.Second;
+            }
+        </td>
+        <td>
+            @if (totalCbwr.Previous > 0)
+            {
+                @totalCbwr.Previous
+            }
+        </td>
+        <td>
+            @if (totalCbwr.Current > 0)
+            {
+                @totalCbwr.Current;
+            }
+        </td>
+
+        <td>
+            @if (totalCess.MoreThanThree > 0)
+            {
+                @totalCess.MoreThanThree
+            }
+        </td>
+        <td>
+            @if (totalCess.Third > 0)
+            {
+                @totalCess.Third
+            }
+        </td>
+        <td>
+            @if (totalCess.Second > 0)
+            {
+                @totalCess.Second;
+            }
+        </td>
+        <td>
+            @if (totalCess.Previous > 0)
+            {
+                @totalCess.Previous
+            }
+        </td>
+        <td>
+            @if (totalCess.Current > 0)
+            {
+                @totalCess.Current;
+            }
+        </td>
+    </tr>
+
+
+
+</table>

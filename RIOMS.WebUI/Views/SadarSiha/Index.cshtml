@@ -1,0 +1,20 @@
+﻿@using RIOMS.Domain.Models;
+@model IEnumerable<IForm>
+@{
+    ViewBag.Title = "SaradSiha";
+}
+<div>
+    @Html.ActionLink("2014-2015", "Index", "Sadarsiha", new { year = "2014-2015" }, null)
+    @Html.ActionLink("2015-2016", "Index", "Sadarsiha", new { year = "2015-2016" }, null)
+    @Html.ActionLink("2016-2017", "Index", "Sadarsiha", new { year = "2016-2017" }, null)
+    @Html.ActionLink("2017-2018", "Index", "Sadarsiha", new { year = "2017-2018" }, null)
+    @Html.ActionLink("2018-2019", "Index", "Sadarsiha", new { year = "2018-2019" }, null)
+    @Html.ActionLink("2019-2020", "Index", "Sadarsiha", new { year = "2019-2020" }, null)
+</div>
+<div>
+    @foreach (IForm iform in Model)
+    {
+        @Html.ActionLink("Ch No.:-" + iform.IFormNo + " from date" + iform.FromDate.ToString("dd/MM/yy") + " to date" + iform.ToDate.ToString("dd/MM/yy"), "detail", new { iformNo = iform.IFormNo, year = iform.Year })
+        <br />
+    }
+</div>

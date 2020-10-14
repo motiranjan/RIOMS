@@ -1,0 +1,51 @@
+﻿@model RIOMS.Domain.IForm
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("GenerateIForm", "IForms"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>IForm</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IFormNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IFormNo)
+            @Html.ValidationMessageFor(model => model.IFormNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FromDate)
+        </div>
+        <div class="editor-field">
+            <input type="date" name="FromDate" />
+
+            @Html.ValidationMessageFor(model => model.FromDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ToDate)
+        </div>
+        <div class="editor-field">
+            <input type="date" name="ToDate" />
+            @Html.ValidationMessageFor(model => model.ToDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepositeDate)
+        </div>
+        <div class="editor-field">
+            <input type="date" name="DepositeDate" />
+            @Html.ValidationMessageFor(model => model.DepositeDate)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}

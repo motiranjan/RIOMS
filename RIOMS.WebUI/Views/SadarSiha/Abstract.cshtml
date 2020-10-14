@@ -1,0 +1,240 @@
+﻿@model IEnumerable<RIOMS.Domain.Models.IForm>
+
+@{
+    ViewBag.Title = "Sadar Siha Abstract";
+}
+
+<h2>Sadar Siha Abstract for The Year @ViewBag.Year</h2>
+
+
+<table>
+    <tr>
+        <th rowspan="2">
+            ତାରିଖ
+        </th>
+        <th rowspan="2">
+            ରସିଦ ସଂଖ୍ୟା
+        </th>
+        <th rowspan="2">
+            ମୌଜା
+        </th>
+        <th rowspan="2">
+            ଖଜଣା
+        </th>
+        <th rowspan="2">
+            ଜଳକର
+        </th>
+        <th rowspan="2">
+            ସେସ
+        </th>
+
+        <th rowspan="2">ନିସ୍ତାର ସେସ</th>
+        <th colspan="2">
+            ସାଇରତ
+        </th>
+        <th colspan="2">
+            ବିବିଧ ଅଦାୟ
+        </th>
+        <th colspan="2">
+            ସୁଧ
+        </th>
+        <th rowspan="2">ଅନ୍ୟାନ</th>
+        <th rowspan="2">ମୋଟ</th>
+        <th rowspan="2">ମନ୍ତବ୍ୟ</th>
+    </tr>
+    <tr>
+        <th>
+            ବକେୟା
+        </th>
+        <th>
+            ହାଳ
+        </th>
+        <th>
+            ବକେୟା
+        </th>
+        <th>
+            ହାଳ
+        </th>
+        <th>
+            ଖଜଣା ଓ ଜଳକର ବାବଦ
+        </th>
+        <th>
+            ସେସ
+        </th>
+
+
+
+    </tr>
+    <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+        <th>11</th>
+        <th>12</th>
+        <th>13</th>
+        <th>14</th>
+        <th>15</th>
+        <td>16</td>
+    </tr>
+    @{var iforms = Model.ToList();
+        decimal? tlr = 0;
+        decimal? tcbwr = 0;
+        decimal? tcess = 0;
+        decimal? tmiscArrear = 0;
+        decimal? tmiscCurrent = 0;
+        decimal? tintLrCbwrMisc = 0;
+        decimal? tintCess = 0;
+        decimal? tother = 0;
+        decimal? ttotal = 0;
+      }
+    @foreach (var item in iforms)
+    {
+        var index = iforms.IndexOf(item);
+        <tr class="@(index%2==0? "row-even" : "row-odd")">
+            <td>
+                @item.DepositeDate.ToString("dd/MM/yy")
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.IFormNo)</td>
+            <td></td>
+
+
+            <td>
+                @{decimal? lr = item.IFormDetailLandRevenues.Sum(i => i.Total);}
+                @if (lr > 0)
+                {
+                    tlr += lr;
+                    @lr;
+                }
+            </td>
+            <td>
+                @{decimal? cbwr = item.IFormDetailWaterTaxes.Sum(i => i.Total);}
+                @if (cbwr > 0)
+                {
+                    tcbwr += cbwr;
+                    @cbwr;
+                }
+
+            </td>
+            <td>
+                @{decimal? cess = item.IFormDetailCesses.Sum(i => i.Total);}
+                @if (cess > 0)
+                {
+                    tcess += cess;
+                    @cess;
+                }
+
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                @{decimal? miscArrear = item.IFormDetailMiscRevenues.Sum(i => i.Arrear).GetValueOrDefault();}
+            @if (miscArrear > 0)
+            {
+                tmiscArrear+=miscArrear;
+                @miscArrear
+            }
+        </td>
+        <td>
+            @{decimal? miscCurrent = item.IFormDetailMiscRevenues.Sum(i => i.Current).GetValueOrDefault();}
+            @if (miscCurrent > 0)
+            {
+                tmiscCurrent+=miscCurrent;
+                @miscCurrent
+            }
+        </td>
+        <td>
+            @{decimal? intLrCbwrMisc = item.IFormDetailLandRevenues.Sum(i => i.InterestTotal).GetValueOrDefault() + item.IFormDetailWaterTaxes.Sum(i => i.InterestTotal).GetValueOrDefault() + item.IFormDetailMiscRevenues.Sum(i => i.Interest.GetValueOrDefault()); }
+            @if (intLrCbwrMisc > 0)
+            {
+                tintLrCbwrMisc+=intLrCbwrMisc;
+                @intLrCbwrMisc
+            }
+        </td>
+        <td>
+            @{decimal? intCess = item.IFormDetailCesses.Sum(i => i.InterestTotal).GetValueOrDefault();
+              tintCess += intCess;
+              }
+            @intCess
+        </td>
+        <td>
+
+            @{
+                decimal? other = item.IFormDetailOLRs.Sum(i => i.Premium).GetValueOrDefault() + item.IFormDetailOLRs.Sum(i => i.DemarcationFee).GetValueOrDefault() + item.IFormDetailOthers.Sum(i => i.Amount).GetValueOrDefault()+item.IFormDetailOPDRs.Sum(op=>op.Amount).GetValueOrDefault();
+
+                if (other > 0)
+                {
+                    tother+=other;
+                @other
+            }
+            }
+        </td>
+        <td>
+            @{decimal? total = lr + cbwr + cess + miscArrear + miscCurrent + intLrCbwrMisc + intCess + other;
+              ttotal += total;
+              }
+            @total
+        </td>
+        <td></td>
+    </tr>
+    }
+    <tr class="total">
+        <td>
+           
+        </td>
+        <td></td>
+        <td></td>
+
+
+        <td>
+            @tlr
+        </td>
+        <td>
+           
+                @tcbwr;
+           
+
+        </td>
+        <td>
+            @tcess
+
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            @tmiscArrear
+        </td>
+        <td>
+            @tmiscCurrent
+        </td>
+        <td>
+            
+                @tintLrCbwrMisc
+         
+        </td>
+        <td>
+            
+            @tintCess
+        </td>
+        <td>
+
+         
+                @tother
+            
+        </td>
+        <td>
+           
+            @ttotal
+        </td>
+        <td></td>
+    </tr>
+
+</table>

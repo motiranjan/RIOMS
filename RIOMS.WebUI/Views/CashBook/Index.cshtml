@@ -1,0 +1,113 @@
+﻿@using RIOMS.Domain;
+@model RIOMS.WebUI.Models.ReceiptViewModel
+@{
+    ViewBag.Title = "Cashbook";
+}
+
+<h2>Index</h2>
+
+<table class="cashbook">
+    <tr>
+        <th>ଅସୁଲି ତାରିଖ</th>
+        <th>କେଉଁ ବାବଦ ଟଙ୍କା</th>
+        <th>ଟ୍ରେଜିରିରୁ ଆସିଥିବା ଟଙ୍କା</th>
+        <th>ଅନ୍ୟଆଡୁ ଆସିଥିବା ଟଙ୍କା</th>
+        <th>ଖର୍ଚ୍ଚର ତାରିଖ</th>
+        <th>କେଉଁ ବାବଦ ଖର୍ଚ୍ଚ</th>
+        <th>ବ୍ୟକ୍ତି ବିଶେଷଙ୍କୁ ଦିଆହେବା ଟଙ୍କା</th>
+        <th>ଟ୍ରେଜେରିରେ ଦାଖଲ ହେବା ଟଙ୍କା</th>
+        <th>ମନ୍ତବ୍ୟ</th>
+    </tr>
+    <tr>
+        <th>୧</th>
+        <th>୨</th>
+        <th>୩</th>
+        <th>୪</th>
+        <th>୫</th>
+        <th>୬</th>
+        <th>୭</th>
+        <th>୮</th>
+        <th>୯</th>
+    </tr>
+    @{
+        Receipt total;
+        decimal grandTotal = 0;
+        decimal previousTotal;
+        Model.Totals.Add(new Receipt { Date = Convert.ToDateTime(ViewBag.DepositeDate) });
+    }
+
+    @for (int i = 0; i < Model.Totals.Count(); i++)
+    {
+        total = Model.Totals.ElementAt(i);
+
+        <tr>
+            <td rowspan="3">@total.Date</td>
+            <td>ପୂର୍ବ ଜମା</td>
+            <td></td>
+            <td>
+                @if (i == 0)
+                {
+
+                    <span>ନାହିଁ</span>
+                }
+                else
+                {
+                    previousTotal = grandTotal;
+                    @previousTotal;
+                }
+            </td>
+            <td rowspan="3">@total.Date</td>
+            <td>ଖର୍ଚ୍ଚ</td>
+            <td></td>
+            <td>
+                @if (ViewBag.DepositeDate == total.Date)
+                {
+                    @grandTotal;
+
+                }
+                else
+                {
+
+                    <span>ନାହିଁ</span>
+                }
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+
+            <td colspan="2">ଅଦାୟ କରାଗଲା ସଦର ସିହା ରେ:ନଂ xiii ମତେ</td>
+
+            <td>
+                @total.Total
+            </td>
+
+            <td>ହାତଜମା</td>
+            <td></td>
+            <td>
+                @{grandTotal = grandTotal + total.Total;}
+                @grandTotal
+            </td>
+            <td></td>
+        </tr>
+        <tr style="color:red;">
+
+            <td colspan="3">
+
+                @grandTotal
+            </td>
+
+            <td colspan="3">
+                @grandTotal
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+
+            <td colspan="8" class="word">
+                @RIOMS.WebUI.Util.Util.ConvertAmountToWordOdia(grandTotal)
+            </td>
+            <td></td>
+        </tr>
+    }
+    }
+</table>

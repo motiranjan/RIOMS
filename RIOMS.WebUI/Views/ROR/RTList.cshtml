@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "RTList";
+}
+
+<div ng-app="RIOMS" ng-controller="RoRController" id="ror">
+
+    Village @Html.DropDownList("village", (SelectList)ViewBag.Villages, new { ng_model = "VillageId", Tabindex = "1", autofocus = true })
+    &nbsp;&nbsp;
+
+    <input type="button" name="name" value="Show" ng-click="GetRTList(VillageId)" tabindex="2" />
+
+    <table class="ledger-part1">
+        <thead>
+            <tr>
+                <th>Khata No</th>
+                <th>Total Area</th>
+                <th>Name of RT</th>
+
+                <th>Special Case</th>
+                <th>Rent</th>
+                <th>Cess</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="khata in Khatas">
+                <td>
+                    {{khata.KhataNo}}
+                    {{khata.Status}}
+                </td>
+                <td>{{khata.TotalArea}}</td>
+                <td>{{khata.NameOfRT}}</td>
+                <td>{{khata.SpecialCase}}</td>
+                <th>{{khata.Rent}}</th>
+                <th>{{khata.Cess}}</th>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-app="RIOMS" ng-controller="RoRController" id="ror">
+    <div>
+
+        Village @Html.DropDownList("village", (SelectList)ViewBag.Villages, new { ng_model = "VillageId", Tabindex = "1", autofocus = true }) &nbsp;&nbsp;Khata NO:<input type="text" ng-model="KhataNo" />
+        <input type="button" name="name" value="Show" ng-click="GetRoR(KhataNo,VillageId)" tabindex="2" />
+    </div>
+    <table class="ledger-part1">
+        <thead>
+            <tr>
+                <th>Khata No</th>
+
+                <th>Name of RT</th>
+
+                <th>Special Case</th>
+                <th>Rent</th>
+                <th>Cess</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{Khata.KhataNo}}
+                    {{Khata.Status}}
+                </td>
+                <td>{{Khata.NameOfRT}}</td>
+                <td>{{Khata.SpecialCase}}</td>
+                <th>{{Khata.Khajana}}</th>
+                <th>{{Khata.Cess}}</th>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>Plot No</th>
+                <th>Kisam</th>
+                <th>Chauhadi</th>
+                <th>Area</th>
+                <th>Remark</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="plot in Khata.Plots">
+                <td>
+                    {{plot.PlotNo}}
+                    <br />{{plot.ChakaName}}
+                </td>
+                <td>{{plot.Kisam}}</td>
+                <td>
+                    {{plot.ChauhadiNorth}}
+                    {{plot.ChauhadiSouth}}
+                </td>
+                <td>{{plot.Area}}</td>
+                <td>{{plot.Remark}}</td>
+            </tr>
+            <tr>
+                <th>{{Khata.PlotDetails.length}}</th>
+                <th colspan="2"></th>
+                <th>{{Khata.TotalArea}}</th>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
+</div>

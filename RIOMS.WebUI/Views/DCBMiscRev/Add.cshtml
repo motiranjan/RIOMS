@@ -1,0 +1,89 @@
+﻿@model RIOMS.Domain.MiscRevenue
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>MiscRevenue</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Father_HusbandName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Father_HusbandName)
+            @Html.ValidationMessageFor(model => model.Father_HusbandName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Year)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Year)
+            @Html.ValidationMessageFor(model => model.Year)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CaseNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CaseNo)
+            @Html.ValidationMessageFor(model => model.CaseNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Amount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Amount)
+            @Html.ValidationMessageFor(model => model.Amount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FYear)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FYear)
+            @Html.ValidationMessageFor(model => model.FYear)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Village)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("VillageId", (SelectList)ViewBag.Villages,string.Empty)
+            @Html.ValidationMessageFor(model => model.VillageId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TypesOfMiscRev)
+        </div>
+        <div class="editor-field">
+           @Html.DropDownList("TypeId", (SelectList)ViewBag.TypesOfMiscRev,string.Empty)
+            @Html.ValidationMessageFor(model => model.TypeId)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+   
+</div>
+
+

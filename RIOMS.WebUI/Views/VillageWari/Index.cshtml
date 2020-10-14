@@ -1,0 +1,45 @@
+﻿@using RIOMS.Domain.Models;
+@using System.Linq;
+@{
+    ViewBag.Title = "Village Wari";
+}
+
+<div>
+    @Html.ActionLink("2014-2015", "Index", "VillageWari", new { year = "2014-2015" }, null)
+    @Html.ActionLink("2015-2016", "Index", "VillageWari", new { year = "2015-2016" }, null)
+    @Html.ActionLink("2016-2017", "Index", "VillageWari", new { year = "2016-2017" }, null)
+    @Html.ActionLink("2017-2018", "Index", "VillageWari", new { year = "2017-2018" }, null)
+</div>
+
+<table>
+    <tr>
+        <td>Ch No.</td>
+        <td colspan="@ViewBag.Villages.Count">Villages</td>
+    </tr>
+
+    @foreach (IForm iform in Model)
+    {
+        <tr>
+            <td style="width:200px;">
+                @Html.Label(iform.IFormNo + " from " + iform.FromDate.ToString("dd/MM/yy") + " to " + iform.ToDate.ToString("dd/MM/yy"))
+            </td>
+            @foreach (Village village in ViewBag.Villages)
+            {
+                <td>
+                    @Html.ActionLink(village.Name, "detail", new { iformNo = iform.IFormNo, year = iform.Year, vid = village.Id })
+                </td>
+            }
+        </tr>
+    }
+    <tr>
+        <td style="width:200px;">
+            Abstract
+        </td>
+        @foreach (Village village in ViewBag.Villages)
+        {
+            <td>
+                @Html.ActionLink(village.Name, "abstract", new { year = ViewBag.Year, vid = village.Id })
+            </td>
+        }
+    </tr>
+</table>

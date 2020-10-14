@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{004CD560-ECF3-4906-ACEC-9D9798570A24}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RIOMS.Domain</RootNamespace>
+    <AssemblyName>RIOMS.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.5.0.1\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IRIOMSRepository.cs" />
+    <Compile Include="Map\CollectionMiscRevenueMap.cs" />
+    <Compile Include="Map\CollectionMovementMap.cs" />
+    <Compile Include="Map\CollectionPartOneMap.cs" />
+    <Compile Include="Map\DemandMap.cs" />
+    <Compile Include="Map\IFormMap.cs" />
+    <Compile Include="Map\KhataMap.cs" />
+    <Compile Include="Map\MiscRevenueMap.cs" />
+    <Compile Include="Map\PlotMap.cs" />
+    <Compile Include="Map\ReceiptMap.cs" />
+    <Compile Include="Map\TahReceiptMap.cs" />
+    <Compile Include="Map\VillageMap.cs" />
+    <Compile Include="Models\AdvCol.cs" />
+    <Compile Include="Models\CollectionPartOneRev.cs" />
+    <Compile Include="Concrete\RIOMSRepository.cs" />
+    <Compile Include="Models\DemandPartOneRev.cs" />
+    <Compile Include="Models\EntityExt.cs" />
+    <Compile Include="Models\ExtCollection.cs" />
+    <Compile Include="Models\ExtDemand.cs" />
+    <Compile Include="Models\IFormDetail.cs" />
+    <Compile Include="KhataWithArea.cs" />
+    <Compile Include="Models\AdvanceAdjustmentCess.cs" />
+    <Compile Include="Models\AdvanceAdjustmentLandRevenue.cs" />
+    <Compile Include="Models\AdvanceAdjustmentWaterTax.cs" />
+    <Compile Include="Models\AdvanceCollectionCess.cs" />
+    <Compile Include="Models\AdvanceCollectionLandRevenue.cs" />
+    <Compile Include="Models\AdvanceCollectionWaterTax.cs" />
+    <Compile Include="Models\Banke.cs" />
+    <Compile Include="Models\CollectionMiscRevenue.cs" />
+    <Compile Include="Models\CollectionMovementCess.cs" />
+    <Compile Include="Models\CollectionMovementMiscRevenue.cs" />
+    <Compile Include="Models\CollectionOLR.cs" />
+    <Compile Include="Models\CollectionOPDR.cs" />
+    <Compile Include="Models\CollectionOther.cs" />
+    <Compile Include="Models\DCBMiscRevenue.cs" />
+    <Compile Include="Models\Defaulter.cs" />
+    <Compile Include="Models\DemandCess.cs" />
+    <Compile Include="Models\DemandLandRevenue.cs" />
+    <Compile Include="Models\DemandMiscRevenue.cs" />
+    <Compile Include="Models\DemandWaterTax.cs" />
+    <Compile Include="Models\District.cs" />
+    <Compile Include="Models\Farmer.cs" />
+    <Compile Include="Models\IForm.cs" />
+    <Compile Include="Models\IFormAbstractCess.cs" />
+    <Compile Include="Models\IFormAbstractLandRevenue.cs" />
+    <Compile Include="Models\IFormAbstractMiscRevenue.cs" />
+    <Compile Include="Models\IFormAbstractOLR.cs" />
+    <Compile Include="Models\IFormAbstractOther.cs" />
+    <Compile Include="Models\IFormAbstractWaterTax.cs" />
+    <Compile Include="Models\IFormDetailMiscRevenue.cs" />
+    <Compile Include="Models\IFormDetailOLR.cs" />
+    <Compile Include="Models\IFormDetailOPDR.cs" />
+    <Compile Include="Models\IFormDetailOther.cs" />
+    <Compile Include="Models\IIIAKhata.cs" />
+    <Compile Include="Models\IrrigatedPlot.cs" />
+    <Compile Include="Models\IrrigatedPlotView.cs" />
+    <Compile Include="Models\Khata.cs" />
+    <Compile Include="Models\KhatasWithArea.cs" />
+    <Compile Include="Models\MalAreaTbl.cs" />
+    <Compile Include="Models\MiscRevenue.cs" />
+    <Compile Include="Models\OLRCas.cs" />
+    <Compile Include="Models\PartKhatasPlot.cs" />
+    <Compile Include="Models\PartPlot.cs" />
+    <Compile Include="Models\PartPlotsDueTo8_A_.cs" />
+    <Compile Include="Models\PartPlotsDueToMc.cs" />
+    <Compile Include="Models\Plot.cs" />
+    <Compile Include="Models\PlotsWithRT.cs" />
+    <Compile Include="Models\Receipt.cs" />
+    <Compile Include="Models\Remission_2015_2016.cs" />
+    <Compile Include="Models\RICircle.cs" />
+    <Compile Include="RIOMSContext.cs" />
+    <Compile Include="Models\SadarSiha.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\Tahasil.cs" />
+    <Compile Include="Models\TahCollectionCess.cs" />
+    <Compile Include="Models\TahCollectionLandRevenue.cs" />
+    <Compile Include="Models\TahCollectionMiscRevenue.cs" />
+    <Compile Include="Models\TahCollectionWaterTax.cs" />
+    <Compile Include="Models\TahReceipt.cs" />
+    <Compile Include="Models\TempDemandCess.cs" />
+    <Compile Include="Models\TotalCollectionCess.cs" />
+    <Compile Include="Models\TotalCollectionWaterTax.cs" />
+    <Compile Include="Models\TypesOfMiscRev.cs" />
+    <Compile Include="Models\Village.cs" />
+    <Compile Include="Models\VillageWiseDemandCess.cs" />
+    <Compile Include="Models\VillageWiseDemandLandRevenue.cs" />
+    <Compile Include="Models\VillageWiseDemandMiscRevenue.cs" />
+    <Compile Include="Models\VillageWiseDemandWaterTax.cs" />
+    <Compile Include="Models\VillageWiseIncreaseInDemandCess.cs" />
+    <Compile Include="Models\VillageWiseIncreaseInDemandLandrevenue.cs" />
+    <Compile Include="Models\VillageWiseRemissionCess.cs" />
+    <Compile Include="Models\VillageWiseRemissionWaterTax.cs" />
+    <Compile Include="Models\VillageWiseTahCollectionCess.cs" />
+    <Compile Include="Models\VillageWiseTahCollectionLandRevenue.cs" />
+    <Compile Include="Models\VillageWiseTahCollectionMiscRevenue.cs" />
+    <Compile Include="Models\VillageWiseTahCollectionWaterTax.cs" />
+    <Compile Include="Models\WaterTaxDefaulter.cs" />
+    <Compile Include="Models\PartOneRev.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
