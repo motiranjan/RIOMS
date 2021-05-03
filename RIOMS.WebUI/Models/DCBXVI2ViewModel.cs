@@ -1,4 +1,5 @@
 ﻿using RIOMS.Domain;
+using RIOMS.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,25 +17,25 @@ namespace RIOMS.WebUI.Models
         }
         public decimal CollectionIntrestCess
         {
-            get { return (village.IFormDetailCesses.Sum(c => c.InterestTotal).GetValueOrDefault() + village.CollectionMovementCessesTo.Sum(m => m.IntrestTotal).GetValueOrDefault())+village.VillageWiseTahCollectionCesses.Sum(c=>c.InterestTotal).GetValueOrDefault() - village.CollectionMovementCessesFrom.Sum(m => m.IntrestTotal).GetValueOrDefault(); }
+            get { return (village.IFormDetailCesses.Sum(c => c.InterestTotal) + village.CollectionMovementCessesTo.Sum(m => m.InterestTotal))+village.TahCollectionCesses.Sum(c=>c.InterestTotal) - village.CollectionMovementCessesFrom.Sum(m => m.InterestTotal); }
         }
         public decimal CollectionIntrestLR
         {
-            get { return (village.IFormDetailLandRevenues.Sum(c => c.InterestTotal).GetValueOrDefault());  }
+            get { return (village.IFormDetailLandRevenues.Sum(c => c.InterestTotal));  }
         }
          public decimal CollectionIntrestWaterTax
         {
-            get { return (village.IFormDetailWaterTaxes.Sum(c => c.InterestTotal).GetValueOrDefault());  }
+            get { return (village.IFormDetailWaterTaxes.Sum(c => c.InterestTotal));  }
         }
         
         public decimal CollectionDF
         {
-            get { return village.IFormDetailOthers.Where(o=>o.type=="DF").Sum(o => o.Amount).GetValueOrDefault() + village.IFormDetailOLRs.Sum(o => o.DemarcationFee).GetValueOrDefault(); }
+            get { return village.IFormDetailOthers.Where(o=>o.Type=="DF").Sum(o => o.Amount).GetValueOrDefault() + village.IFormDetailOLRs.Sum(o => o.DemarcationFee).GetValueOrDefault(); }
            
         }
         public decimal CollectionLPB
         {
-            get { return village.IFormDetailOthers.Where(o => o.type == "LPB").Sum(o => o.Amount).GetValueOrDefault(); } 
+            get { return village.IFormDetailOthers.Where(o => o.Type == "LPB").Sum(o => o.Amount).GetValueOrDefault(); } 
 
         }
         public decimal CollectionProcessingFee

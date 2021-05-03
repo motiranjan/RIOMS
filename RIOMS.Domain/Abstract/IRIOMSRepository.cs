@@ -83,5 +83,7 @@ namespace RIOMS.Domain.Abstract
         IEnumerable<PlotsWithRT> GetKisamWiseArea(int vid, string kisam);
 
         bool AddIform(IForm iform);
+
+        bool AddOnlineCollection(TahReceipt tahReceipt);
     }
 }

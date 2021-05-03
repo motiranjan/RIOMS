@@ -1,10 +1,7 @@
 namespace RIOMS.Domain.Models
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
     using RIOMS.Domain.Map;
+    using System.Data.Entity;
 
     public partial class RIOMSContext : DbContext
     {
@@ -104,13 +101,18 @@ namespace RIOMS.Domain.Models
             modelBuilder.Configurations.Add(new DemandLandRevenueMap());
             modelBuilder.Configurations.Add(new DemandCessMap());
             modelBuilder.Configurations.Add(new DemandWaterTaxMap());
+            //ri collection 
             modelBuilder.Configurations.Add(new ReceiptMap());
             modelBuilder.Configurations.Add(new CollectionCessMap());
             modelBuilder.Configurations.Add(new CollectionWaterTaxMap());
             modelBuilder.Configurations.Add(new CollectionLandRevenueMap());
             modelBuilder.Configurations.Add(new CollectionMiscRevenueMap());
+            //
             modelBuilder.Configurations.Add(new MiscRevenueMap());
-            modelBuilder.Configurations.Add(new TahReceiptMap());
+            modelBuilder.Configurations.Add(new DemandMiscRevenueMap());
+            modelBuilder.Configurations.Add(new TypeOfMiscRevMap());
+            modelBuilder.Configurations.Add(new VillageWiseTahCollectionMiscRevenueMap());
+            //
             modelBuilder.Configurations.Add(new IFormMap());
             modelBuilder.Configurations.Add(new IFormDetailCessMap());
             modelBuilder.Configurations.Add(new IFormDetailLandRevenueMap());
@@ -121,6 +123,33 @@ namespace RIOMS.Domain.Models
             modelBuilder.Configurations.Add(new IFormDetailOtherMap());
             modelBuilder.Configurations.Add(new CollectionMovementCessMap());
             modelBuilder.Configurations.Add(new CollectionMovementMiscRevenueMap());
+            modelBuilder.Configurations.Add(new VillageWiseDemandCessMap());
+            modelBuilder.Configurations.Add(new VillageWiseDemandLandRevenueMap());
+            modelBuilder.Configurations.Add(new VillageWiseDemandWaterTaxMap());
+            //Adjustment
+            modelBuilder.Configurations.Add(new AdvanceAdjustmentLandRevenueMap());
+            modelBuilder.Configurations.Add(new AdvanceAdjustmentWaterTaxMap());
+            modelBuilder.Configurations.Add(new AdvanceAdjustmentCessMap());
+            //Addvance
+            modelBuilder.Configurations.Add(new AdvanceCollectionLandRevenueMap());
+            modelBuilder.Configurations.Add(new AdvanceCollectionWaterTaxMap());
+            modelBuilder.Configurations.Add(new AdvanceCollectionCessMap());
+            //increase
+            modelBuilder.Configurations.Add(new VillageWiseIncreaseInDemandLandrevenueMap());
+            modelBuilder.Configurations.Add(new VillageWiseIncreaseInDemandCessMap());
+            //tah collection
+            modelBuilder.Configurations.Add(new TahReceiptMap());
+
+            modelBuilder.Configurations.Add(new TahCollectionCessMap());
+            modelBuilder.Configurations.Add(new TahCollectionWaterTaxMap());
+            modelBuilder.Configurations.Add(new TahCollectionLandRevenueMap());
+            modelBuilder.Configurations.Add(new TahCollectionMiscRevenueMap());
+
+            modelBuilder.Configurations.Add(new VillageWiseTahCollectionCessMap());
+            modelBuilder.Configurations.Add(new VillageWiseTahCollectionWaterTaxMap());
+            modelBuilder.Configurations.Add(new VillageWiseTahCollectionLandRevenueMap());
+
+            modelBuilder.Configurations.Add(new DefaulterMap());
         }
     }
 }

@@ -1,14 +1,11 @@
 ﻿using Newtonsoft.Json;
 //using Newtonsoft.Json;
-using RIOMS.Domain;
 using RIOMS.Domain.Abstract;
 using RIOMS.Domain.Models;
 using RIOMS.WebUI.Extensions;
 using RIOMS.WebUI.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace RIOMS.WebUI.Controllers
@@ -23,15 +20,15 @@ namespace RIOMS.WebUI.Controllers
         {
             this.repository = RIOMSRepository;
         }
-       public  ViewResult Index()
+        public ViewResult Index()
         {
             ViewBag.Villages = new SelectList(repository.Villages, "Id", "Name");
             return View("Receipt");
         }
-       
+
         public JsonNetResult Receipt()
         {
-            var receipt =new Receipt() {Date=DateTime.Today ,CollectionCess = new CollectionCess(),CollectionLandRevenue=new CollectionLandRevenue(),CollectionWaterTax=new CollectionWaterTax(),CollectionMiscRevenue=new CollectionMiscRevenue() };
+            var receipt = new Receipt() { Date = DateTime.Today, CollectionCess = new CollectionCess(), CollectionLandRevenue = new CollectionLandRevenue(), CollectionWaterTax = new CollectionWaterTax(), CollectionMiscRevenue = new CollectionMiscRevenue() };
             JsonNetResult jsonNetResult = new JsonNetResult();
             jsonNetResult.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             jsonNetResult.Data = receipt;
@@ -39,11 +36,11 @@ namespace RIOMS.WebUI.Controllers
         }
         public JsonNetResult ReceiptsByDate(DateTime date)
         {
-            var receipts=repository.Receipts.Where(r=>r.Date==date).ToList();
-             JsonNetResult jsonNetResult = new JsonNetResult();
-             jsonNetResult.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            
-            jsonNetResult.Data =receipts ;
+            var receipts = repository.Receipts.Where(r => r.Date == date).ToList();
+            JsonNetResult jsonNetResult = new JsonNetResult();
+            jsonNetResult.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
+            jsonNetResult.Data = receipts;
             return jsonNetResult;
         }
         //[HttpPost]
@@ -60,20 +57,20 @@ namespace RIOMS.WebUI.Controllers
         //    }
         //}
 
-       
-        public ViewResult VillageWari(int vid,int cNo)
+
+        public ViewResult VillageWari(int vid, int cNo)
         {
-            
-            ReceiptViewModel viewModel = new ReceiptViewModel(repository.VillageWari(vid,cNo,"2015-2016"));
+
+            ReceiptViewModel viewModel = new ReceiptViewModel(repository.VillageWari(vid, cNo, "2015-2016"));
             return View(viewModel);
         }
 
         public ViewResult SadarSiha(int cNo)
         {
-            ReceiptViewModel viewModel = new ReceiptViewModel(repository.GetReceiptsByIForm(new IForm() { IFormNo=cNo,Year="2015-2016"}));
+            ReceiptViewModel viewModel = new ReceiptViewModel(repository.GetReceiptsByIForm(new IForm() { IFormNo = cNo, Year = "2015-2016" }));
             return View(viewModel);
         }
-       
+
         public ViewResult DCBMiscRev()
         {
             return View();

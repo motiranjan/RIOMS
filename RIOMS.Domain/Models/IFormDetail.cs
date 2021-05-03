@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RIOMS.Domain.Models
 {
@@ -16,7 +12,7 @@ namespace RIOMS.Domain.Models
 
         public int RICId { get; set; }
         public string Year { get; set; }
-        public decimal? InterestTotal { get; set; }
+    
     }
     public partial class IFormDetailCess : IFormDetailPartOneRevenue
     {
@@ -26,9 +22,9 @@ namespace RIOMS.Domain.Models
     {
         public virtual IForm IForm { get; set; }
     }
-    public partial class IFormDetailWaterTax :  IFormDetailPartOneRevenue
+    public partial class IFormDetailWaterTax : IFormDetailPartOneRevenue
     {
         public virtual IForm IForm { get; set; }
     }
-    
+
 }

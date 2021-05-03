@@ -1,4 +1,5 @@
 ﻿using RIOMS.Domain;
+using RIOMS.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,243 +24,236 @@ namespace RIOMS.WebUI.Models
             get { return dcbViewModels; }
 
         }
-
-        public DemandCess TotalDemandCess
+        #region Demand
+        public PartOneRev TotalDemandLandRevenue
         {
             get
             {
-                return new DemandCess
-                {
-                    MoreThanThree = dcbViewModels.Sum(d => d.DemandCess.MoreThanThree),
-                    Third = dcbViewModels.Sum(d => d.DemandCess.Third),
-                    Second = dcbViewModels.Sum(d => d.DemandCess.Second),
-                    Previous = dcbViewModels.Sum(d => d.DemandCess.Previous),
-                    Current = dcbViewModels.Sum(d => d.DemandCess.Current),
-                    Advance = dcbViewModels.Sum(d => d.DemandCess.Advance),
-                    Increase = dcbViewModels.Sum(d => d.DemandCess.Increase)
-                };
+                return dcbViewModels.Select(d => d.DemandLandRevenue).Sum();
             }
 
         }
-        public DemandCess TotalDemandAfterIncrementCess
+        public PartOneRev TotalDemandCess
         {
             get
             {
-                TotalDemandCess.Current = TotalDemandCess.Current + TotalDemandCess.Increase;
-                return TotalDemandCess;
+                return dcbViewModels.Select(d => d.DemandCess).Sum();
             }
-
         }
-        public CollectionCess TotalCollectionCess
+        public PartOneRev TotalDemandWaterTax
         {
             get
             {
-                return new CollectionCess
-                {
-                    MoreThanThree = dcbViewModels.Sum(d => d.NetCollectionCess.MoreThanThree),
-                    Third = dcbViewModels.Sum(d => d.NetCollectionCess.Third),
-                    Second = dcbViewModels.Sum(d => d.NetCollectionCess.Second),
-                    Previous = dcbViewModels.Sum(d => d.NetCollectionCess.Previous),
-                    Current = dcbViewModels.Sum(d => d.NetCollectionCess.Current),
-                    Advance = dcbViewModels.Sum(d => d.NetCollectionCess.Advance)
-                };
+                return dcbViewModels.Select(d => d.DemandWaterTax).Sum();
             }
 
         }
-        public BalanceCess TotalBalanceCess
+        public PartOneRev TotalDemandPartOneRev
         {
             get
             {
-                return new BalanceCess
-                {
-                    MoreThanThree = dcbViewModels.Sum(d => d.BalanceCess.MoreThanThree),
-                    Third = dcbViewModels.Sum(d => d.BalanceCess.Third),
-                    Second = dcbViewModels.Sum(d => d.BalanceCess.Second),
-                    Previous = dcbViewModels.Sum(d => d.BalanceCess.Previous),
-                    Current = dcbViewModels.Sum(d => d.BalanceCess.Current),
-                    Advance = dcbViewModels.Sum(d => d.BalanceCess.Advance)
-                };
+                return TotalDemandCess + TotalDemandLandRevenue + TotalDemandWaterTax;
             }
-
         }
+        #endregion
 
-
-        public DemandLandRevenue TotalDemandLandRevenue
+        #region Increase in demand
+        public PartOneRev TotalIncreaseInDemandLandRevenue
         {
             get
             {
-                return new DemandLandRevenue
-                {
-
-                    MoreThanThree = dcbViewModels.Sum(d => d.DemandLandRevenue.MoreThanThree),
-                    Third = dcbViewModels.Sum(d => d.DemandLandRevenue.Third),
-                    Second = dcbViewModels.Sum(d => d.DemandLandRevenue.Second),
-                    Previous = dcbViewModels.Sum(d => d.DemandLandRevenue.Previous),
-                    Current = dcbViewModels.Sum(d => d.DemandLandRevenue.Current),
-                    Advance = dcbViewModels.Sum(d => d.DemandLandRevenue.Advance),
-                    Increase = dcbViewModels.Sum(d => d.DemandLandRevenue.Increase)
-                };
+                return dcbViewModels.Select(d => d.IncreaseInDemandLandRevenue).Sum();
             }
-
         }
-
-        public DemandLandRevenue TotalDemandAfterIncrementLandRevenue
+        public PartOneRev TotalIncreaseInDemandCess
         {
             get
             {
-                TotalDemandLandRevenue.Current = TotalDemandLandRevenue.Current + TotalDemandLandRevenue.Increase;
-                return TotalDemandLandRevenue;
+                return dcbViewModels.Select(d => d.IncreaseInDemandCess).Sum();
+            }
+        }
+        public PartOneRev TotalIncreaseInDemandPartOneRev
+        {
+            get
+            {
+                return TotalIncreaseInDemandCess + TotalIncreaseInDemandLandRevenue;
+            }
+        }
+        #endregion
+
+        #region Demand after Increase
+        public PartOneRev TotalDemandAfterIncrementCess
+        {
+            get
+            {
+                return dcbViewModels.Select(d => d.DemandAfterIncreaseCess).Sum();
+            }
+        }
+        public PartOneRev TotalDemandAfterIncreaseLandRevenue
+        {
+            get
+            {
+                return dcbViewModels.Select(d => d.DemandAfterIncreaseLandRevenue).Sum();
             }
 
         }
-        public AdvanceAdjustmentCess TotalAdvanceAdjustmentCess
+        public PartOneRev TotalDemandAfterIncreaseWaterTax
         {
             get
             {
-                return new AdvanceAdjustmentCess
-                {
-                    Current = dcbViewModels.Sum(a => a.AdvanceAdjustmentCess.Current)
-                };
-            }
-        }
-        public AdvanceAdjustmentWaterTax TotalAdvanceAdjustmentWaterTax
-        {
-            get
-            {
-                return new AdvanceAdjustmentWaterTax
-                {
-                    Current = dcbViewModels.Sum(a => a.AdvanceAdjustmentWaterTax.Current)
-                };
-            }
-        }
-        public DemandLandRevenue TotalDemandWaterTax
-        {
-            get
-            {
-                return new DemandLandRevenue
-                {
-                    MoreThanThree = dcbViewModels.Sum(d => d.DemandWaterTax.MoreThanThree),
-                    Third = dcbViewModels.Sum(d => d.DemandWaterTax.Third),
-                    Second = dcbViewModels.Sum(d => d.DemandWaterTax.Second),
-                    Previous = dcbViewModels.Sum(d => d.DemandWaterTax.Previous),
-                    Current = dcbViewModels.Sum(d => d.DemandWaterTax.Current),
-                    Advance = dcbViewModels.Sum(d => d.DemandWaterTax.Advance),
-                    Increase = dcbViewModels.Sum(d => d.DemandWaterTax.Increase)
-                };
+                return dcbViewModels.Select(d => d.DemandAfterIncreaseWaterTax).Sum();
             }
 
         }
-        public CollectionLandRevenue TotalCollectionLandRevenue
+        public PartOneRev TotalDemandAfterIncreasePartOneRev
         {
             get
             {
-                return new CollectionLandRevenue
-                {
-                    MoreThanThree = dcbViewModels.Sum(d => d.NetCollectionLandRevenue.MoreThanThree),
-                    Third = dcbViewModels.Sum(d => d.NetCollectionLandRevenue.Third),
-                    Second = dcbViewModels.Sum(d => d.NetCollectionLandRevenue.Second),
-                    Previous = dcbViewModels.Sum(d => d.NetCollectionLandRevenue.Previous),
-                    Current = dcbViewModels.Sum(d => d.NetCollectionLandRevenue.Current),
-                    Advance = dcbViewModels.Sum(d => d.NetCollectionLandRevenue.Advance)
-                };
+                return dcbViewModels.Select(d => d.DemandAfterIncreasePartOneRev).Sum();
             }
 
         }
-        public CollectionLandRevenue TotalCollectionWaterTax
+        #endregion
+
+        public PartOneRev TotalCollectionCess
         {
             get
             {
-                return new CollectionLandRevenue
-                {
-                    MoreThanThree = dcbViewModels.Sum(d => d.NetCollectionWaterTax.MoreThanThree),
-                    Third = dcbViewModels.Sum(d => d.NetCollectionWaterTax.Third),
-                    Second = dcbViewModels.Sum(d => d.NetCollectionWaterTax.Second),
-                    Previous = dcbViewModels.Sum(d => d.NetCollectionWaterTax.Previous),
-                    Current = dcbViewModels.Sum(d => d.NetCollectionWaterTax.Current),
-                    Advance = dcbViewModels.Sum(d => d.NetCollectionWaterTax.Advance)
-                };
+                return dcbViewModels.Select(d => d.NetCollectionCess).Sum();
             }
 
         }
-        public BalanceLandRevenue TotalBalanceLandRevenue
+
+
+
+
+        #region adv adj
+        public PartOneRev TotalAdvanceAdjustmentCess
         {
             get
             {
-                return new BalanceLandRevenue
-                {
-                    MoreThanThree = dcbViewModels.Sum(d => d.BalanceLandRevenue.MoreThanThree),
-                    Third = dcbViewModels.Sum(d => d.BalanceLandRevenue.Third),
-                    Second = dcbViewModels.Sum(d => d.BalanceLandRevenue.Second),
-                    Previous = dcbViewModels.Sum(d => d.BalanceLandRevenue.Previous),
-                    Current = dcbViewModels.Sum(d => d.BalanceLandRevenue.Current),
-                    Advance = dcbViewModels.Sum(d => d.BalanceLandRevenue.Advance)
-                };
+                return dcbViewModels.Select(d => d.AdvanceAdjustmentCess).Sum();
+
+
+            }
+        }
+        public PartOneRev TotalAdvanceAdjustmentLandRevenue
+        {
+            get
+            {
+                return dcbViewModels.Select(d => d.AdvanceAdjustmentLandRevenue).Sum();
+
+
+            }
+        }
+        public PartOneRev TotalAdvanceAdjustmentWaterTax
+        {
+            get
+            {
+                return dcbViewModels.Select(d => d.AdvanceAdjustmentWaterTax).Sum();
+            }
+        }
+        public PartOneRev TotalAdvanceAdjustmentPartOneRev
+        {
+            get
+            {
+                return TotalAdvanceAdjustmentCess + TotalAdvanceAdjustmentLandRevenue + TotalAdvanceAdjustmentWaterTax;
+            }
+        }
+
+        #endregion
+
+        public PartOneRev TotalCollectionLandRevenue
+        {
+            get
+            {
+                return dcbViewModels.Select(d => d.NetCollectionLandRevenue).Sum();
             }
 
         }
-        public BalanceWaterTax TotalBalanceWaterTax
+        public PartOneRev TotalCollectionWaterTax
         {
             get
             {
-                return new BalanceWaterTax
-                {
-                    MoreThanThree = dcbViewModels.Sum(d => d.BalanceWaterTax.MoreThanThree),
-                    Third = dcbViewModels.Sum(d => d.BalanceWaterTax.Third),
-                    Second = dcbViewModels.Sum(d => d.BalanceWaterTax.Second),
-                    Previous = dcbViewModels.Sum(d => d.BalanceWaterTax.Previous),
-                    Current = dcbViewModels.Sum(d => d.BalanceWaterTax.Current),
-                    Advance = dcbViewModels.Sum(d => d.BalanceWaterTax.Advance)
-                };
+                return dcbViewModels.Select(d => d.NetCollectionWaterTax).Sum();
             }
 
         }
-        public DemandPartOneRev TotalDemandPartOneRev
+        #region Balance
+        public PartOneRev TotalBalanceLandRevenue
         {
             get
             {
-                return new DemandPartOneRev
-                {
-                    MoreThanThree = TotalDemandCess.MoreThanThree + TotalDemandLandRevenue.MoreThanThree + TotalDemandWaterTax.MoreThanThree,
-                    Third = TotalDemandCess.Third + TotalDemandLandRevenue.Third + TotalDemandWaterTax.Third,
-                    Second = TotalDemandCess.Second + TotalDemandLandRevenue.Second + TotalDemandWaterTax.Second,
-                    Previous = TotalDemandCess.Previous + TotalDemandLandRevenue.Previous + TotalDemandWaterTax.Previous,
-                    Current = TotalDemandCess.Current + TotalDemandLandRevenue.Current + TotalDemandWaterTax.Current,
-                    Advance = TotalDemandCess.Advance + TotalDemandLandRevenue.Advance + TotalDemandWaterTax.Advance,
-                    Increase=TotalDemandCess.Increase+TotalDemandLandRevenue.Increase+TotalDemandWaterTax.Increase
-                };
+                return dcbViewModels.Select(d => d.BalanceLandRevenue).Sum();
             }
-        }
-        public PartOneRev TotalCollectionPartOneRev
-        {
-            get
-            {
-                return new PartOneRev
-                {
-                    MoreThanThree = TotalCollectionCess.MoreThanThree + TotalCollectionLandRevenue.MoreThanThree + TotalCollectionWaterTax.MoreThanThree,
-                    Third = TotalCollectionCess.Third + TotalCollectionLandRevenue.Third + TotalCollectionWaterTax.Third,
-                    Second = TotalCollectionCess.Second + TotalCollectionLandRevenue.Second + TotalCollectionWaterTax.Second,
-                    Previous = TotalCollectionCess.Previous + TotalCollectionLandRevenue.Previous + TotalCollectionWaterTax.Previous,
-                    Current = TotalCollectionCess.Current + TotalCollectionLandRevenue.Current + TotalCollectionWaterTax.Current,
-                    Advance = TotalCollectionCess.Advance + TotalCollectionLandRevenue.Advance + TotalCollectionWaterTax.Advance
 
-                };
+        }
+        public PartOneRev TotalBalanceCess
+        {
+            get
+            {
+                return dcbViewModels.Select(d => d.BalanceCess).Sum();
             }
         }
+
         public PartOneRev TotalBalancePartOneRev
         {
             get
             {
-                return new PartOneRev
-                {
-                    MoreThanThree = TotalBalanceCess.MoreThanThree + TotalBalanceLandRevenue.MoreThanThree + TotalBalanceWaterTax.MoreThanThree,
-                    Third = TotalBalanceCess.Third + TotalBalanceLandRevenue.Third + TotalBalanceWaterTax.Third,
-                    Second = TotalBalanceCess.Second + TotalBalanceLandRevenue.Second + TotalBalanceWaterTax.Second,
-                    Previous = TotalBalanceCess.Previous + TotalBalanceLandRevenue.Previous + TotalBalanceWaterTax.Previous,
-                    Current = TotalBalanceCess.Current + TotalBalanceLandRevenue.Current + TotalBalanceWaterTax.Current,
-                    Advance = TotalBalanceCess.Advance + TotalBalanceLandRevenue.Advance + TotalBalanceWaterTax.Advance
-
-                };
+                return TotalBalanceCess + TotalBalanceLandRevenue + TotalBalanceWaterTax;
             }
         }
+        public PartOneRev TotalBalanceWaterTax
+        {
+            get
+            {
+                return dcbViewModels.Select(d => d.BalanceWaterTax).Sum();
+            }
+
+        }
+
+        #endregion
+
+
+        public PartOneRev TotalCollectionPartOneRev
+        {
+            get
+            {
+                return TotalCollectionCess + TotalCollectionLandRevenue + TotalCollectionWaterTax;
+            }
+        }
+        #region Advance collection
+        public PartOneRev TotalAdvanceCollectionLandRevenue
+        {
+            get
+            {
+                return dcbViewModels.Select(d => d.AdvanceCollectionLandRevenue).Sum();
+            }
+
+        }
+        public PartOneRev TotalAdvanceCollectionCess
+        {
+            get
+            {
+                return dcbViewModels.Select(d => d.AdvanceCollectionCess).Sum();
+            }
+        }
+
+        public PartOneRev TotalAdvanceCellectionPartOneReve
+        {
+            get
+            {
+                return TotalAdvanceCollectionCess + TotalBalanceLandRevenue + TotalBalanceWaterTax;
+            }
+        }
+        public PartOneRev TotalAdvanceCollectionWaterTax
+        {
+            get
+            {
+                return dcbViewModels.Select(d => d.AdvanceCollectionWaterTax).Sum();
+            }
+
+        }
+        #endregion
     }
 }

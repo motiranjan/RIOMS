@@ -1,5 +1,4 @@
-﻿using RIOMS.Domain;
-using RIOMS.Domain.Abstract;
+﻿using RIOMS.Domain.Abstract;
 using RIOMS.Domain.Models;
 using RIOMS.WebUI.Models;
 using System.Collections.Generic;
@@ -28,10 +27,21 @@ namespace RIOMS.WebUI.Controllers
         public ViewResult detail(string year, int iformNo, int vid)
         {
             ViewBag.Village = repository.Villages.SingleOrDefault(v => v.Id == vid);
-            VillageWariViewModel viewModel = new VillageWariViewModel(repository.VillageWari(vid, iformNo, year));
+            VillageWariViewModel viewModel = new VillageWariViewModel(repository.VillageWari(vid, iformNo, year),new IForm { IFormNo=iformNo});
             return View(viewModel);
         }
-
+        public ViewResult detailAll(string year,  int vid)
+        {
+            ViewBag.Village = repository.Villages.SingleOrDefault(v => v.Id == vid);
+            List<IForm> iforms = repository.IForms.Where(i => i.Year == year).ToList();
+            List<VillageWariViewModel> villageWariViewModels = new List<VillageWariViewModel>();
+            foreach (IForm iform in iforms)
+            {
+                villageWariViewModels.Add(new VillageWariViewModel(repository.VillageWari(vid, iform.IFormNo, year),iform));
+            }
+           
+            return View(villageWariViewModels);
+        }
         public ViewResult Abstract(string year, int vid)
         {
             Village village = repository.GetVillageWithDCB(vid, year);

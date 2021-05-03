@@ -1,5 +1,4 @@
-﻿using RIOMS.Domain;
-using RIOMS.Domain.Abstract;
+﻿using RIOMS.Domain.Abstract;
 using RIOMS.Domain.Models;
 using RIOMS.WebUI.Models;
 using System.Web.Mvc;

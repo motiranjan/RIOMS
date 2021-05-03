@@ -148,10 +148,19 @@
                 @Html.DisplayFor(modelItem => item.Village.Name)
             </td>
             <td>
-                @if (item.DemandLandRevenue.Arrear>0)
+                @if (item.DemandLandRevenue.Arrear > 0)
                 {
                     @item.DemandLandRevenue.Arrear
                 }
+                @if (item.IncreaseInDemandLandRevenue != null)
+                {
+                    <span style="color:red;">+@item.IncreaseInDemandLandRevenue.Arrear</span>
+
+                  <br />
+                  <span>-------</span>
+                  <br />
+                  <span>@item.DemandAfterIncreaseLandRevenue.Arrear</span>
+                      }
             </td>
             <td>@if (item.DemandWaterTax.Arrear>0)
                 {
@@ -159,26 +168,44 @@
                 }</td>
 
             <td>
-                @if (item.DemandCess.Arrear>0)
+                @if (item.DemandCess.Arrear > 0)
                 {
                     @item.DemandCess.Arrear
                 }
-
+                @if (item.IncreaseInDemandCess != null)
+                {
+                    <span style="color:red;">+@item.IncreaseInDemandCess.Arrear</span>
+                    <br />
+                    <span>-----------</span>
+                    <span>@item.DemandAfterIncreaseCess.Arrear</span>
+                }
             </td>
             <td></td>
             <td>
                 @item.DemandPartOneRev.Arrear
+                @if (item.IncreaseInDemandPartOneRev != null)
+                {
+                    <span style="color:red;">+@item.IncreaseInDemandPartOneRev.Arrear</span>
+                    <br />
+                    <span>-----------</span>
+                    <span>@item.DemandAfterIncreasePartOneRev.Arrear</span>
+                }
+
             </td>
             <td>
-                @if (item.DemandLandRevenue.Current>0)
+                @if (item.DemandLandRevenue.Current > 0)
                 {
                     @item.DemandLandRevenue.Current
                 }
-            @if (item.IncreaseInDemandLandRevenue > 0)
-            {
-                <span style="color:red;">+@item.IncreaseInDemandLandRevenue</span>
-            }
-        </td>
+                @if (item.IncreaseInDemandLandRevenue != null)
+                {
+                    <span style="color:red;">+@item.IncreaseInDemandLandRevenue.Current</span>
+                    <br />
+                    <span>---------</span>
+                    <br />
+                    <span>@item.DemandAfterIncreaseLandRevenue.Current</span>
+                }
+            </td>
         <td>@if (item.DemandWaterTax.Current>0)
             {
                @item.DemandWaterTax.Current 
@@ -186,52 +213,104 @@
         <td>
 
             @item.DemandCess.Current
-            @if (item.IncreaseInDemandCess > 0)
+            @if (item.IncreaseInDemandCess != null)
             {
-                <span style="color:red;">+@item.IncreaseInDemandCess</span>
+                <span style="color:red;">+@item.IncreaseInDemandCess.Current</span>
+                <br />
+                <span>---------</span>
+                <br />
+                <span>@item.DemandAfterIncreaseCess.Current</span>
             }
         </td>
         <td></td>
         <td>
             @item.DemandPartOneRev.Current
-            @if (item.DemandPartOneRev.Increase>0)
+            @if (item.IncreaseInDemandCess != null)
             {
-                <span style="color:red;">+@item.DemandPartOneRev.Increase</span>
+                <span style="color:red;">+@item.IncreaseInDemandPartOneRev.Current</span>
+                <br />
+                <span>---------</span>
+                <br />
+                <span>@item.DemandAfterIncreasePartOneRev.Current</span>
             }
         </td>
         <td>
-            @if (item.NetCollectionLandRevenue.Arrear>0)
+            @if (item.NetCollectionLandRevenue.Arrear > 0)
             {
-               @item.NetCollectionLandRevenue.Arrear 
+                @item.NetCollectionLandRevenue.Arrear
             }
-        </td>
+            <br />
+
+            @if (item.AdvanceAdjustmentLandRevenue != null)
+            {
+        <span style="color:red;">
+            +@item.AdvanceAdjustmentLandRevenue.Arrear
+        </span>
+            }
+            <br />
+            <span>---------</span>
+            @item.NetCollectionWithAdvAdjLandRevenue.Arrear
+       
+</td>
         <td>@if (item.NetCollectionWaterTax.Arrear>0)
             {
                 @item.NetCollectionWaterTax.Arrear
             }</td>
 
         <td>
-            @if (item.NetCollectionCess.Arrear>0)
+            @if (item.NetCollectionCess.Arrear > 0)
             {
                 @item.NetCollectionCess.Arrear
             }
+            <br />
 
+            @if (item.AdvanceAdjustmentCess != null)
+            {
+                <span style="color:red;">
+                    +@item.AdvanceAdjustmentCess.Arrear
+                </span>
+            }
+            <br />
+            <span>---------</span>
+            @item.NetCollectionWithAdvAdjCess.Arrear
         </td>
         <td></td>
         <td>
-            @item.CollectionPartOneRev.Arrear
+            @item.NetCollectionPartOneRev.Arrear
+            <br />
+
+            @if (item.AdvanceAdjustmentPartOneRev != null)
+            {
+                <span style="color:red;">
+                    +@item.AdvanceAdjustmentPartOneRev.Arrear
+                </span>
+            }
+            <br />
+            <span>---------</span>
+            @item.NetCollectionWithAdvAdjPartOneRev.Arrear
         </td>
-        <td>@if (item.NetCollectionLandRevenue.Current>0)
+        <td>
+            @if (item.NetCollectionLandRevenue.Current > 0)
             {
                 @item.NetCollectionLandRevenue.Current
             }
-            
+                <br />
+
+                @if (item.AdvanceAdjustmentLandRevenue != null)
+                {
+                    <span style="color:red;">
+                        +@item.AdvanceAdjustmentLandRevenue.Current
+                    </span>
+                }
+                <br />
+                <span>---------</span>
+                @item.NetCollectionWithAdvAdjLandRevenue.Current
             </td>
         <td>@if (item.NetCollectionWaterTax.Current>0)
             {
                 @item.NetCollectionWaterTax.Current
             }
-            @if (item.AdvanceAdjustmentWaterTax.Current>0)
+            @if (item.AdvanceAdjustmentWaterTax!=null)
             {
                 <span style="color:red">(+)@item.AdvanceAdjustmentWaterTax.Current</span>
             }
@@ -239,18 +318,21 @@
         <td>
 
             @item.NetCollectionCess.Current
-            @if (item.AdvanceAdjustmentCess.Current>0)
+            @if (item.AdvanceAdjustmentCess!=null)
             {
                 <span style="color:red">(+)@item.AdvanceAdjustmentCess.Current</span>
             }
         </td>
         <td></td>
         <td>
-            @item.CollectionPartOneRev.Current
-            @if (item.AdvanceAdjustmentCess.Current+item.AdvanceAdjustmentWaterTax.Current > 0)
+            @item.NetCollectionPartOneRev.Current
+            @if (item.AdvanceAdjustmentPartOneRev != null)
             {
-                <span style="color:red">(+)@(item.AdvanceAdjustmentCess.Current+item.AdvanceAdjustmentWaterTax.Current) </span>
+                <span style="color:red">(+)@item.AdvanceAdjustmentPartOneRev.Current </span>
             }
+            <br />
+            <span>---------</span>
+            @item.NetCollectionWithAdvAdjPartOneRev.Current
         </td>
         <td>
             @if (item.BalanceLandRevenue.Arrear>0)
@@ -296,117 +378,162 @@
             <td>@item.AdvanceCollectionCess.Total</td>
     </tr>
     }
-    <tr class="total">
-        <td></td>
-        <td></td>
-        <td>@Model.TotalDemandLandRevenue.Arrear</td>
-        <td>@Model.TotalDemandWaterTax.Arrear</td>
+<tr class="total">
+    <td></td>
+    <td></td>
+    <td>
+        @Model.TotalDemandLandRevenue.Arrear
+    +@Model.TotalIncreaseInDemandLandRevenue.Arrear
+    <br />
+    <span>@Model.TotalDemandAfterIncreaseLandRevenue.Arrear</span>
+</td>
+<td>@Model.TotalDemandWaterTax.Arrear</td>
 
-        <td>
+<td>
 
-            @Model.TotalDemandCess.Arrear
-        </td>
-        <td></td>
-        <td>
-            @Model.TotalDemandPartOneRev.Arrear
-        </td>
-        <td>@Model.TotalDemandLandRevenue.Current
-            @if (Model.TotalDemandLandRevenue.Increase > 0)
+    @Model.TotalDemandCess.Arrear
+    <span>(+)@Model.TotalIncreaseInDemandCess.Arrear</span>
+    <hr />
+    <span>@Model.TotalDemandAfterIncrementCess.Arrear</span>
+</td>
+<td></td>
+<td>
+    @Model.TotalDemandPartOneRev.Arrear
+    <span>(+)@Model.TotalIncreaseInDemandPartOneRev.Arrear</span>
+    <hr />
+    <span>@Model.TotalDemandAfterIncreasePartOneRev.Arrear</span>
+</td>
+<td>
+    @Model.TotalDemandLandRevenue.Current
+@if (Model.TotalIncreaseInDemandLandRevenue.Current > 0)
 {
-    <span>(+)@Model.TotalDemandLandRevenue.Increase</span>
-                <hr />
-    <span>@(Model.TotalDemandLandRevenue.Current + Model.TotalDemandLandRevenue.Increase)</span>
+    <span>(+)@Model.TotalIncreaseInDemandLandRevenue.Current</span>
+    <hr />
+    <span>@(Model.TotalDemandLandRevenue.Current + Model.TotalIncreaseInDemandLandRevenue.Current)</span>
 }
- 
-        </td>
-        <td>@Model.TotalDemandWaterTax.Current
-            @if (Model.TotalDemandWaterTax.Increase>0) { 
-            <span>(+)@Model.TotalDemandWaterTax.Increase</span>
-                <hr />
-            <span>@(Model.TotalDemandWaterTax.Current + Model.TotalDemandWaterTax.Increase)</span>
-             } 
-           
-        </td>
 
-        <td>
+</td>
+<td>
+    @Model.TotalDemandWaterTax.Current
 
-            @Model.TotalDemandCess.Current
-            @if (Model.TotalDemandCess.Increase>0)
-            {
-                <span>(+)@Model.TotalDemandCess.Increase</span>
-            <hr />
-            <span>@(Model.TotalDemandCess.Current + Model.TotalDemandCess.Increase)</span>
-            }
-        </td>
-        <td></td>
-        <td>
-            @Model.TotalDemandPartOneRev.Current
-            @if (Model.TotalDemandPartOneRev.Increase>0)
-            {
-                               <span>(+)@Model.TotalDemandPartOneRev.Increase</span>
-                <hr />
-                 <span>@(Model.TotalDemandPartOneRev.Increase + Model.TotalDemandPartOneRev.Current)</span>
-            }
-        </td>
-        <td>@Model.TotalCollectionLandRevenue.Arrear</td>
-        <td>@Model.TotalCollectionWaterTax.Arrear</td>
 
-        <td>
+</td>
 
-            @Model.TotalCollectionCess.Arrear
-        </td>
-        <td></td>
-        <td>
-            @Model.TotalCollectionPartOneRev.Arrear
-        </td>
-        <td>@Model.TotalCollectionLandRevenue.Current
-            
-        </td>
-        <td>@Model.TotalCollectionWaterTax.Current
-            <span>(+)@Model.TotalAdvanceAdjustmentWaterTax.Current</span>
-            <hr />
-            <span>@(Model.TotalCollectionWaterTax.Current + Model.TotalAdvanceAdjustmentWaterTax.Current)</span>
-        </td>
+<td>
 
-        <td>
+    @Model.TotalDemandCess.Current
+    @if (Model.TotalIncreaseInDemandCess.Current > 0)
+    {
+        <span>+@Model.TotalIncreaseInDemandCess.Current</span>
+        <hr />
+        <span>@(Model.TotalDemandCess.Current + Model.TotalIncreaseInDemandCess.Current)</span>
+    }
+</td>
+<td></td>
+<td>
+    @Model.TotalDemandPartOneRev.Current
+    @if (Model.TotalIncreaseInDemandPartOneRev.Current > 0)
+    {
+        <span>(+)@Model.TotalIncreaseInDemandPartOneRev.Current</span>
+        <hr />
+        <span>@(Model.TotalIncreaseInDemandPartOneRev.Current + Model.TotalDemandPartOneRev.Current)</span>
+    }
+</td>
+<td>
+    @Model.TotalCollectionLandRevenue.Arrear
+    @if (Model.TotalAdvanceAdjustmentLandRevenue.Arrear > 0)
+    {
+        <span>(+)@Model.TotalAdvanceAdjustmentLandRevenue.Arrear</span>
+        <hr />
+        <span>@(Model.TotalAdvanceAdjustmentLandRevenue.Arrear + Model.TotalCollectionLandRevenue.Arrear)</span>
+    }
 
-            @Model.TotalCollectionCess.Current
-            <span>(+)@Model.TotalAdvanceAdjustmentCess.Current</span>
-            <hr />
-            <span>@(Model.TotalCollectionCess.Current + Model.TotalAdvanceAdjustmentCess.Current)</span>
-        </td>
-        <td></td>
-        <td>
-            @Model.TotalCollectionPartOneRev.Current
-            <span>(+)@(Model.TotalAdvanceAdjustmentCess.Current+Model.TotalAdvanceAdjustmentWaterTax.Current)</span>
-            <hr />
-            <span>@(Model.TotalCollectionPartOneRev.Current + Model.TotalAdvanceAdjustmentCess.Current + Model.TotalAdvanceAdjustmentWaterTax.Current)</span>
-        </td>
-        <td>@Model.TotalBalanceLandRevenue.Arrear</td>
-        <td>@Model.TotalBalanceWaterTax.Arrear</td>
+</td>
+<td>@Model.TotalCollectionWaterTax.Arrear
+@if (Model.TotalAdvanceAdjustmentWaterTax.Arrear > 0)
+{
+    <span>(+)@Model.TotalAdvanceAdjustmentWaterTax.Arrear</span>
+    <hr />
+    <span>@(Model.TotalAdvanceAdjustmentWaterTax.Arrear + Model.TotalAdvanceCollectionWaterTax.Arrear)</span>
+}
+</td>
+<td>
 
-        <td>
+    @Model.TotalCollectionCess.Arrear
+    @if (Model.TotalAdvanceAdjustmentCess.Arrear > 0)
+    {
+        <span>(+)@Model.TotalAdvanceAdjustmentCess.Arrear</span>
+        <hr />
+        <span>@(Model.TotalAdvanceAdjustmentCess.Arrear + Model.TotalCollectionCess.Arrear)</span>
+    }
+</td>
+<td></td>
+<td>
+    @Model.TotalCollectionPartOneRev.Arrear
+    @if (Model.TotalAdvanceAdjustmentPartOneRev.Arrear > 0)
+    {
+        <span>(+)@Model.TotalAdvanceAdjustmentPartOneRev.Arrear</span>
+        <hr />
+        <span>@(Model.TotalAdvanceAdjustmentPartOneRev.Arrear + Model.TotalCollectionPartOneRev.Arrear)</span>
+    }
+</td>
+<td>
+    @Model.TotalCollectionLandRevenue.Current
+    @if (Model.TotalAdvanceAdjustmentLandRevenue.Current > 0)
+    {
+        <span>(+)@Model.TotalAdvanceAdjustmentLandRevenue.Current</span>
+        <hr />
+        <span>@(Model.TotalAdvanceAdjustmentLandRevenue.Current + Model.TotalCollectionLandRevenue.Current)</span>
+    }
 
-            @Model.TotalBalanceCess.Arrear
-        </td>
-        <td></td>
-        <td>
-            @Model.TotalBalancePartOneRev.Arrear
-        </td>
-        <td>@Model.TotalBalanceLandRevenue.Current</td>
-        <td>@Model.TotalBalanceWaterTax.Current</td>
 
-        <td>
+</td>
+<td>
+    @Model.TotalCollectionWaterTax.Current
+<span>(+)@Model.TotalAdvanceAdjustmentWaterTax.Current</span>
+<hr />
+<span>@(Model.TotalCollectionWaterTax.Current + Model.TotalAdvanceAdjustmentWaterTax.Current)</span>
+</td>
 
-            @Model.TotalBalanceCess.Current
-        </td>
-        <td></td>
-        <td>
-            @Model.TotalBalancePartOneRev.Current
-        </td>
-        <td>@Model.TotalCollectionLandRevenue.Advance</td>
-        <td>@Model.TotalCollectionWaterTax.Advance</td>
-        <td>@Model.TotalCollectionCess.Advance</td>
-    </tr>
+<td>
+
+    @Model.TotalCollectionCess.Current
+    <span>(+)@Model.TotalAdvanceAdjustmentCess.Current</span>
+    <hr />
+    <span>@(Model.TotalCollectionCess.Current + Model.TotalAdvanceAdjustmentCess.Current)</span>
+</td>
+<td></td>
+<td>
+    @Model.TotalCollectionPartOneRev.Current
+    <span>(+)@(Model.TotalAdvanceAdjustmentCess.Current+Model.TotalAdvanceAdjustmentWaterTax.Current)</span>
+    <hr />
+    <span>@(Model.TotalCollectionPartOneRev.Current + Model.TotalAdvanceAdjustmentCess.Current + Model.TotalAdvanceAdjustmentWaterTax.Current)</span>
+</td>
+<td>@Model.TotalBalanceLandRevenue.Arrear</td>
+<td>@Model.TotalBalanceWaterTax.Arrear</td>
+
+<td>
+
+    @Model.TotalBalanceCess.Arrear
+</td>
+<td></td>
+<td>
+    @Model.TotalBalancePartOneRev.Arrear
+</td>
+<td>@Model.TotalBalanceLandRevenue.Current</td>
+<td>@Model.TotalBalanceWaterTax.Current</td>
+
+<td>
+
+    @Model.TotalBalanceCess.Current
+</td>
+<td></td>
+<td>
+    @Model.TotalBalancePartOneRev.Current
+</td>
+<td>@Model.TotalCollectionLandRevenue.Advance</td>
+<td>@Model.TotalCollectionWaterTax.Advance</td>
+<td>@Model.TotalCollectionCess.Advance</td>
+</tr>
 
 </table>

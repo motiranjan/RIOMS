@@ -163,8 +163,10 @@
     <Compile Include="Controllers\IFormsController.cs" />
     <Compile Include="Controllers\KhatasController.cs" />
     <Compile Include="Controllers\LedgerController.cs" />
+    <Compile Include="Controllers\MFormsController.cs" />
     <Compile Include="Controllers\ReceiptController.cs" />
     <Compile Include="Controllers\RegistersController.cs" />
+    <Compile Include="Controllers\RegXVIController.cs" />
     <Compile Include="Controllers\RORController.cs" />
     <Compile Include="Controllers\SadarSihaController.cs" />
     <Compile Include="Controllers\VillageWariController.cs" />
@@ -174,11 +176,16 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\DCBMiscRevViewModel.cs" />
+    <Compile Include="Models\DCBViewModel.cs" />
+    <Compile Include="Models\DCBXVI2ViewModel.cs" />
     <Compile Include="Models\IFormViewModel.cs" />
     <Compile Include="Models\KhataViewModel.cs" />
     <Compile Include="Models\LedgerViewModel.cs" />
+    <Compile Include="Models\MFormAbstractViewModel.cs" />
     <Compile Include="Models\MFormViewModel.cs" />
     <Compile Include="Models\ReceiptViewModel.cs" />
+    <Compile Include="Models\RegXVIPart1ViewModel.cs" />
+    <Compile Include="Models\RegXVIPart2ViewModel.cs" />
     <Compile Include="Models\SadarSihaViewModel.cs" />
     <Compile Include="Models\VillageWariAbstractViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -313,6 +320,9 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\DCBMiscRev\Index.cshtml" />
     <Content Include="Views\VillageWari\Abstract.cshtml" />
+    <Content Include="Views\Receipt\OnlineReceipt.cshtml" />
+    <Content Include="Views\Ledger\DCBNew.cshtml" />
+    <Content Include="Views\VillageWari\detailAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

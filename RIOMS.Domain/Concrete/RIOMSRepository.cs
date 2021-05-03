@@ -32,21 +32,29 @@ namespace RIOMS.Domain.Concrete
             if (cNo != 0)
             {
                 iform = IForms.SingleOrDefault(f => f.IFormNo == cNo && f.Year == year);
-                receipts = context.Receipts.Where(r => r.VillageId == vid && r.Date >= iform.FromDate && r.Date <= iform.ToDate).OrderBy(r => r.Date);
+                receipts = context.Receipts.Where(r => r.VillageId == vid && r.Date >= iform.FromDate && r.Date <= iform.ToDate)
+               .Include(r => r.CollectionCess)
+                .Include(r => r.CollectionLandRevenue)
+                .Include(r => r.CollectionWaterTax)
+               .Include(r => r.CollectionOLR)
+                .Include(r => r.CollectionOther)
+                 .Include(r => r.CollectionMiscRevenue)
+                .Include(r => r.Village);
             }
             else
-            {
+            { 
                 receipts = context.Receipts.Where(r => r.ActualVillageId == vid).OrderBy(r => r.Date);
             }
 
-            foreach (var receipt in receipts)
-            {
-                context.Entry(receipt).Reference(r => r.CollectionCess).Load();
-                context.Entry(receipt).Reference(r => r.CollectionLandRevenue).Load();
-                context.Entry(receipt).Reference(r => r.CollectionWaterTax).Load();
-
-                context.Entry(receipt).Reference(r => r.Village).Load();
-            }
+            //foreach (var receipt in receipts)
+            //{
+            //    context.Entry(receipt).Reference(r => r.CollectionCess).Load();
+            //    context.Entry(receipt).Reference(r => r.CollectionLandRevenue).Load();
+            //    context.Entry(receipt).Reference(r => r.CollectionWaterTax).Load();
+            //    context.Entry(receipt).Reference(r => r.CollectionOLR).Load();
+            //    context.Entry(receipt).Reference(r => r.CollectionOther).Load();
+            //    context.Entry(receipt).Reference(r => r.Village).Load();
+            //}
             return receipts;
         }
 
@@ -64,7 +72,7 @@ namespace RIOMS.Domain.Concrete
         {
             try
             {
-                Khata khata= context.Khatas.Include(k => k.Village).Include(k => k.Plots).SingleOrDefault(k => k.KhataNo == khataNo && k.VillageId == villageId);
+                Khata khata = context.Khatas.Include(k => k.Village).Include(k => k.Plots).SingleOrDefault(k => k.KhataNo == khataNo && k.VillageId == villageId);
                 return khata;
             }
             catch (Exception ex)
@@ -72,7 +80,7 @@ namespace RIOMS.Domain.Concrete
 
                 throw ex;
             }
-          
+
         }
 
         private void LoadReceiptDetail(Receipt receipt)
@@ -254,26 +262,83 @@ namespace RIOMS.Domain.Concrete
             context.Entry(khata).Collection(d => d.DemandWaterTaxes).Query().Where(d => d.Year == fyear).Load();
             context.Entry(khata).Collection(d => d.DemandLandRevenues).Query().Where(d => d.Year == fyear).Load();
             context.Entry(khata).Collection(d => d.Receipts).Query().Where(r => r.Year == fyear).Load();
+            context.Entry(khata).Collection(d => d.TahReceipts).Query().Where(r => r.Year == fyear).Load();
             context.Entry(khata).Reference(d => d.Village).Load();
-            context.Entry(khata).Collection(d => d.Plots).Load();
+            //context.Entry(khata).Collection(d => d.Plots).Load();
         }
 
         public Khata GetLedger(string khataNo, int villageId, string fyear)
         {
-            var khata = context.Khatas.SingleOrDefault(k => k.VillageId == villageId && k.KhataNo == khataNo);
-            if (khata != null)
+            try
             {
-                LoadDemand(khata, fyear);
+                // var khata = context.Khatas.Include(k => k.DemandCesses)
+                //.Include(k => k.DemandLandRevenues)
+                // .Include(k => k.DemandWaterTaxes)
+                // .Include(k => k.Receipts.Select(r => r.CollectionCess))
+                //  .Include(k => k.Receipts.Select(r => r.CollectionLandRevenue))
+                //  .Include(k => k.Receipts.Select(r => r.CollectionWaterTax))
+                // .Include(k => k.TahReceipts.Select(r => r.TahCollectionCess))
+                // .Include(k => k.TahReceipts.Select(r => r.TahCollectionLandRevenue))
+                // .Include(k => k.TahReceipts.Select(r => r.TahCollectionWaterTax))
+                //.SingleOrDefault(k => k.VillageId == villageId && k.KhataNo == khataNo
+                //&&( k.DemandCesses.(d => d.Year == fyear)
+                // || k.DemandLandRevenues.Any(d => d.Year == fyear)
+                //  || k.DemandWaterTaxes.Any(d => d.Year == fyear)
+                //   || k.Receipts.Any(r => r.Year == fyear)
+                //      || k.TahReceipts.Any(r => r.Year == fyear))
+                //);
+                var khata = context.Khatas.SingleOrDefault(k => k.VillageId == villageId && k.KhataNo == khataNo);
+                ICollection<Receipt> receipts;
+                if (khata != null)
+                {
+                    LoadDemand(khata, fyear);
 
-                var receipts = khata.Receipts;
+                    receipts = khata.Receipts;
+
+                }
+                else
+                {
+                    receipts = Receipts.Where(r => r.VillageId == villageId && r.KhataNo == khataNo).ToList();
+                    if (receipts.Count > 0)
+                    {
+                        khata = new Khata() { KhataNo = khataNo, VillageId = villageId, Receipts = receipts };
+                    }
+                }
                 foreach (var receipt in receipts)
                 {
                     context.Entry(receipt).Reference(r => r.CollectionCess).Load();
                     context.Entry(receipt).Reference(r => r.CollectionWaterTax).Load();
                     context.Entry(receipt).Reference(r => r.CollectionLandRevenue).Load();
                 }
+                var tahreceipts = khata.TahReceipts;
+                foreach (var receipt in tahreceipts)
+                {
+                    context.Entry(receipt).Reference(r => r.CollectionCess).Load();
+                    context.Entry(receipt).Reference(r => r.CollectionWaterTax).Load();
+                    context.Entry(receipt).Reference(r => r.CollectionLandRevenue).Load();
+                }
+                
+                return khata;
             }
-            return khata;
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            //if (khata != null)
+            //{
+            //    LoadDemand(khata, fyear);
+
+            //    var receipts = khata.Receipts;
+            //    foreach (var receipt in receipts)
+            //    {
+            //        context.Entry(receipt).Reference(r => r.CollectionCess).Load();
+            //        context.Entry(receipt).Reference(r => r.CollectionWaterTax).Load();
+            //        context.Entry(receipt).Reference(r => r.CollectionLandRevenue).Load();
+            //    }
+            //}
+
         }
 
         //public IEnumerable<CessDCB> GetCessDCB(int villageId)
@@ -327,6 +392,22 @@ namespace RIOMS.Domain.Concrete
                         khata.DemandWaterTaxes.ElementAt(0).Previous = argKhata.DemandWaterTaxes.ElementAt(0).Previous;
                         khata.DemandWaterTaxes.ElementAt(0).Current = argKhata.DemandWaterTaxes.ElementAt(0).Current;
                         khata.DemandWaterTaxes.ElementAt(0).Advance = argKhata.DemandWaterTaxes.ElementAt(0).Advance;
+                    }
+                    if (khata.DemandLandRevenues.Count == 0 && argKhata.DemandLandRevenues.Count > 0)
+                    {
+                        argKhata.DemandLandRevenues.ElementAt(0).KhataNo = argKhata.KhataNo;
+                        argKhata.DemandLandRevenues.ElementAt(0).VillageId = argKhata.VillageId;
+                        argKhata.DemandLandRevenues.ElementAt(0).Year = fyear;
+                        khata.DemandLandRevenues.Add(argKhata.DemandLandRevenues.ElementAt(0));
+                    }
+                    if (khata.DemandLandRevenues.Count > 0)
+                    {
+                        khata.DemandLandRevenues.ElementAt(0).MoreThanThree = argKhata.DemandLandRevenues.ElementAt(0).MoreThanThree;
+                        khata.DemandLandRevenues.ElementAt(0).Third = argKhata.DemandLandRevenues.ElementAt(0).Third;
+                        khata.DemandLandRevenues.ElementAt(0).Second = argKhata.DemandLandRevenues.ElementAt(0).Second;
+                        khata.DemandLandRevenues.ElementAt(0).Previous = argKhata.DemandLandRevenues.ElementAt(0).Previous;
+                        khata.DemandLandRevenues.ElementAt(0).Current = argKhata.DemandLandRevenues.ElementAt(0).Current;
+                        khata.DemandLandRevenues.ElementAt(0).Advance = argKhata.DemandLandRevenues.ElementAt(0).Advance;
                     }
                 }
                 context.SaveChanges();
@@ -392,6 +473,7 @@ namespace RIOMS.Domain.Concrete
                 context.Entry(iform).Collection(i => i.IFormDetailLandRevenues).Query().Where(c => c.VillageId == vid).Load();
                 context.Entry(iform).Collection(i => i.IFormDetailOLRs).Query().Where(c => c.VillageId == vid).Load();
                 context.Entry(iform).Collection(i => i.IFormDetailOthers).Query().Where(c => c.VillageId == vid).Load();
+                context.Entry(iform).Collection(i => i.IFormDetailMiscRevenues).Query().Where(c => c.VillageId == vid).Load();
             }
             return iforms.ToList();
         }
@@ -399,25 +481,38 @@ namespace RIOMS.Domain.Concrete
         public Village GetVillageWithDCB(int vid, string year)
         {
             var village = context.Villages.Single(v => v.Id == vid);
+            //iform detail
             context.Entry(village).Collection(v => v.IFormDetailCesses).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.IFormDetailWaterTaxes).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.IFormDetailLandRevenues).Query().Where(i => i.Year == year).Load();
+            //actual demand
             context.Entry(village).Collection(v => v.DemandCesses).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.DemandWaterTaxes).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.DemandLandRevenues).Query().Where(i => i.Year == year).Load();
+            //village demand
             context.Entry(village).Collection(v => v.VillageWiseDemandCesses).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.VillageWiseDemandWaterTaxes).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.VillageWiseDemandLandRevenues).Query().Where(i => i.Year == year).Load();
-            context.Entry(village).Collection(v => v.AdvanceCollectionCesses).Query().Where(i => i.Year == year).Load();
+
+            //adv adj
             context.Entry(village).Collection(v => v.AdvanceAdjustmentCesses).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.AdvanceAdjustmentWaterTaxes).Query().Where(i => i.Year == year).Load();
+            context.Entry(village).Collection(v => v.AdvanceAdjustmentLandRevenues).Query().Where(i => i.Year == year).Load();
+            //adv collection
             context.Entry(village).Collection(v => v.AdvanceCollectionWaterTaxes).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.AdvanceCollectionLandRevenues).Query().Where(i => i.Year == year).Load();
+            context.Entry(village).Collection(v => v.AdvanceCollectionCesses).Query().Where(i => i.Year == year).Load();
+            //collection mobement
             context.Entry(village).Collection(v => v.CollectionMovementCessesTo).Query().Where(i => i.Year == year).Include(i => i.ToVillage).Load();
             context.Entry(village).Collection(v => v.CollectionMovementCessesFrom).Query().Where(i => i.Year == year).Include(i => i.FromVillage).Load();
-            context.Entry(village).Collection(v => v.VillageWiseTahCollectionLandRevenues).Query().Where(i => i.Year == year).Load();
-            context.Entry(village).Collection(v => v.VillageWiseTahCollectionCesses).Query().Where(i => i.Year == year).Load();
-            context.Entry(village).Collection(v => v.VillageWiseTahCollectionWaterTaxes).Query().Where(i => i.Year == year).Load();
+            //tah collection 
+            context.Entry(village).Collection(v => v.TahCollectionCesses).Query().Where(i => i.Year == year).Load();
+            context.Entry(village).Collection(v => v.TahCollectionLandRevenues).Query().Where(i => i.Year == year).Load();
+            context.Entry(village).Collection(v => v.TahCollectionWaterTaxes).Query().Where(i => i.Year == year).Load();
+            //increase in demand
+            context.Entry(village).Collection(v => v.IncreaseInDemandCesses).Query().Where(i => i.Year == year).Load();
+            context.Entry(village).Collection(v => v.IncreaseInDemandLandrevenues).Query().Where(i => i.Year == year).Load();
+
 
             return village;
         }
@@ -435,7 +530,7 @@ namespace RIOMS.Domain.Concrete
             {
                 context.Entry(miscRev).Collection(m => m.Receipts).Query().Where(r => r.Year == year).Include(r => r.CollectionMiscRevenue).Load();
                 context.Entry(miscRev).Reference(m => m.TypesOfMiscRev).Load();
-                context.Entry(miscRev).Collection(m => m.TahReceipts).Query().Where(r => r.Year == year).Include(r => r.TahCollectionMiscRevenue).Load();
+                context.Entry(miscRev).Collection(m => m.TahReceipts).Query().Where(r => r.Year == year).Include(r => r.CollectionMiscRevenue).Load();
             }
 
             return village;
@@ -472,8 +567,7 @@ namespace RIOMS.Domain.Concrete
             Village village = context.Villages.SingleOrDefault(v => v.Id == vid);
             context.Entry(village).Collection(v => v.AdvanceAdjustmentCesses).Query().Where(a => a.Year == year).Load();
             context.Entry(village).Collection(v => v.AdvanceAdjustmentWaterTaxes).Query().Where(a => a.Year == year).Load();
-            // context.Entry(village).Collection(v =>
-            // v.AdvanceAdjustmentLandRevenues).Query().Where(a => a.Year == year).Load();
+            context.Entry(village).Collection(v => v.AdvanceAdjustmentLandRevenues).Query().Where(a => a.Year == year).Load();
             return village;
         }
 
@@ -529,7 +623,7 @@ namespace RIOMS.Domain.Concrete
             Village village = Villages.SingleOrDefault(v => v.Id == vid);
             context.Entry(village).Collection(v => v.DemandMiscRevenues).Query().Where(d => d.VillageId == vid && d.Year == year).Load();
             context.Entry(village).Collection(v => v.IFormDetailMiscRevenues).Query().Where(d => d.VillageId == vid && d.Year == year).Load();
-            context.Entry(village).Collection(v => v.VillageWiseTahCollectionMiscRevenues).Query().Where(d => d.VillageId == vid && d.Year == year).Load();
+            context.Entry(village).Collection(v => v.TahCollectionMiscRevenues).Query().Where(d => d.VillageId == vid && d.Year == year).Load();
             context.Entry(village).Collection(v => v.CollectionMovementMiscRevenuesFrom).Query().Where(m => m.Year == year).Include(m => m.FromVillage).Load();
             context.Entry(village).Collection(v => v.CollectionMovementMiscRevenuesTo).Query().Where(m => m.Year == year).Include(m => m.ToVillage).Load();
             return village;
@@ -545,9 +639,9 @@ namespace RIOMS.Domain.Concrete
             context.Entry(village).Collection(v => v.IFormDetailOthers).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.IFormDetailOPDRs).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.IFormDetailMiscRevenues).Query().Where(i => i.Year == year).Load();
-            context.Entry(village).Collection(v => v.VillageWiseTahCollectionMiscRevenues).Query().Where(i => i.Year == year).Load();
-            context.Entry(village).Collection(v => v.VillageWiseTahCollectionCesses).Query().Where(i => i.Year == year).Load();
-            context.Entry(village).Collection(v => v.VillageWiseTahCollectionWaterTaxes).Query().Where(i => i.Year == year).Load();
+            context.Entry(village).Collection(v => v.TahReceipts).Query().Where(i => i.Year == year).Load();
+            //context.Entry(village).Collection(v => v.TahCollectionWaterTaxes).Query().Where(i => i.TahReceipt.Year == year).Load();
+            //context.Entry(village).Collection(v => v.TahCollectionCesses).Query().Where(i => i.TahReceipt.Year == year).Load();
             context.Entry(village).Collection(v => v.DemandMiscRevenues).Query().Where(i => i.Year == year).Load();
             context.Entry(village).Collection(v => v.CollectionMovementMiscRevenuesFrom).Query().Where(m => m.Year == year).Include(m => m.FromVillage).Load();
             context.Entry(village).Collection(v => v.CollectionMovementMiscRevenuesTo).Query().Where(m => m.Year == year).Include(m => m.ToVillage).Load();
@@ -620,8 +714,14 @@ namespace RIOMS.Domain.Concrete
 
         public List<Khata> GetKhatas(int villageId)
         {
-            return context.Khatas.Where(k => k.VillageId == villageId).ToList().OrderByDescending(k => k.Status).ThenBy(k => k.KhataNo).ToList();//ThenBy(k => k.KhataNo.Contains("/") ? Convert.ToInt32(k.KhataNo.Split('/')[0]) + (k.KhataNo.Contains('(') ? Convert.ToInt32(k.KhataNo.Split('/')[1].Split('(')[0]) : Convert.ToInt32(k.KhataNo.Split('/')[1])) : Convert.ToInt32(k.KhataNo)).ToList();
+            return context.Khatas.Where(k => k.VillageId == villageId).Include(k => k.Plots).ToList().OrderByDescending(k => k.Status).ThenBy(k => k.KhataNo).ToList();//ThenBy(k => k.KhataNo.Contains("/") ? Convert.ToInt32(k.KhataNo.Split('/')[0]) + (k.KhataNo.Contains('(') ? Convert.ToInt32(k.KhataNo.Split('/')[1].Split('(')[0]) : Convert.ToInt32(k.KhataNo.Split('/')[1])) : Convert.ToInt32(k.KhataNo)).ToList();
             ;
+        }
+
+        public bool AddOnlineCollection(TahReceipt tahReceipt)
+        {
+            context.TahReceipts.Add(tahReceipt);
+            return Convert.ToBoolean(context.SaveChanges());
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using RIOMS.Domain;
 using RIOMS.Domain.Abstract;
 using RIOMS.Domain.Models;
 using RIOMS.WebUI.Extensions;
@@ -18,7 +17,15 @@ namespace RIOMS.WebUI.Controllers
         {
             this.repository = RIOMSRepository;
         }
-
+        [HttpPost]
+        public ActionResult OnlineReceipt(TahReceipt tahReceipt)
+        {
+            return View(repository.AddOnlineCollection(tahReceipt));
+        }
+        public ActionResult OnlineReceipt()
+        {
+            return View();
+        }
         public ViewResult Index()
         {
             ViewBag.Villages = new SelectList(repository.Villages.Where(v => v.RICircleId == Util.Util.RICId), "Id", "Name");

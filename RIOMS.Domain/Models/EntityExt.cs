@@ -1,7 +1,6 @@
-﻿using System;
+﻿using RIOMS.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
-using RIOMS.Domain.Models;
 
 namespace RIOMS.Domain.Models
 {
@@ -9,47 +8,80 @@ namespace RIOMS.Domain.Models
     {
         public static Receipt operator +(Receipt r1, Receipt r2)
         {
-            Receipt result = new Receipt { CollectionCess = new CollectionCess(), CollectionWaterTax = new CollectionWaterTax(), CollectionLandRevenue = new CollectionLandRevenue(), CollectionMiscRevenue = new CollectionMiscRevenue(), CollectionOther = new CollectionOther(), CollectionOLR = new CollectionOLR(),CollectionOPDR=new CollectionOPDR() };
-            result.CollectionCess.Current = r1.CollectionCess.Current + r2.CollectionCess.Current;
-            result.CollectionCess.Previous = r1.CollectionCess.Previous + r2.CollectionCess.Previous;
-            result.CollectionCess.Second = r1.CollectionCess.Second + r2.CollectionCess.Second;
-            result.CollectionCess.Third = r1.CollectionCess.Third + r2.CollectionCess.Third;
-            result.CollectionCess.MoreThanThree = r1.CollectionCess.MoreThanThree + r2.CollectionCess.MoreThanThree;
-            result.CollectionCess.InterestTotal = r1.CollectionCess.InterestTotal + r2.CollectionCess.InterestTotal;
-            /*--------------------------------------------------------------------------------------------------*/
-            result.CollectionWaterTax.Current = r1.CollectionWaterTax.Current + r2.CollectionWaterTax.Current;
-            result.CollectionWaterTax.Previous = r1.CollectionWaterTax.Previous + r2.CollectionWaterTax.Previous;
-            result.CollectionWaterTax.Second = r1.CollectionWaterTax.Second + r2.CollectionWaterTax.Second;
-            result.CollectionWaterTax.Third = r1.CollectionWaterTax.Third + r2.CollectionWaterTax.Third;
-            result.CollectionWaterTax.MoreThanThree = r1.CollectionWaterTax.MoreThanThree + r2.CollectionWaterTax.MoreThanThree;
-            result.CollectionWaterTax.InterestTotal = r1.CollectionWaterTax.InterestTotal + r2.CollectionWaterTax.InterestTotal;
-            /*----------------------------------------------------------------------------------------------------------------*/
-            result.CollectionLandRevenue.Current = r1.CollectionLandRevenue.Current + r2.CollectionLandRevenue.Current;
-            result.CollectionLandRevenue.Previous = r1.CollectionLandRevenue.Previous + r2.CollectionLandRevenue.Previous;
-            result.CollectionLandRevenue.Second = r1.CollectionLandRevenue.Second + r2.CollectionLandRevenue.Second;
-            result.CollectionLandRevenue.Third = r1.CollectionLandRevenue.Third + r2.CollectionLandRevenue.Third;
-            result.CollectionLandRevenue.MoreThanThree = r1.CollectionLandRevenue.MoreThanThree + r2.CollectionLandRevenue.MoreThanThree;
-            result.CollectionLandRevenue.InterestTotal = r1.CollectionLandRevenue.InterestTotal + r2.CollectionLandRevenue.InterestTotal;
-            /*------------------------------------*/
-            if (r1.HasMiscRevenue && r2.HasMiscRevenue)
+           
+
+            Receipt result = new Receipt { CollectionCess = new CollectionCess(),
+            CollectionWaterTax = new CollectionWaterTax(),
+            CollectionLandRevenue = new CollectionLandRevenue(),
+            CollectionMiscRevenue = new CollectionMiscRevenue(),
+            CollectionOther = new CollectionOther(),
+            CollectionOLR = new CollectionOLR(),
+            CollectionOPDR = new CollectionOPDR()
+        };
+            if (r1 !=null && r2 !=null)
             {
-                result.CollectionMiscRevenue.Current = r1.CollectionMiscRevenue.Current + r2.CollectionMiscRevenue.Current;
-                result.CollectionMiscRevenue.Arrear = r1.CollectionMiscRevenue.Arrear + r2.CollectionMiscRevenue.Arrear;
-                result.CollectionMiscRevenue.Interest = r1.CollectionMiscRevenue.Interest + r2.CollectionMiscRevenue.Interest;
+
+                result.CollectionCess.Current = r1.CollectionCess.Current + r2.CollectionCess.Current;
+                result.CollectionCess.Previous = r1.CollectionCess.Previous + r2.CollectionCess.Previous;
+                result.CollectionCess.Second = r1.CollectionCess.Second + r2.CollectionCess.Second;
+                result.CollectionCess.Third = r1.CollectionCess.Third + r2.CollectionCess.Third;
+                result.CollectionCess.MoreThanThree = r1.CollectionCess.MoreThanThree + r2.CollectionCess.MoreThanThree;
+                result.CollectionCess.InterestTotal = r1.CollectionCess.InterestTotal + r2.CollectionCess.InterestTotal;
+                /*--------------------------------------------------------------------------------------------------*/
+                result.CollectionWaterTax.Current = r1.CollectionWaterTax.Current + r2.CollectionWaterTax.Current;
+                result.CollectionWaterTax.Previous = r1.CollectionWaterTax.Previous + r2.CollectionWaterTax.Previous;
+                result.CollectionWaterTax.Second = r1.CollectionWaterTax.Second + r2.CollectionWaterTax.Second;
+                result.CollectionWaterTax.Third = r1.CollectionWaterTax.Third + r2.CollectionWaterTax.Third;
+                result.CollectionWaterTax.MoreThanThree = r1.CollectionWaterTax.MoreThanThree + r2.CollectionWaterTax.MoreThanThree;
+                result.CollectionWaterTax.InterestTotal = r1.CollectionWaterTax.InterestTotal + r2.CollectionWaterTax.InterestTotal;
+                /*----------------------------------------------------------------------------------------------------------------*/
+                result.CollectionLandRevenue.Current = r1.CollectionLandRevenue.Current + r2.CollectionLandRevenue.Current;
+                result.CollectionLandRevenue.Previous = r1.CollectionLandRevenue.Previous + r2.CollectionLandRevenue.Previous;
+                result.CollectionLandRevenue.Second = r1.CollectionLandRevenue.Second + r2.CollectionLandRevenue.Second;
+                result.CollectionLandRevenue.Third = r1.CollectionLandRevenue.Third + r2.CollectionLandRevenue.Third;
+                result.CollectionLandRevenue.MoreThanThree = r1.CollectionLandRevenue.MoreThanThree + r2.CollectionLandRevenue.MoreThanThree;
+                result.CollectionLandRevenue.InterestTotal = r1.CollectionLandRevenue.InterestTotal + r2.CollectionLandRevenue.InterestTotal;
+                /*------------------------------------*/
+                if (r1.HasMiscRevenue && r2.HasMiscRevenue)
+                {
+                    result.CollectionMiscRevenue.Current = r1.CollectionMiscRevenue.Current + r2.CollectionMiscRevenue.Current;
+                    result.CollectionMiscRevenue.Arrear = r1.CollectionMiscRevenue.Arrear + r2.CollectionMiscRevenue.Arrear;
+                    result.CollectionMiscRevenue.Interest = r1.CollectionMiscRevenue.Interest + r2.CollectionMiscRevenue.Interest;
+                }
+                else
+                {
+                    result.CollectionMiscRevenue = r1.CollectionMiscRevenue ?? r2.CollectionMiscRevenue;
+                }
+                if (r1.HasOthers && r2.HasOthers)
+                {
+                    result.CollectionOther.Amount = r1.CollectionOther.Amount + r2.CollectionOther.Amount;
+                }
+                else
+                {
+                    result.CollectionOther = r1.CollectionOther ?? r2.CollectionOther;
+                }
+                if (r1.HasOLR && r2.HasOLR)
+                {
+                    result.CollectionOLR.Premium = r1.CollectionOLR.Premium + r2.CollectionOLR.Premium;
+                    result.CollectionOLR.DemarcationFee = r1.CollectionOLR.DemarcationFee + r2.CollectionOLR.DemarcationFee;
+                }
+                else
+                {
+                    result.CollectionOLR = r1.CollectionOLR ?? r2.CollectionOLR;
+                }
+                if (r1.HasOPDR && r2.HasOPDR)
+                {
+                    result.CollectionOPDR.Amount = r1.CollectionOPDR.Amount + r2.CollectionOPDR.Amount;
+
+                }
+                else
+                {
+                    result.CollectionOPDR = r1.CollectionOPDR ?? r2.CollectionOPDR;
+                }
             }
-            if (r1.HasOthers && r2.HasOthers)
+            else
             {
-                result.CollectionOther.Amount = r1.CollectionOther.Amount + r2.CollectionOther.Amount;
-            }
-            if (r1.HasOLR && r2.HasOLR)
-            {
-                result.CollectionOLR.Premium = r1.CollectionOLR.Premium + r2.CollectionOLR.Premium;
-                result.CollectionOLR.DemarcationFee = r1.CollectionOLR.DemarcationFee + r2.CollectionOLR.DemarcationFee;
-            }
-            if (r1.HasOPDR && r2.HasOPDR)
-            {
-                result.CollectionOPDR.Amount = r1.CollectionOPDR.Amount + r2.CollectionOPDR.Amount;
-                
+                result = (r1 != null ? r1 : r2);
             }
             return result;
         }
@@ -99,7 +131,7 @@ namespace RIOMS.Domain.Models
                 }
                 if (HasOPDR)
                 {
-                    total = total + CollectionOPDR.Amount ;
+                    total = total + CollectionOPDR.Amount;
                 }
                 return total;
 
@@ -115,6 +147,7 @@ namespace RIOMS.Domain.Models
         { }
         public CollectionCess(IEnumerable<Receipt> receipts)
         {
+          
             MoreThanThree = receipts.Sum(r => r.HasCess ? r.CollectionCess.MoreThanThree : 0);
             Third = receipts.Sum(r => r.HasCess ? r.CollectionCess.Third : 0);
             Second = receipts.Sum(r => r.HasCess ? r.CollectionCess.Second : 0);
@@ -130,11 +163,11 @@ namespace RIOMS.Domain.Models
             Previous = iFormDetailCess.Sum(c => c.Previous);
             Current = iFormDetailCess.Sum(c => c.Current);
         }
-        
+
     }
 
 
-    
+
 
     public partial class CollectionWaterTax
     {
@@ -150,7 +183,7 @@ namespace RIOMS.Domain.Models
             Previous = receipts.Sum(r => r.HasWaterTax ? r.CollectionWaterTax.Previous : 0);
             Current = receipts.Sum(r => r.HasWaterTax ? r.CollectionWaterTax.Current : 0);
         }
-      
+
     }
 
     public partial class CollectionLandRevenue
@@ -171,28 +204,28 @@ namespace RIOMS.Domain.Models
     }
     public class BalancePartOneRev : PartOneRev
     {
-        public decimal? Advance { get; set; }
+       
     }
     public class BalanceCess : BalancePartOneRev
     {
-        
+
         public BalanceCess()
         {
 
         }
-        public BalanceCess(CollectionCess collection, AdvanceCollectionCess advc, DemandCess demandCess)
+        public BalanceCess(PartOneRev collection, AdvanceCollectionCess advc, DemandCess demandCess)
         {
             MoreThanThree = demandCess.MoreThanThree - collection.MoreThanThree;
             Third = demandCess.Third - collection.Third;
             Second = demandCess.Second - collection.Second;
             Previous = demandCess.Previous - collection.Previous;
             Current = demandCess.Current - collection.Current;
-            Advance = demandCess.Advance + advc.Current.GetValueOrDefault() + advc.Previous.GetValueOrDefault()
-                + advc.Second.GetValueOrDefault() + advc.Third.GetValueOrDefault() + advc.MoreThanThree.GetValueOrDefault();
+            Advance = demandCess.Advance + advc.Current+ advc.Previous
+                + advc.Second+ advc.Third+ advc.MoreThanThree;
         }
-        public BalanceCess(CollectionCess collection, DemandCess demandCess)
+        public BalanceCess(PartOneRev collection, DemandCess demandCess)
         {
-           
+
             if (collection.MoreThanThree > demandCess.MoreThanThree)
             {
                 Advance = Advance + collection.MoreThanThree - demandCess.MoreThanThree;
@@ -231,36 +264,36 @@ namespace RIOMS.Domain.Models
             {
                 Previous = demandCess.Previous - collection.Previous;
             }
-            if ((demandCess.Advance + collection.Current ) > demandCess.Current)
+            if ((demandCess.Advance + collection.Current) > demandCess.Current)
             {
                 Advance = (collection.Current + demandCess.Advance + Advance) - demandCess.Current;
                 Current = 0;
             }
             else
             {
-                Current = demandCess.Current - (collection.Current +  demandCess.Advance);
-               // Advance = 0;
+                Current = demandCess.Current - (collection.Current + demandCess.Advance);
+                // Advance = 0;
             }
 
         }
-       
-        
+
+
     }
     public class BalanceWaterTax : BalancePartOneRev
     {
         public BalanceWaterTax()
         { }
-        public BalanceWaterTax(CollectionWaterTax collection, AdvanceCollectionWaterTax advc, DemandWaterTax demandWaterTax)
+        public BalanceWaterTax(PartOneRev collection, AdvanceCollectionWaterTax advc, DemandWaterTax demandWaterTax)
         {
             MoreThanThree = demandWaterTax.MoreThanThree - collection.MoreThanThree;
             Third = demandWaterTax.Third - collection.Third;
             Second = demandWaterTax.Second - collection.Second;
             Previous = demandWaterTax.Previous - collection.Previous;
             Current = demandWaterTax.Current - collection.Current;
-            Advance = demandWaterTax.Advance + advc.Current.GetValueOrDefault() + advc.Previous.GetValueOrDefault()
-                + advc.Second.GetValueOrDefault() + advc.Third.GetValueOrDefault() + advc.MoreThanThree.GetValueOrDefault();
+            Advance = demandWaterTax.Advance + advc.Current+ advc.Previous
+                + advc.Second+ advc.Third+ advc.MoreThanThree;
         }
-        public BalanceWaterTax(CollectionWaterTax collection, DemandWaterTax demandWaterTax)
+        public BalanceWaterTax(PartOneRev collection, DemandWaterTax demandWaterTax)
         {
             if (collection.MoreThanThree > demandWaterTax.MoreThanThree)
             {
@@ -311,24 +344,24 @@ namespace RIOMS.Domain.Models
                 Advance = 0;
             }
         }
-       
-        
-}
+
+
+    }
     public class BalanceLandRevenue : BalancePartOneRev
     {
         public BalanceLandRevenue()
         { }
-        public BalanceLandRevenue(CollectionLandRevenue collection, AdvanceCollectionLandRevenue advc, DemandLandRevenue demandLR)
+        public BalanceLandRevenue(PartOneRev collection, AdvanceCollectionLandRevenue advc, DemandLandRevenue demandLR)
         {
             MoreThanThree = demandLR.MoreThanThree - collection.MoreThanThree;
             Third = demandLR.Third - collection.Third;
             Second = demandLR.Second - collection.Second;
             Previous = demandLR.Previous - collection.Previous;
             Current = demandLR.Current - collection.Current;
-            Advance = demandLR.Advance + advc.Current.GetValueOrDefault() + advc.Previous.GetValueOrDefault()
-                + advc.Second.GetValueOrDefault() + advc.Third.GetValueOrDefault() + advc.MoreThanThree.GetValueOrDefault();
+            Advance = demandLR.Advance + advc.Current+ advc.Previous
+                + advc.Second+ advc.Third+ advc.MoreThanThree;
         }
-        public BalanceLandRevenue(CollectionLandRevenue collection, DemandLandRevenue demandLR)
+        public BalanceLandRevenue(PartOneRev collection, DemandLandRevenue demandLR)
         {
             if (collection.MoreThanThree > demandLR.MoreThanThree)
             {
@@ -379,36 +412,39 @@ namespace RIOMS.Domain.Models
                 Advance = 0;
             }
         }
-       
+
 
     }
     public partial class Khata
     {
-        public CollectionCess CollectionCess
+        public PartOneRev CollectionCess
         {
-            get { return new CollectionCess(Receipts); }
+            get { return Receipts.Select(t=>t.CollectionCess?? new Models.CollectionCess()).Sum()+TahReceipts.Select(t=>t.CollectionCess).Sum(); }
 
         }
-        public CollectionWaterTax CollectionWaterTax
+        public PartOneRev CollectionWaterTax
         {
-            get { return new CollectionWaterTax(Receipts); }
+            get { return Receipts.Select(t => t.CollectionWaterTax?? new CollectionWaterTax()).Sum() + TahReceipts.Select(t => t.CollectionWaterTax?? new TahCollectionWaterTax()).Sum(); }
         }
-        public CollectionLandRevenue CollectionLandRevenue
+        public PartOneRev CollectionLandRevenue
         {
-            get { return new CollectionLandRevenue(Receipts); }
+            get { return Receipts.Select(t => t.CollectionLandRevenue ?? new CollectionLandRevenue()).Sum() + TahReceipts.Select(t => t.CollectionLandRevenue?? new TahCollectionLandRevenue()).Sum(); }
         }
-        public decimal TotalArea { 
-            get {
-            if (Plots.Count>0)
+        public decimal TotalArea
+        {
+            get
             {
-                return Plots.Sum(p => p.Area).Value;
+                if (Plots.Count > 0)
+                {
+                    return Plots.Sum(p => p.Area).Value;
+                }
+                else
+                {
+                    return 0;
+                }
+
             }
-            else
-            {
-                return 0;
-            }
-        
-        } }
+        }
         public BalanceCess BalanceCess
         {
             get
@@ -443,7 +479,7 @@ namespace RIOMS.Domain.Models
         {
             get
             {
-                if (DemandLandRevenues.Count>0)
+                if (DemandLandRevenues.Count > 0)
                 {
                     return new BalanceLandRevenue(CollectionLandRevenue, DemandLandRevenues.ToList()[0]);
                 }

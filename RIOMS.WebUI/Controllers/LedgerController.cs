@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
-using RIOMS.Domain;
 using RIOMS.Domain.Abstract;
 using RIOMS.Domain.Models;
 using RIOMS.WebUI.Extensions;
+using RIOMS.WebUI.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -24,15 +25,22 @@ namespace RIOMS.WebUI.Controllers
             return View();
         }
 
-        //public ViewResult DCB(int vid, string year)
-        //{
-        //    ViewBag.IForms = repository.IForms.Where(f => f.Year == year);
-        //    Village village = repository.GetVillageWithDCB(vid, year);
-        //    ICollection<IForm> iforms = repository.IForms.Where(f => f.Year == year).ToList();
+        public ViewResult DCB(int vid, string year)
+        {
+            ViewBag.IForms = repository.IForms.Where(f => f.Year == year);
+            Village village = repository.GetVillageWithDCB(vid, year);
+            ICollection<IForm> iforms = repository.IForms.Where(f => f.Year == year).ToList();
 
-        //    return View(new DCBViewModel(village, iforms));
-        //}
+            return View(new DCBViewModel(village, iforms));
+        }
+        public ViewResult DCBNew(int vid, string year)
+        {
+            ViewBag.IForms = repository.IForms.Where(f => f.Year == year);
+            Village village = repository.GetVillageWithDCB(vid, year);
+            ICollection<IForm> iforms = repository.IForms.Where(f => f.Year == year).ToList();
 
+            return View(new DCBViewModel(village, iforms));
+        }
         public ViewResult AdvAdj(int vid, string year)
         {
             ViewBag.Village = repository.Villages.SingleOrDefault(v => v.Id == vid);
@@ -49,7 +57,9 @@ namespace RIOMS.WebUI.Controllers
         {
             JsonNetResult jsonNetResult = new JsonNetResult();
             jsonNetResult.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            jsonNetResult.Data = repository.GetLedger(khatano, villageId, fyear);
+            var khata= repository.GetLedger(khatano, villageId, fyear);
+            khata.Receipts = khata.Receipts.OrderBy(r => r.Date).ToList();
+            jsonNetResult.Data = khata;
             return jsonNetResult;
         }
 

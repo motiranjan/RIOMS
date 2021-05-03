@@ -1,10 +1,7 @@
 namespace RIOMS.Domain.Models
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Remission_2015-2016")]
     public partial class Remission_2015_2016

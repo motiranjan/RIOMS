@@ -135,7 +135,7 @@
             <td></td>
             <td></td>
             <td>
-                @{decimal? miscArrear = item.IFormDetailMiscRevenues.Sum(i => i.Arrear).GetValueOrDefault();}
+                @{decimal? miscArrear = item.IFormDetailMiscRevenues.Sum(i => i.Arrear);}
             @if (miscArrear > 0)
             {
                 tmiscArrear+=miscArrear;
@@ -143,7 +143,7 @@
             }
         </td>
         <td>
-            @{decimal? miscCurrent = item.IFormDetailMiscRevenues.Sum(i => i.Current).GetValueOrDefault();}
+            @{decimal? miscCurrent = item.IFormDetailMiscRevenues.Sum(i => i.Current);}
             @if (miscCurrent > 0)
             {
                 tmiscCurrent+=miscCurrent;
@@ -151,7 +151,7 @@
             }
         </td>
         <td>
-            @{decimal? intLrCbwrMisc = item.IFormDetailLandRevenues.Sum(i => i.InterestTotal).GetValueOrDefault() + item.IFormDetailWaterTaxes.Sum(i => i.InterestTotal).GetValueOrDefault() + item.IFormDetailMiscRevenues.Sum(i => i.Interest.GetValueOrDefault()); }
+            @{decimal? intLrCbwrMisc = item.IFormDetailLandRevenues.Sum(i => i.InterestTotal) + item.IFormDetailWaterTaxes.Sum(i => i.InterestTotal) + item.IFormDetailMiscRevenues.Sum(i => i.Interest); }
             @if (intLrCbwrMisc > 0)
             {
                 tintLrCbwrMisc+=intLrCbwrMisc;
@@ -159,7 +159,7 @@
             }
         </td>
         <td>
-            @{decimal? intCess = item.IFormDetailCesses.Sum(i => i.InterestTotal).GetValueOrDefault();
+            @{decimal? intCess = item.IFormDetailCesses.Sum(i => i.InterestTotal);
               tintCess += intCess;
               }
             @intCess
@@ -167,7 +167,7 @@
         <td>
 
             @{
-                decimal? other = item.IFormDetailOLRs.Sum(i => i.Premium).GetValueOrDefault() + item.IFormDetailOLRs.Sum(i => i.DemarcationFee).GetValueOrDefault() + item.IFormDetailOthers.Sum(i => i.Amount).GetValueOrDefault()+item.IFormDetailOPDRs.Sum(op=>op.Amount).GetValueOrDefault();
+                decimal? other = item.IFormDetailOLRs.Sum(i => i.Premium) + item.IFormDetailOLRs.Sum(i => i.DemarcationFee) + item.IFormDetailOthers.Sum(i => i.Amount)+item.IFormDetailOPDRs.Sum(op=>op.Amount);
 
                 if (other > 0)
                 {

@@ -1,10 +1,10 @@
-﻿@model RIOMS.Domain.Village
+﻿@model RIOMS.Domain.Models.Village
 
 @{
     ViewBag.Title = "AdvAdj";
 }
 
-<h2>AdvAdj @Model.Name</h2>
+<h2>Adv Adj @Model.Name</h2>
 
 
 
@@ -12,11 +12,22 @@
     Cess
     <table>
         <tr>
-            <th>Sl No.</th>
+            <th>Sl No</th>
             <th>
                 KhataNo
             </th>
-          
+            <th>
+                MoreThanThree
+            </th>
+            <th>
+                Third
+            </th>
+            <th>
+                Second
+            </th>
+            <th>
+                Previous
+            </th>
             <th>
                 Current
             </th>
@@ -28,24 +39,50 @@
             decimal second = 0;
             decimal previous = 0;
             decimal current = 0;
-            int index = 1;
+            int slNo = 1;
         }
         @foreach (var item in Model.AdvanceAdjustmentCesses.OrderBy(ac => ac.KhataNo.Contains('/') ? Convert.ToInt32(ac.KhataNo.Substring(ac.KhataNo.IndexOf('/') + 1, ac.KhataNo.Contains('(') ? (ac.KhataNo.IndexOf('(') - (ac.KhataNo.IndexOf('/') + 1)) : (ac.KhataNo.Length - (ac.KhataNo.IndexOf('/') + 1)))) + Convert.ToInt32(ac.KhataNo.Substring(0, ac.KhataNo.IndexOf('/'))) : Convert.ToInt32(ac.KhataNo.Substring(0, ac.KhataNo.Length - (ac.KhataNo.IndexOf('/') + 1)))))
         {
 
             <tr>
-                <td>
-                    @(index++)
-                </td>
+                <td>@(slNo++)</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.KhataNo)
 
                 </td>
-             
+                <td>
+
+                    @if (item.MoreThanThree > 0)
+                    {
+                        moreThanThree += item.MoreThanThree;
+                        @item.MoreThanThree
+                    }
+                </td>
+                <td>
+                    @if (item.Third > 0)
+                    {
+                        third += item.Third;
+                        @item.Third
+                    }
+                </td>
+                <td>
+                    @if (item.Second > 0)
+                    {
+                        second += item.Second;
+                        @item.Second
+                    }
+                </td>
+                <td>
+                    @if (item.Previous > 0)
+                    {
+                        previous += item.Previous;
+                        @item.Previous
+                    }
+                </td>
                 <td>
                     @if (item.Current > 0)
                     {
-                        current += item.Current.GetValueOrDefault();
+                        current += item.Current;
                         @item.Current
                     }
                 </td>
@@ -56,7 +93,31 @@
             <td colspan="2">
                 Total
             </td>
-     
+            <td>
+                @if (moreThanThree > 0)
+                {
+
+                    @moreThanThree
+                }
+            </td>
+            <td>
+                @if (third > 0)
+                {
+                    @third
+                }
+            </td>
+            <td>
+                @if (second > 0)
+                {
+                    @second
+                }
+            </td>
+            <td>
+                @if (previous > 0)
+                {
+                    @previous
+                }
+            </td>
             <td>
                 @if (current > 0)
                 {
@@ -74,7 +135,18 @@
             <th>
                 KhataNo
             </th>
-           
+            <th>
+                MoreThanThree
+            </th>
+            <th>
+                Third
+            </th>
+            <th>
+                Second
+            </th>
+            <th>
+                Previous
+            </th>
             <th>
                 Current
             </th>
@@ -89,11 +161,39 @@
                     @Html.DisplayFor(modelItem => item.KhataNo)
 
                 </td>
-       
+                <td>
+
+                    @if (item.MoreThanThree > 0)
+                    {
+                        moreThanThree += item.MoreThanThree;
+                        @item.MoreThanThree
+                    }
+                </td>
+                <td>
+                    @if (item.Third > 0)
+                    {
+                        third += item.Third;
+                        @item.Third
+                    }
+                </td>
+                <td>
+                    @if (item.Second > 0)
+                    {
+                        second += item.Second;
+                        @item.Second
+                    }
+                </td>
+                <td>
+                    @if (item.Previous > 0)
+                    {
+                        previous += item.Previous;
+                        @item.Previous
+                    }
+                </td>
                 <td>
                     @if (item.Current > 0)
                     {
-                        current += item.Current.GetValueOrDefault();
+                        current += item.Current;
                         @item.Current
                     }
                 </td>
@@ -104,7 +204,31 @@
             <td>
                 Total
             </td>
-            
+            <td>
+                @if (Model.AdvanceAdjustmentWaterTaxes.Sum(ac => ac.MoreThanThree) > 0)
+                {
+
+                    @Model.AdvanceAdjustmentWaterTaxes.Sum(ac => ac.MoreThanThree)
+                }
+            </td>
+            <td>
+                @if (Model.AdvanceAdjustmentWaterTaxes.Sum(ac => ac.Third) > 0)
+                {
+                    @Model.AdvanceAdjustmentWaterTaxes.Sum(ac => ac.Third)
+                }
+            </td>
+            <td>
+                @if (Model.AdvanceAdjustmentWaterTaxes.Sum(ac => ac.Second) > 0)
+                {
+                    @Model.AdvanceAdjustmentWaterTaxes.Sum(ac => ac.Second)
+                }
+            </td>
+            <td>
+                @if (Model.AdvanceAdjustmentWaterTaxes.Sum(ac => ac.Previous) > 0)
+                {
+                    @Model.AdvanceAdjustmentWaterTaxes.Sum(ac => ac.Previous)
+                }
+            </td>
             <td>
                 @if (Model.AdvanceAdjustmentWaterTaxes.Sum(ac => ac.Current) > 0)
                 {
@@ -117,5 +241,117 @@
 </div>
 
 
+<div style="float:left;">
+    Khajana
+    <table>
+        <tr>
+            <th>
+                KhataNo
+            </th>
+            <th>
+                MoreThanThree
+            </th>
+            <th>
+                Third
+            </th>
+            <th>
+                Second
+            </th>
+            <th>
+                Previous
+            </th>
+            <th>
+                Current
+            </th>
 
+        </tr>
+
+        @foreach (var item in Model.AdvanceAdjustmentLandRevenues.OrderBy(ac => ac.KhataNo.Contains('/') ? Convert.ToInt32(ac.KhataNo.Substring(ac.KhataNo.IndexOf('/') + 1, ac.KhataNo.Contains('(') ? (ac.KhataNo.IndexOf('(') - (ac.KhataNo.IndexOf('/') + 1)) : (ac.KhataNo.Length - (ac.KhataNo.IndexOf('/') + 1)))) + Convert.ToInt32(ac.KhataNo.Substring(0, ac.KhataNo.IndexOf('/'))) : Convert.ToInt32(ac.KhataNo.Substring(0, ac.KhataNo.Length - (ac.KhataNo.IndexOf('/') + 1)))))
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhataNo)
+
+                </td>
+                <td>
+
+                    @if (item.MoreThanThree > 0)
+                    {
+                        moreThanThree += item.MoreThanThree;
+                        @item.MoreThanThree
+                    }
+                </td>
+                <td>
+                    @if (item.Third > 0)
+                    {
+                        third += item.Third;
+                        @item.Third
+                    }
+                </td>
+                <td>
+                    @if (item.Second > 0)
+                    {
+                        second += item.Second;
+                        @item.Second
+                    }
+                </td>
+                <td>
+                    @if (item.Previous > 0)
+                    {
+                        previous += item.Previous;
+                        @item.Previous
+                    }
+                </td>
+                <td>
+                    @if (item.Current > 0)
+                    {
+                        current += item.Current;
+                        @item.Current
+                    }
+                </td>
+
+            </tr>
+        }
+        <tr class="total">
+            <td>
+                Total
+            </td>
+            <td>
+                @if (Model.AdvanceAdjustmentLandRevenues.Sum(ac => ac.MoreThanThree) > 0)
+                {
+
+                    @Model.AdvanceAdjustmentLandRevenues.Sum(ac => ac.MoreThanThree)
+                }
+            </td>
+            <td>
+                @if (Model.AdvanceAdjustmentLandRevenues.Sum(ac => ac.Third) > 0)
+                {
+                    @Model.AdvanceAdjustmentLandRevenues.Sum(ac => ac.Third)
+                }
+            </td>
+            <td>
+                @if (Model.AdvanceAdjustmentLandRevenues.Sum(ac => ac.Second) > 0)
+                {
+                    @Model.AdvanceAdjustmentLandRevenues.Sum(ac => ac.Second)
+                }
+            </td>
+            <td>
+                @if (Model.AdvanceAdjustmentLandRevenues.Sum(ac => ac.Previous) > 0)
+                {
+                    @Model.AdvanceAdjustmentLandRevenues.Sum(ac => ac.Previous)
+                }
+            </td>
+            <td>
+                @if (Model.AdvanceAdjustmentLandRevenues.Sum(ac => ac.Current) > 0)
+                {
+                    @Model.AdvanceAdjustmentLandRevenues.Sum(ac => ac.Current)
+                }
+            </td>
+
+        </tr>
+    </table>
 </div>
+
+
+

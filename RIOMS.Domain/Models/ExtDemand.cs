@@ -37,7 +37,7 @@ namespace RIOMS.Domain.Models
                 MoreThanThree = r1.MoreThanThree - r2.MoreThanThree
             };
         }
-        public Decimal Arrear
+        public decimal? Arrear
         {
             get
             {

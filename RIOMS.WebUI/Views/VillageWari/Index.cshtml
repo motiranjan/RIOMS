@@ -33,12 +33,78 @@
     }
     <tr>
         <td style="width:200px;">
+            Detail all
+        </td>
+        @foreach (Village village in ViewBag.Villages)
+        {
+            <td>
+                @Html.ActionLink(village.Name, "detailAll", new { year = ViewBag.Year, vid = village.Id })
+            </td>
+        }
+    </tr>
+    <tr>
+        <td style="width:200px;">
             Abstract
         </td>
         @foreach (Village village in ViewBag.Villages)
         {
             <td>
                 @Html.ActionLink(village.Name, "abstract", new { year = ViewBag.Year, vid = village.Id })
+            </td>
+        }
+    </tr>
+    <tr>
+        <td style="width:200px;">
+            adv Adj
+        </td>
+        @foreach (Village village in ViewBag.Villages)
+        {
+            <td>
+                @Html.ActionLink(village.Name, "AdvAdj", "Ledger", new { year = ViewBag.Year, vid = village.Id }, null)
+            </td>
+        }
+    </tr>
+    <tr>
+        <td style="width:200px;">
+            Adv Collection
+        </td>
+        @foreach (Village village in ViewBag.Villages)
+        {
+            <td>
+                @Html.ActionLink(village.Name, "AdvCol", "Ledger", new { year = ViewBag.Year, vid = village.Id }, null)
+            </td>
+        }
+    </tr>
+    <tr>
+        <td style="width:200px;">
+            DCB
+        </td>
+        @foreach (Village village in ViewBag.Villages)
+        {
+            <td>
+                @Html.ActionLink(village.Name, "DCB", "Ledger", new { year = ViewBag.Year, vid = village.Id }, null)
+            </td>
+        }
+    </tr>
+    <tr>
+        <td style="width:200px;">
+            DCB New
+        </td>
+        @foreach (Village village in ViewBag.Villages)
+        {
+            <td>
+                @Html.ActionLink(village.Name, "DCBNew", "Ledger", new { year = ViewBag.Year, vid = village.Id }, null)
+            </td>
+        }
+    </tr>
+    <tr>
+        <td style="width:200px;">
+            M Form
+        </td>
+        @foreach (Village village in ViewBag.Villages)
+        {
+            <td>
+                @Html.ActionLink(village.Name, "Index", "MForms", new { year = ViewBag.Year, vid = village.Id }, null)
             </td>
         }
     </tr>

@@ -1,53 +1,55 @@
-﻿using RIOMS.Domain;
-using RIOMS.Domain.Models;
+﻿using RIOMS.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace RIOMS.WebUI.Models
 {
     public class DCBMiscRev
     {
         List<Receipt> receipts;
-        public DCBMiscRev(List<Receipt> argReceipt,MiscRevenue miscRev)
+        public DCBMiscRev(List<Receipt> argReceipt, MiscRevenue miscRev)
         {
             receipts = argReceipt;
         }
-        
+
     }
 
     public class DCBMiscRevViewModel
     {
         Village village;
-        
-        public DCBMiscRevViewModel(Village argVillage )
+
+        public DCBMiscRevViewModel(Village argVillage)
         {
             village = argVillage;
-           
+
         }
 
-      
+
 
         public String VillageName
         {
             get { return village.Name; }
-            
+
         }
-        
+
         public DemandMiscRevenue Demand
         {
-            get { return new DemandMiscRevenue {
-                Arrear=village.DemandMiscRevenues.Sum(m=>m.Arrear), 
-                Current=village.DemandMiscRevenues.Sum(m=>m.Current)
-            }; }
-            
+            get
+            {
+                return new DemandMiscRevenue
+                {
+                    Arrear = village.DemandMiscRevenues.Sum(m => m.Arrear),
+                    Current = village.DemandMiscRevenues.Sum(m => m.Current)
+                };
+            }
+
         }
         public IEnumerable<IFormDetailMiscRevenue> IFormDetailMiscRevenues
         {
             get
             {
-                return  village.IFormDetailMiscRevenues;
+                return village.IFormDetailMiscRevenues;
             }
         }
         public CollectionMiscRevenue TotalCollection
@@ -68,9 +70,9 @@ namespace RIOMS.WebUI.Models
             {
                 return new CollectionMiscRevenue
                 {
-                    Current = village.VillageWiseTahCollectionMiscRevenues.Sum(i => i.Current).GetValueOrDefault(),
-                    Arrear = village.VillageWiseTahCollectionMiscRevenues.Sum(i => i.Arrear).GetValueOrDefault(),
-                    Interest = village.VillageWiseTahCollectionMiscRevenues.Sum(i => i.Interest).GetValueOrDefault()
+                    Current = village.TahCollectionMiscRevenues.Sum(i => i.Current.GetValueOrDefault()),
+                    Arrear = village.TahCollectionMiscRevenues.Sum(i => i.Arrear.GetValueOrDefault()),
+                    Interest = village.TahCollectionMiscRevenues.Sum(i => i.Interest.GetValueOrDefault())
                 };
             }
         }
@@ -78,7 +80,7 @@ namespace RIOMS.WebUI.Models
         {
             get
             {
-                return village.VillageWiseTahCollectionMiscRevenues.Count > 0;
+                return village.TahCollectionMiscRevenues.Count > 0;
             }
         }
         public CollectionMiscRevenue TotalCollectionAfterMovement

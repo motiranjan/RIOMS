@@ -1,0 +1,557 @@
+﻿@using RIOMS.Domain.Models;
+@model List<RIOMS.WebUI.Models.VillageWariViewModel>
+
+@{
+    ViewBag.Title = ViewBag.Village.Name;
+}
+
+<h2>@ViewBag.Village.Name</h2>
+
+
+<table class="villageWari">
+    <tr>
+        <th rowspan="2">Sl No.</th>
+        <th rowspan="2" class="date">
+            Date
+        </th>
+        <th rowspan="2">
+            Receipt No
+        </th>
+        <th rowspan="2">
+            Name Of Tanent
+        </th>
+        <th rowspan="2">
+            Khata No
+        </th>
+
+        <th colspan="3">
+            Land Revenue
+        </th>
+        <th colspan="3">
+            Water Tax
+        </th>
+        <th colspan="3">
+            Cess
+        </th>
+        <th colspan="2">
+            Misc Rev
+        </th>
+        <th rowspan="2">Interest On LR</th>
+        <th rowspan="2">Interest On CBWR</th>
+        <th rowspan="2">Interest On Cess</th>
+        <th rowspan="2">Interest On Misc Rev</th>
+        <th>Other</th>
+        <th rowspan="2">Grand Total</th>
+    </tr>
+    <tr>
+        @*<th class="vertical">
+                More Than Three
+            </th>
+            <th class="vertical">
+                Third
+            </th>
+            <th class="vertical">
+                Second
+            </th>
+            <th class="vertical">
+                Previous
+            </th>*@
+        <th class="vertical">
+            Arrear
+        </th>
+        <th class="vertical">
+            Current
+        </th>
+
+        <th class="vertical">Total</th>
+        @*<th class="vertical">
+                More Than Three
+            </th>
+            <th class="vertical">
+                Third
+            </th>
+            <th class="vertical">
+                Second
+            </th>
+            <th>
+                Previous
+            </th>*@
+        <th class="vertical">
+            Arrear
+        </th>
+        <th class="vertical">
+            Current
+        </th>
+
+        <th class="vertical">Total</th>
+        @*<th class="vertical">
+                More Than Three
+            </th>
+            <th class="vertical">
+                Third
+            </th>
+            <th class="vertical">
+                Second
+            </th>
+            <th>
+                Previous
+            </th>*@
+        <th class="vertical">
+            Arrear
+        </th>
+        <th class="vertical">
+            Current
+        </th>
+
+        <th class="vertical">Total</th>
+        <th class="vertical">
+            Arrear
+        </th>
+        <th class="vertical">
+            Current
+        </th>
+
+        <th class="vertical">Total</th>
+    </tr>
+    @{ int j = 0;}
+    @foreach (var viewModel in Model)
+    {
+
+        
+        Receipt total;
+        Receipt grandTotal = null;
+        Receipt previousTotal = null;
+
+        for (int i = 0; i < viewModel.Totals.Count(); i++)
+        {
+            total = viewModel.Totals.ElementAt(i);
+
+            if (i == 0)
+            {
+                grandTotal = total;
+            }
+            var receipts = viewModel.Receipts.Where(r => r.Date == total.Date).OrderBy(r => r.ReceiptNo).ToList();
+            foreach (var item in receipts)
+            {
+
+                var index = receipts.IndexOf(item);
+                <tr class="@(index % 2 == 0 ? "row-even" : "row-odd")">
+                    <td>@(++j)</td>
+                    <td class="date">
+                        @item.Date.ToString("dd/MM/yy")
+                    </td>
+                    <td class="nameOfRT">@Html.DisplayFor(modelItem => item.ReceiptNo)</td>
+                    @if (item.HasMiscRevenue)
+                    {
+                        <td colspan="2">@item.CollectionMiscRevenue.Type <span>case No</span> @item.CollectionMiscRevenue.CaseNo </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameOfRT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KhataNo)
+                        </td>
+
+                    }
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.CollectionLandRevenue.MoreThanThree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollectionLandRevenue.Third)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollectionLandRevenue.Second)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollectionLandRevenue.Previous)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CollectionLandRevenue.Arrear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CollectionLandRevenue.Current)
+                    </td>
+
+                    <td>@Html.DisplayFor(modelItem => item.CollectionLandRevenue.Total)</td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.CollectionWaterTax.MoreThanThree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollectionWaterTax.Third)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollectionWaterTax.Second)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollectionWaterTax.Previous)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CollectionWaterTax.Arrear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CollectionWaterTax.Current)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CollectionWaterTax.Total)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.CollectionCess.MoreThanThree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollectionCess.Third)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollectionCess.Second)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CollectionCess.Previous)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CollectionCess.Arrear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CollectionCess.Current)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CollectionCess.Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CollectionMiscRevenue.Arrear)
+                    </td>
+                    <td>
+                        @{decimal mc = item.CollectionMiscRevenue != null ? item.CollectionMiscRevenue.Current : 0;
+                            decimal op = item.CollectionOLR != null ? item.CollectionOLR.Premium.Value : 0;
+                        }
+                        @(mc + op)
+                    </td>
+
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.CollectionMiscRevenue.Total)
+                    </td>*@
+                    <td>@Html.DisplayFor(modelItem => item.CollectionLandRevenue.InterestTotal)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CollectionWaterTax.InterestTotal)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CollectionCess.InterestTotal)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CollectionMiscRevenue.Interest)</td>
+                    <td>
+                        @{
+                            var other = (item.HasOLR ? item.CollectionOLR.DemarcationFee : 0) + (item.HasOthers ? item.CollectionOther.Amount : 0);
+                        }
+                        @if (other > 0)
+                        {
+                            @other
+                        }
+                    </td>
+                    <td>
+                       
+                        @item.Total
+                    </td>
+                </tr>
+            }
+
+
+
+            <tr class="total">
+                <td colspan="5">ମୋଟ</td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => total.CollectionLandRevenue.MoreThanThree)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => total.CollectionLandRevenue.Third)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => total.CollectionLandRevenue.Second)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => total.CollectionLandRevenue.Previous)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => total.CollectionLandRevenue.Arrear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => total.CollectionLandRevenue.Current)
+                </td>
+
+                <td>@Html.DisplayFor(modelItem => total.CollectionLandRevenue.Total)</td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => total.CollectionWaterTax.MoreThanThree)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => total.CollectionWaterTax.Third)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => total.CollectionWaterTax.Second)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => total.CollectionWaterTax.Previous)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => total.CollectionWaterTax.Arrear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => total.CollectionWaterTax.Current)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => total.CollectionWaterTax.Total)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => total.CollectionCess.MoreThanThree)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => total.CollectionCess.Third)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => total.CollectionCess.Second)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => total.CollectionCess.Previous)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => total.CollectionCess.Arrear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => total.CollectionCess.Current)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => total.CollectionCess.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => total.CollectionMiscRevenue.Arrear)
+                </td>
+                <td>
+                    @( total.CollectionMiscRevenue.Current + total.CollectionOLR.Premium)
+                </td>
+
+                @*<td>
+                    @Html.DisplayFor(modelItem => total.CollectionMiscRevenue.Total)
+                </td>*@
+                <td>@Html.DisplayFor(modelItem => total.CollectionLandRevenue.InterestTotal)</td>
+                <td>@Html.DisplayFor(modelItem => total.CollectionWaterTax.InterestTotal)</td>
+                <td>@Html.DisplayFor(modelItem => total.CollectionCess.InterestTotal)</td>
+                <td>@Html.DisplayFor(modelItem => total.CollectionMiscRevenue.Interest)</td>
+                <td>
+                    @{
+                        var othert = (total.HasOLR ? total.CollectionOLR.DemarcationFee : 0) + (total.HasOthers ? total.CollectionOther.Amount : 0);
+                    }
+                    @if (othert > 0)
+                    {
+                        @othert
+                    }
+                </td>
+                <td>
+                  
+                    @total.Total
+                </td>
+            </tr>
+            if (i > 0)
+            {
+
+                previousTotal = grandTotal;
+                <tr class="total">
+                    <td colspan="5">Previous Total</td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionLandRevenue.MoreThanThree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionLandRevenue.Third)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionLandRevenue.Second)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionLandRevenue.Previous)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => previousTotal.CollectionLandRevenue.Arrear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => previousTotal.CollectionLandRevenue.Current)
+                    </td>
+
+                    <td>@Html.DisplayFor(modelItem => previousTotal.CollectionLandRevenue.Total)</td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionWaterTax.MoreThanThree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionWaterTax.Third)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionWaterTax.Second)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionWaterTax.Previous)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => previousTotal.CollectionWaterTax.Arrear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => previousTotal.CollectionWaterTax.Current)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => previousTotal.CollectionWaterTax.Total)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionCess.MoreThanThree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionCess.Third)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionCess.Second)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => previousTotal.CollectionCess.Previous)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => previousTotal.CollectionCess.Arrear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => previousTotal.CollectionCess.Current)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => previousTotal.CollectionCess.Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => previousTotal.CollectionMiscRevenue.Arrear)
+                    </td>
+                    <td>
+                        @( previousTotal.CollectionMiscRevenue.Current + previousTotal.CollectionOLR.Premium)
+                    </td>
+
+                    @*<td>
+                        @Html.DisplayFor(modelItem => previousTotal.CollectionMiscRevenue.Total)
+                    </td>*@
+                    <td>@Html.DisplayFor(modelItem => previousTotal.CollectionLandRevenue.InterestTotal)</td>
+                    <td>@Html.DisplayFor(modelItem => previousTotal.CollectionWaterTax.InterestTotal)</td>
+                    <td>@Html.DisplayFor(modelItem => previousTotal.CollectionCess.InterestTotal)</td>
+                    <td>@Html.DisplayFor(modelItem => previousTotal.CollectionMiscRevenue.Interest)</td>
+                    <td>
+                        @{
+                            var otherpt = (previousTotal.HasOLR ? previousTotal.CollectionOLR.DemarcationFee : 0) + (previousTotal.HasOthers ? previousTotal.CollectionOther.Amount : 0);
+                        }
+                        @if (otherpt > 0)
+                        {
+                            @otherpt
+                        }
+                    </td>
+                    <td>
+                        @previousTotal.Total
+                        
+                    </td>
+                </tr>
+
+                grandTotal = previousTotal + total;
+
+                <tr class="total">
+                    <td colspan="5">Grand Total</td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionLandRevenue.MoreThanThree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionLandRevenue.Third)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionLandRevenue.Second)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionLandRevenue.Previous)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => grandTotal.CollectionLandRevenue.Arrear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => grandTotal.CollectionLandRevenue.Current)
+                    </td>
+
+                    <td>@Html.DisplayFor(modelItem => grandTotal.CollectionLandRevenue.Total)</td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionWaterTax.MoreThanThree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionWaterTax.Third)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionWaterTax.Second)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionWaterTax.Previous)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => grandTotal.CollectionWaterTax.Arrear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => grandTotal.CollectionWaterTax.Current)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => grandTotal.CollectionWaterTax.Total)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionCess.MoreThanThree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionCess.Third)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionCess.Second)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => grandTotal.CollectionCess.Previous)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => grandTotal.CollectionCess.Arrear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => grandTotal.CollectionCess.Current)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => grandTotal.CollectionCess.Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => grandTotal.CollectionMiscRevenue.Arrear)
+                    </td>
+                    <td>
+                        @( grandTotal.CollectionMiscRevenue.Current + grandTotal.CollectionOLR.Premium)
+                    </td>
+
+                    @*<td>
+                        @Html.DisplayFor(modelItem => grandTotal.CollectionMiscRevenue.Total)
+                    </td>*@
+                    <td>@Html.DisplayFor(modelItem => grandTotal.CollectionLandRevenue.InterestTotal)</td>
+                    <td>@Html.DisplayFor(modelItem => grandTotal.CollectionWaterTax.InterestTotal)</td>
+                    <td>@Html.DisplayFor(modelItem => grandTotal.CollectionCess.InterestTotal)</td>
+                    <td>@Html.DisplayFor(modelItem => grandTotal.CollectionMiscRevenue.Interest)</td>
+                    <td>
+                        @{
+                            var othergt = (grandTotal.HasOLR ? grandTotal.CollectionOLR.DemarcationFee : 0) + (grandTotal.HasOthers ? grandTotal.CollectionOther.Amount : 0);
+                        }
+                        @if (othergt > 0)
+                        {
+                            @othergt
+                        }
+                    </td>
+                    <td>
+                        @grandTotal.Total
+                        
+                    </td>
+                </tr>
+            }
+        }
+        if (viewModel.Receipts.Count()>0)
+        {
+            <tr>
+                <td colspan="23" class="total" style="text-align:center"> Ch No @viewModel.IForm.IFormNo  dt @viewModel.IForm.DepositeDate  </td>
+            </tr>
+        }
+
+    }
+
+</table>

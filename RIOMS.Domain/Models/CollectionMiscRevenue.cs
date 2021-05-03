@@ -1,10 +1,7 @@
 namespace RIOMS.Domain.Models
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class CollectionMiscRevenue
     {
@@ -20,12 +17,13 @@ namespace RIOMS.Domain.Models
         public decimal Current { get; set; }
 
         public decimal Arrear { get; set; }
+        public decimal Total { get { return Current + Arrear; } }
 
         public decimal Interest { get; set; }
 
         public int MiscId { get; set; }
 
         public virtual Receipt Receipt { get; set; }
-        public virtual MiscRevenue MiscRevenue { get; set; }
+       // public virtual MiscRevenue MiscRevenue { get; set; }
     }
 }

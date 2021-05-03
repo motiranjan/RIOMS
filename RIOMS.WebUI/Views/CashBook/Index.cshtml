@@ -1,4 +1,4 @@
-﻿@using RIOMS.Domain;
+﻿@using RIOMS.Domain.Models;
 @model RIOMS.WebUI.Models.ReceiptViewModel
 @{
     ViewBag.Title = "Cashbook";
@@ -84,7 +84,7 @@
             <td>ହାତଜମା</td>
             <td></td>
             <td>
-                @{grandTotal = grandTotal + total.Total;}
+                @{grandTotal = grandTotal + total.Total.GetValueOrDefault();}
                 @grandTotal
             </td>
             <td></td>

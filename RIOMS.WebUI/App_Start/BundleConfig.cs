@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace RIOMS.WebUI
 {
@@ -23,7 +22,7 @@ namespace RIOMS.WebUI
             //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
             //            "~/Scripts/modernizr-*"));
             bundles.Add(new ScriptBundle("~/bundles/RIOMS").Include(
-                        
+
                        "~/Scripts/angular.js",
                        "~/Scripts/ng-app/app.js",
                        "~/Scripts/ng-app/Services/ReceiptService.js",

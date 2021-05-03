@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using RIOMS.Domain;
+using RIOMS.Domain.Models;
+
 namespace RIOMS.WebUI.Models
 {
     public class MFormAbstractViewModel
@@ -55,11 +57,11 @@ namespace RIOMS.WebUI.Models
 
                 return new PartOneRev
                 {
-                    MoreThanThree = dcbViewModel.Sum(d => d.BalanceCess.MoreThanThree),
-                    Third = dcbViewModel.Sum(d => d.BalanceCess.Third),
-                    Second = dcbViewModel.Sum(d => d.BalanceCess.Second),
-                    Previous = dcbViewModel.Sum(d => d.BalanceCess.Previous),
-                    Current = dcbViewModel.Sum(d => d.BalanceCess.Current)
+                    MoreThanThree = dcbViewModel.Sum(d => d.BalanceLandRevenue.MoreThanThree),
+                    Third = dcbViewModel.Sum(d => d.BalanceLandRevenue.Third),
+                    Second = dcbViewModel.Sum(d => d.BalanceLandRevenue.Second),
+                    Previous = dcbViewModel.Sum(d => d.BalanceLandRevenue.Previous),
+                    Current = dcbViewModel.Sum(d => d.BalanceLandRevenue.Current)
 
                 };
             }

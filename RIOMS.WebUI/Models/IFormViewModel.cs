@@ -1,9 +1,7 @@
-﻿using RIOMS.Domain;
-using RIOMS.Domain.Models;
+﻿using RIOMS.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace RIOMS.WebUI.Models
 {
@@ -13,13 +11,13 @@ namespace RIOMS.WebUI.Models
         int challanNo;
         DateTime fromDate;
         DateTime todate;
-        Receipt total = new Receipt { CollectionCess = new CollectionCess(), CollectionLandRevenue = new CollectionLandRevenue(), CollectionWaterTax = new CollectionWaterTax(), CollectionMiscRevenue = new CollectionMiscRevenue(), CollectionOther = new CollectionOther(),CollectionOLR=new CollectionOLR() };
-        public IFormViewModel(IEnumerable<Receipt> receipts,IForm iform)
+        Receipt total = new Receipt { CollectionCess = new CollectionCess(), CollectionLandRevenue = new CollectionLandRevenue(), CollectionWaterTax = new CollectionWaterTax(), CollectionMiscRevenue = new CollectionMiscRevenue(), CollectionOther = new CollectionOther(), CollectionOLR = new CollectionOLR() };
+        public IFormViewModel(IEnumerable<Receipt> receipts, IForm iform)
         {
             challanNo = iform.IFormNo;
             fromDate = iform.FromDate;
             todate = iform.ToDate;
-            villageWiseDetails = receipts.OrderBy(r=>r.VillageId).GroupBy(r => r.VillageId).Select(t => new Receipt
+            villageWiseDetails = receipts.OrderBy(r => r.VillageId).GroupBy(r => r.VillageId).Select(t => new Receipt
             {
                 Village = t.FirstOrDefault().Village,
                 CollectionCess = new CollectionCess
@@ -61,7 +59,7 @@ namespace RIOMS.WebUI.Models
                 CollectionOther = new CollectionOther
                 {
                     Amount = t.Sum(r => r.HasOthers ? r.CollectionOther.Amount : 0)
-                } ,
+                },
                 CollectionOLR = new CollectionOLR
                 {
                     Premium = t.Sum(r => r.HasOLR ? r.CollectionOLR.Premium : 0),
@@ -73,7 +71,7 @@ namespace RIOMS.WebUI.Models
                 total = total + receipt;
             }
             demarcationFee = receipts.Where(r => r.HasOthers == true && r.CollectionOther.Type == "DF").Sum(r => r.CollectionOther.Amount) +
-                receipts.Where(r => r.HasOLR == true ).Sum(r => r.CollectionOLR.DemarcationFee);
+                receipts.Where(r => r.HasOLR == true).Sum(r => r.CollectionOLR.DemarcationFee);
             arrearCBWR = total.CollectionWaterTax.MoreThanThree + total.CollectionWaterTax.Third + total.CollectionWaterTax.Second + total.CollectionWaterTax.Previous;
             arrearCess = total.CollectionCess.MoreThanThree + total.CollectionCess.Third + total.CollectionCess.Second + total.CollectionCess.Previous;
             OlrPremium = receipts.Where(r => r.HasOLR == true).Sum(r => r.CollectionOLR.Premium);
@@ -84,7 +82,7 @@ namespace RIOMS.WebUI.Models
             challanNo = iform.IFormNo;
             fromDate = iform.FromDate;
             todate = iform.ToDate;
-            
+
         }
         public IEnumerable<Receipt> VillageWiseDetails { get { return villageWiseDetails; } }
         public int ChallanNo { get { return challanNo; } }
@@ -102,7 +100,7 @@ namespace RIOMS.WebUI.Models
         public decimal? ArrearCess
         {
             get { return arrearCess; }
-            
+
         }
 
 
@@ -115,7 +113,7 @@ namespace RIOMS.WebUI.Models
         public decimal? DemarcationFee
         {
             get { return demarcationFee; }
-            
+
         }
         private decimal? OlrPremium;
 

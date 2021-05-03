@@ -1,22 +1,22 @@
 ﻿using RIOMS.Domain.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RIOMS.Domain.Map
 {
-   public class TahReceiptMap : EntityTypeConfiguration<TahReceipt>
+    public class TahReceiptMap : EntityTypeConfiguration<TahReceipt>
     {
         public TahReceiptMap()
         {
             this.ToTable("TahReceipts");
-            this.HasOptional(t => t.TahCollectionCess).WithRequired(t => t.TahReceipt);
-            this.HasOptional(t => t.TahCollectionMiscRevenue).WithRequired(t => t.TahReceipt);
-            this.HasOptional(t => t.TahCollectionWaterTax).WithRequired(t => t.TahReceipt);
-            this.HasOptional(t => t.TahCollectionLandRevenue).WithRequired(t => t.TahReceipt);
+            
+            this.HasKey(t=>t.ReceiptNo);
+            this.Property(t => t.ReceiptNo).HasColumnName("ReceiptNo");
+            this.HasOptional(t => t.CollectionCess).WithRequired(t=>t.TahReceipt);
+            this.HasOptional(t => t.CollectionMiscRevenue).WithRequired(t=>t.TahReceipt);
+            this.HasOptional(t => t.CollectionWaterTax).WithRequired(t=>t.TahReceipt);
+            this.HasOptional(t => t.CollectionLandRevenue).WithRequired(t=>t.TahReceipt);
+            this.HasOptional(t => t.MiscRevenue).WithMany(t => t.TahReceipts).HasForeignKey(t => t.MIscId);
+            
         }
     }
 }

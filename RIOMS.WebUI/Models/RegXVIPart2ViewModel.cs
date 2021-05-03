@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using RIOMS.Domain;
+using RIOMS.Domain.Models;
+
 namespace RIOMS.WebUI.Models
 {
     public class RegXVIPart2ViewModel

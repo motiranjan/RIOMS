@@ -40,6 +40,7 @@
                 </li>
                 <li>
                     @Html.ActionLink("Ledger", "Index", "Ledger")
+
                 </li>
                 <li>
                     @Html.ActionLink("Receipt", "index", "receipt")
@@ -54,7 +55,7 @@
                     @Html.ActionLink("VillageWari", "index", "VillageWari", new { Year = System.Configuration.ConfigurationManager.AppSettings["Year"].ToString() }, null))
                 </li>
                 <li>
-                    @Html.ActionLink("Reg IX", "index", "VillageWari", new { Year = System.Configuration.ConfigurationManager.AppSettings["Year"].ToString() }, null))
+                    @Html.ActionLink("Reg IX", "index", "DCBMiscRev", new { Year = System.Configuration.ConfigurationManager.AppSettings["Year"].ToString() }, null))
                 </li>
             </ul>
         </div>
@@ -66,5 +67,12 @@
     @Scripts.Render("~/bundles/RIOMS")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $('td').each(function () {
+            if ($(this).text().trim() == '0.00' || $(this).text().trim() == '0') {
+                $(this).text('');
+            }
+        });
+    </script>
 </body>
 </html>

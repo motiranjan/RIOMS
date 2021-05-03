@@ -1,19 +1,15 @@
-﻿@using RIOMS.Domain
+﻿@using RIOMS.Domain.Models
 @model RIOMS.WebUI.Models.DCBViewModel
 
-@{
-    ViewBag.Title = "DCB";
-}
+
+    @{ViewBag.Title = "DCB";}
 
 <h2>DCB @Model.Village.Name</h2>
 
-<table class="villageWari">
+<table id="ledger-part2">
     <tr class="header">
-        <th rowspan="2" class="date">
-            Date
-        </th>
-        <th rowspan="2">
-            ଚାଲାଣ ନ
+        <th colspan="2">
+            ଅସୁଲ
         </th>
         <th colspan="6">
             ଖଜଣା
@@ -24,37 +20,29 @@
         <th colspan="6">
             ସେସ
         </th>
-
+        <th colspan="6">
+            ନିସ୍ତାର ସେସ
+        </th>
+        <th rowspan="2">ମନ୍ତବ୍ୟ</th>
     </tr>
     <tr class="header">
-        <th class="vertical">
-            <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ</span>
+        <th class="date">
+            ତାରିଖ
+        </th>
+        <th>
+            ଚାଲାଣ ବା ରସିଦ ନମ୍ବର
         </th>
         <th class="vertical">
-            ତୃତୀୟ&nbsp;ବର୍ଷ
+            <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ ବାକୀ</span>
         </th>
         <th class="vertical">
-            ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷ
+            ତୃତୀୟ&nbsp;ବର୍ଷର ବାକୀ
         </th>
         <th class="vertical">
-            ପୂର୍ବ&nbsp;ବର୍ଷ
+            ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷର ବାକୀ
         </th>
         <th class="vertical">
-            ହାଲ୍
-        </th>
-
-        <th class="vertical">ଅଗ୍ରିମ</th>
-        <th class="vertical">
-            <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ</span>
-        </th>
-        <th class="vertical">
-            ତୃତୀୟ&nbsp;ବର୍ଷ
-        </th>
-        <th class="vertical">
-            ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷ
-        </th>
-        <th class="vertical">
-            ପୂର୍ବ&nbsp;ବର୍ଷ
+            ପୂର୍ବ&nbsp;ବର୍ଷର ବାକୀ
         </th>
         <th class="vertical">
             ହାଲ୍
@@ -62,16 +50,16 @@
 
         <th class="vertical">ଅଗ୍ରିମ</th>
         <th class="vertical">
-            <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ</span>
+            <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ ବାକୀ</span>
         </th>
         <th class="vertical">
-            ତୃତୀୟ&nbsp;ବର୍ଷ
+            ତୃତୀୟ&nbsp;ବର୍ଷର ବାକୀ
         </th>
         <th class="vertical">
-            ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷ
+            ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷର ବାକୀ
         </th>
         <th class="vertical">
-            ପୂର୍ବ&nbsp;ବର୍ଷ
+            ପୂର୍ବ&nbsp;ବର୍ଷର ବାକୀ
         </th>
         <th class="vertical">
             ହାଲ୍
@@ -79,6 +67,40 @@
 
         <th class="vertical">ଅଗ୍ରିମ</th>
 
+        <th class="vertical">
+            <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ ବାକୀ</span>
+        </th>
+        <th class="vertical">
+            ତୃତୀୟ&nbsp;ବର୍ଷର ବାକୀ
+        </th>
+        <th class="vertical">
+            ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷର ବାକୀ
+        </th>
+        <th class="vertical">
+            ପୂର୍ବ&nbsp;ବର୍ଷର ବାକୀ
+        </th>
+        <th class="vertical">
+            ହାଲ୍
+        </th>
+
+        <th class="vertical">ଅଗ୍ରିମ</th>
+        <th class="vertical">
+            <span> ତିନି&nbsp;ବର୍ଷରୁ&nbsp;ଊର୍ଦ୍ଧ୍ଵ ବାକୀ</span>
+        </th>
+        <th class="vertical">
+            ତୃତୀୟ&nbsp;ବର୍ଷର ବାକୀ
+        </th>
+        <th class="vertical">
+            ଦ୍ଵିତୀୟ&nbsp;ବର୍ଷର ବାକୀ
+        </th>
+        <th class="vertical">
+            ପୂର୍ବ&nbsp;ବର୍ଷର ବାକୀ
+        </th>
+        <th class="vertical">
+            ହାଲ୍
+        </th>
+
+        <th class="vertical">ଅଗ୍ରିମ</th>
     </tr>
     <tr>
         <td>	1	</td>
@@ -101,75 +123,60 @@
         <td>	18	</td>
         <td>	19	</td>
         <td>	20	</td>
-
+        <td>	21	</td>
+        <td>	22	</td>
+        <td>	23	</td>
+        <td>	24	</td>
+        <td>	25	</td>
+        <td>	26	</td>
+        <td>	27	</td>
     </tr>
-    <tr style="color:red;">
+    <tr style="color:red;" class="total">
         <td colspan="2">ଦାବୀ</td>
-        @if (Model.Village.VillageWiseDemandLandRevenues.Count > 0)
-        {
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.MoreThanThree)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Third)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Second)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Previous)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Current)
-            </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Advance)
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Current)
+        </td>
 
-            </td>
-        }
-        else
-        {
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        }
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandLandRevenue.Advance)
 
-        @if (Model.Village.VillageWiseDemandWaterTaxes.Count > 0)
-        {
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandWaterTax.MoreThanThree)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Third)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Second)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Previous)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Current)
-            </td>
+        </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Advance)
 
-            </td>
-        }
-        else
-        {
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        }
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.Current)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => Model.DemandWaterTax.Advance)
+
+        </td>
+
         <td>
             @Html.DisplayFor(modelItem => Model.DemandCess.MoreThanThree)
         </td>
@@ -189,214 +196,294 @@
         <td>
             @Html.DisplayFor(modelItem => Model.DemandCess.Advance)
         </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
-    @if (Model.DemandCess.Increase+Model.DemandLandRevenue.Increase > 0)
+    @if (Model.IncreaseInDemandCess!=null || Model.IncreaseInDemandLandRevenue !=null)
     {
-        <tr style="color:red;">
+        <tr style="color:red;" class="total">
             <td colspan="2">ଦାବୀ ବୃଦ୍ଧି</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>(+) @Model.DemandLandRevenue.Increase</td>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
             <td>
-                (+) @Model.DemandCess.Increase
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandLandRevenue.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandLandRevenue.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandLandRevenue.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandLandRevenue.Previous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandLandRevenue.Current)
             </td>
 
-            <td>@*@Html.DisplayFor(modelItem => Model.DemandCess.Total)*@</td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandLandRevenue.Advance)
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandCess.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandCess.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandCess.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandCess.Previous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.IncreaseInDemandCess.Current)
+
+            <td>@Html.DisplayFor(modelItem => Model.IncreaseInDemandCess.Advance)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
-  
-    <tr style="color:red;">
-        <td colspan="2">ମୋଟ ଦାବୀ</td>
-    @if (Model.Village.VillageWiseDemandLandRevenues.Count>0)
-	{
-		     <td>
-            @Model.Village.VillageWiseDemandLandRevenues.Sum(d=>d.MoreThanThree)
-        </td>
-        <td>
-            @Model.Village.VillageWiseDemandLandRevenues.Sum(d=>d.Third)
-        </td>
-        <td>
-            @Model.Village.VillageWiseDemandLandRevenues.Sum(d=>d.Second)
-        </td>
-        <td>
-            @Model.Village.VillageWiseDemandLandRevenues.Sum(d=>d.Previous)
-        </td>
-        <td>
-            @{
-        var lrt = Model.Village.VillageWiseDemandLandRevenues.Sum(d=>d.Current +d.Increase);}
-            @lrt
-        </td>
+
+        <tr style="color:red;" class="total">
+            <td colspan="2">ମୋଟ ଦାବୀ</td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseLandRevenue.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseLandRevenue.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseLandRevenue.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseLandRevenue.Previous)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseLandRevenue.Current)
+
+            </td>
 
 
 
-        <td></td>
-	}
-        else
-        {
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        }
-        @if (Model.Village.VillageWiseDemandWaterTaxes.Count > 0)
-        {
             <td>
-                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).MoreThanThree)
+
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseLandRevenue.Advance)
+
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.MoreThanThree)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).Third)
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Third)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).Second)
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Second)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).Previous)
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Previous)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).Current)
+
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Current)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandWaterTax.Advance)
+
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandWaterTaxes.ElementAt(0).Advance)
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseCess.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseCess.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseCess.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseCess.Previous)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseCess.Current)
 
             </td>
-        }
-        else
-        {
+            <td>
+                @Html.DisplayFor(modelItem => Model.DemandAfterIncreaseCess.Advance)
+            </td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-        }
-        <td>
-            @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandCesses.ElementAt(0).MoreThanThree)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandCesses.ElementAt(0).Third)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandCesses.ElementAt(0).Second)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandCesses.ElementAt(0).Previous)
-        </td>
-        <td>
-            @{
-                var ct = Model.Village.VillageWiseDemandCesses.ElementAt(0).Current + Model.Village.VillageWiseDemandCesses.ElementAt(0).Increase;}
-            @ct
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => Model.Village.VillageWiseDemandCesses.ElementAt(0).Advance)
-        </td>
-    </tr>
+            <td></td>
+        </tr>
     }
 
+
+
     <tr style="color:red;">
-        <td colspan="2">actual ଦାବୀ</td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.MoreThanThree)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.Third)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.Second)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.Previous)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.Current)
-        </td>
+            <td colspan="2">actual ଦାବୀ</td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.Previous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.Current)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.Advance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.MoreThanThree)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.Third)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.Second)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.Previous)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.Current)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandLandRevenue.Advance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.Previous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.Current)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.Advance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandCess.MoreThanThree)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandCess.Third)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandCess.Second)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandCess.Previous)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandCess.Current)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandWaterTax.Advance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandCess.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandCess.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandCess.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandCess.Previous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandCess.Current)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => Model.ActualDemandCess.Advance)
-        </td>
-    </tr>
-    <tr style="color:red;">
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActualDemandCess.Advance)
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    <tr style="color:red;" class="total">
         <td colspan="2">ଅଗ୍ରିମ ପୂରଣ</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>@Html.DisplayFor(modelItem => Model.AdvanceAdjustmentWaterTax.Current)</td>
-
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
         <td>
-            (-) @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentCess.Current)
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentLandRevenue.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentLandRevenue.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentLandRevenue.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentLandRevenue.Previous)
+        </td>
+        <td>
+
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentLandRevenue.Current)
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentLandRevenue.Advance)
         </td>
 
-        <td>@*@Html.DisplayFor(modelItem => Model.DemandCess.Total)*@</td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentWaterTax.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentWaterTax.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentWaterTax.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentWaterTax.Previous)
+        </td>
+        <td>
+
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentWaterTax.Current)
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentWaterTax.Advance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentCess.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentCess.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentCess.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentCess.Previous)
+        </td>
+        <td>
+
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentCess.Current)
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.AdvanceAdjustmentCess.Advance)
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
-    <tr style="color:red;">
+    <tr style="color:red;" class="total">
         <td colspan="2">ନେଟ  ଦାବୀ</td>
         <td>
             @Html.DisplayFor(modelItem => Model.NetDemandLandRevenue.MoreThanThree)
@@ -449,6 +536,13 @@
         </td>
 
         <td>@Html.DisplayFor(modelItem => Model.NetDemandCess.Advance)</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     @{int index = 0;
     }
@@ -458,13 +552,13 @@
         {
             index = index + 1;
             <tr class="@(index%2==0? "row-even" : "row-odd")">
-                <td class="date">
+                <td>
                     @item.DepositeDate.ToString("dd/MM/yy")
                 </td>
                 <td>@Html.DisplayFor(modelItem => item.IFormNo)</td>
 
                 <td>
-                    @if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).MoreThanThree.GetValueOrDefault() > 0)
+                    @if (item.IFormDetailLandRevenues.ElementAtOrDefault(0).MoreThanThree > 0)
                     {
                         @item.IFormDetailLandRevenues.ElementAtOrDefault(0).MoreThanThree
                     }
@@ -495,7 +589,6 @@
                 </td>
 
                 <td>
-                   
                 </td>
                 <td>
                     @if (item.IFormDetailWaterTaxes.ElementAtOrDefault(0).MoreThanThree > 0)
@@ -529,7 +622,6 @@
                 </td>
 
                 <td>
-                   
                 </td>
                 <td>
                     @if (item.IFormDetailCesses.ElementAtOrDefault(0).MoreThanThree > 0)
@@ -563,66 +655,82 @@
                 </td>
 
                 <td></td>
-
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         }
 
     }
-    <tr style="color:red;">
+    <tr style="color:red;" class="total">
         <td colspan="2">ମୋଟ </td>
         <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenue.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenue.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenue.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenue.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenue.Current)
+        </td>
 
-            @Model.TotalCollectionLandRevenue.MoreThanThree
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenue.Advance)
         </td>
         <td>
-            @Model.TotalCollectionLandRevenue.Third
+            @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTax.MoreThanThree)
         </td>
         <td>
-            @Model.TotalCollectionLandRevenue.Second
+            @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTax.Third)
         </td>
         <td>
-            @Model.TotalCollectionLandRevenue.Previous
+            @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTax.Second)
         </td>
         <td>
-            @Model.TotalCollectionLandRevenue.Current
+            @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTax.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTax.Current)
         </td>
 
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTax.Advance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionCess.MoreThanThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionCess.Third)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionCess.Second)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionCess.Previous)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionCess.Current)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalCollectionCess.Advance)
+        </td>
         <td></td>
-        <td>
-
-            @Model.TotalCollectionWaterTax.MoreThanThree
-        </td>
-        <td>
-            @Model.TotalCollectionWaterTax.Third
-        </td>
-        <td>
-            @Model.TotalCollectionWaterTax.Second
-        </td>
-        <td>
-            @Model.TotalCollectionWaterTax.Previous
-        </td>
-        <td>
-            @Model.TotalCollectionWaterTax.Current
-        </td>
-
         <td></td>
-        <td>
-
-            @Model.TotalCollectionCess.MoreThanThree
-        </td>
-        <td>
-            @Model.TotalCollectionCess.Third
-        </td>
-        <td>
-            @Model.TotalCollectionCess.Second
-        </td>
-        <td>
-            @Model.TotalCollectionCess.Previous
-        </td>
-        <td>
-            @Model.TotalCollectionCess.Current
-        </td>
-
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td></td>
     </tr>
 
@@ -632,8 +740,8 @@
         <tr>
             <td colspan="2">
                 ମୌଜା @item.FromVillage.Name  ରୁ ଆସିଲା
-            
-          
+
+
             <td>
                 @if (item.MoreThanThree > 0)
                 {
@@ -671,7 +779,13 @@
             </td>
 
             <td></td>
-
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     }
 
@@ -680,7 +794,7 @@
         <tr>
             <td colspan="2">
                 ମୌଜା  @item.ToVillage.Name  କୁ ଗଲା
-      
+
             <td>
                 @if (item.MoreThanThree > 0)
                 {
@@ -718,7 +832,13 @@
             </td>
 
             <td></td>
-
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     }
     @if (Model.GoToVillagesCess.Count() + Model.ComeFromVillagesCess.Count() > 0)
@@ -726,63 +846,75 @@
         <tr style="color:red;">
             <td colspan="2">ମୋଟ ଅସୁଲି</td>
             <td>
-                @Model.TotalCollectionLandRevenueAfterMovement.MoreThanThree
+                @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterMovement.MoreThanThree)
             </td>
             <td>
-                @Model.TotalCollectionLandRevenueAfterMovement.Third
+                @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterMovement.Third)
             </td>
             <td>
-                @Model.TotalCollectionLandRevenueAfterMovement.Second
+                @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterMovement.Second)
             </td>
             <td>
-                @Model.TotalCollectionLandRevenueAfterMovement.Previous
+                @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterMovement.Previous)
             </td>
             <td>
-                @Model.TotalCollectionLandRevenueAfterMovement.Current
+                @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterMovement.Current)
             </td>
 
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionLandRevenueAfterMovement.Advance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterMovement.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterMovement.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterMovement.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterMovement.Previous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterMovement.Current)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionWaterTaxAfterMovement.Advance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterMovement.MoreThanThree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterMovement.Third)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterMovement.Second)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterMovement.Previous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterMovement.Current)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterMovement.Advance)
+            </td>
             <td></td>
-            <td>
-                @Model.TotalCollectionWaterTaxAfterMovement.MoreThanThree
-            </td>
-            <td>
-                @Model.TotalCollectionWaterTaxAfterMovement.Third
-            </td>
-            <td>
-                @Model.TotalCollectionWaterTaxAfterMovement.Second
-            </td>
-            <td>
-                @Model.TotalCollectionWaterTaxAfterMovement.Previous
-            </td>
-            <td>
-                @Model.TotalCollectionWaterTaxAfterMovement.Current
-            </td>
-
             <td></td>
-            <td>
-
-                @Model.TotalCollectionCessAfterMovement.MoreThanThree
-            </td>
-            <td>
-                @Model.TotalCollectionCessAfterMovement.Third
-            </td>
-            <td>
-                @Model.TotalCollectionCessAfterMovement.Second
-            </td>
-            <td>
-                @Model.TotalCollectionCessAfterMovement.Previous
-            </td>
-            <td>
-                @Model.TotalCollectionCessAfterMovement.Current
-            </td>
-
-            <td>@*@Html.DisplayFor(modelItem => Model.DemandCess.Total)*@</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     }
     @if (Model.HasTahCollection)
     {
         <tr>
-            <td colspan="2">ତହସିଲ ଅଫିସ ଅସୁଲି</td>
+            <td colspan="2">Online ଅସୁଲି</td>
             <td>@Html.DisplayFor(modelItem => Model.TahCollectionLanadRevenue.MoreThanThree)</td>
             <td>@Html.DisplayFor(modelItem => Model.TahCollectionLanadRevenue.Third)</td>
             <td>@Html.DisplayFor(modelItem => Model.TahCollectionLanadRevenue.Second)</td>
@@ -803,6 +935,13 @@
             <td>@Html.DisplayFor(modelItem => Model.TahCollectionCess.Previous)</td>
             <td>@Html.DisplayFor(modelItem => Model.TahCollectionCess.Current)</td>
 
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
         </tr>
 
@@ -829,119 +968,84 @@
             <td>@Html.DisplayFor(modelItem => Model.TotalCollectionCessAfterTah.Current)</td>
 
             <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     }
-    <tr style="color:red;">
+    <tr style="color:red;" class="total">
         <td colspan="2">ଅଗ୍ରିମ ଅସୁଲି</td>
-        <td>
-            @Model.AdvanceCollectionLandRevenue.MoreThanThree
-        </td>
-        <td>
-            @Model.AdvanceCollectionLandRevenue.Third
-        </td>
-        <td>
-            @Model.AdvanceCollectionLandRevenue.Second
-        </td>
-        <td>
-            @Model.AdvanceCollectionLandRevenue.Previous
-        </td>
-        <td>
-            @Model.AdvanceCollectionLandRevenue.Current
-        </td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionLandRevenue.MoreThanThree)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionLandRevenue.Third)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionLandRevenue.Second)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionLandRevenue.Previous)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionLandRevenue.Current)</td>
 
-        <td>@Model.AdvanceCollectionLandRevenue.Total</td>
-        <td>
-            @Model.AdvanceCollectionWaterTax.MoreThanThree
-        </td>
-        <td>
-            @Model.AdvanceCollectionWaterTax.Third
-        </td>
-        <td>
-            @Model.AdvanceCollectionWaterTax.Second
-        </td>
-        <td>
-            @Model.AdvanceCollectionWaterTax.Previous
-        </td>
-        <td>
-            @Model.AdvanceCollectionWaterTax.Current
-        </td>
 
-        <td>
-            @Model.AdvanceCollectionWaterTax.Total
-        </td>
-        <td>
-            @Model.AdvanceCollectionCess.MoreThanThree
-        </td>
-        <td>
-            @Model.AdvanceCollectionCess.Third
-        </td>
-        <td>
-            @Model.AdvanceCollectionCess.Second
-        </td>
-        <td>
-            @Model.AdvanceCollectionCess.Previous
-        </td>
-        <td>
-            @Model.AdvanceCollectionCess.Current
-        </td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionLandRevenue.Advance)</td>
 
-        <td>
-            @Model.AdvanceCollectionCess.Total
-        </td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionWaterTax.MoreThanThree)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionWaterTax.Third)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionWaterTax.Second)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionWaterTax.Previous)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionWaterTax.Current)</td>
+
+
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionWaterTax.Advance)</td>
+
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionCess.MoreThanThree)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionCess.Third)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionCess.Second)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionCess.Previous)</td>
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionCess.Current)</td>
+
+
+        <td>@Html.DisplayFor(modelItem => Model.AdvanceCollectionCess.Advance)</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
-    <tr style="color:red;">
+    <tr style="color:red;" class="total">
         <td colspan="2">ନେଟ ଅସୁଲି</td>
-        <td>
-            @Model.NetCollectionLandRevenue.MoreThanThree
-        </td>
-        <td>
-            @Model.NetCollectionLandRevenue.Third
-        </td>
-        <td>
-            @Model.NetCollectionLandRevenue.Second
-        </td>
-        <td>
-            @Model.NetCollectionLandRevenue.Previous
-        </td>
-        <td>
-            @Model.NetCollectionLandRevenue.Current
-        </td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionLandRevenue.MoreThanThree)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionLandRevenue.Third)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionLandRevenue.Second)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionLandRevenue.Previous)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionLandRevenue.Current)</td>
 
+
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionLandRevenue.Advance)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionWaterTax.MoreThanThree)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionWaterTax.Third)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionWaterTax.Second)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionWaterTax.Previous)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionWaterTax.Current)</td>
+
+
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionWaterTax.Advance)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionCess.MoreThanThree)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionCess.Third)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionCess.Second)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionCess.Previous)</td>
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionCess.Current)</td>
+
+
+        <td>@Html.DisplayFor(modelItem => Model.NetCollectionCess.Advance)</td>
         <td></td>
-        <td>
-            @Model.NetCollectionWaterTax.MoreThanThree
-        </td>
-        <td>
-            @Model.NetCollectionWaterTax.Third
-        </td>
-        <td>
-            @Model.NetCollectionWaterTax.Second
-        </td>
-        <td>
-            @Model.NetCollectionWaterTax.Previous
-        </td>
-        <td>
-            @Model.NetCollectionWaterTax.Current
-        </td>
-
         <td></td>
-        <td>
-            @Model.NetCollectionCess.MoreThanThree
-        </td>
-        <td>
-            @Model.NetCollectionCess.Third
-        </td>
-        <td>
-            @Model.NetCollectionCess.Second
-        </td>
-        <td>
-            @Model.NetCollectionCess.Previous
-        </td>
-        <td>
-            @Model.NetCollectionCess.Current
-        </td>
-
-        <td>@*@Html.DisplayFor(modelItem => Model.DemandCess.Total)*@</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
         <td colspan="2">ବାକୀ</td>
@@ -961,7 +1065,9 @@
             @Model.BalanceLandRevenue.Current
         </td>
 
-        <td>@Model.BalanceLandRevenue.Advance</td>
+        <td style="color:red;">
+            @Model.BalanceLandRevenue.Advance
+        </td>
         <td>
             @Model.BalanceWaterTax.MoreThanThree
         </td>
@@ -978,7 +1084,9 @@
             @Model.BalanceWaterTax.Current
         </td>
 
-        <td>@Model.BalanceWaterTax.Advance</td>
+        <td style="color:red;">
+            @Model.BalanceWaterTax.Advance
+        </td>
         <td>
             @Model.BalanceCess.MoreThanThree
         </td>
@@ -995,6 +1103,15 @@
             @Model.BalanceCess.Current
         </td>
 
-        <td style="color:red;">@Model.BalanceCess.Advance</td>
+        <td style="color:red;">
+            @Model.BalanceCess.Advance
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>

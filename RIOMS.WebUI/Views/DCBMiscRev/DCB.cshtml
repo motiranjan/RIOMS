@@ -1,10 +1,10 @@
 ﻿@model RIOMS.WebUI.Models.DCBMiscRevViewModel
 
 @{
-    ViewBag.Title = "DCB";
+    ViewBag.Title = "DCB"+ViewBag.VillageName;
 }
 
-<h2>DCB</h2>
+<h2>DCB @ViewBag.VillageName</h2>
 <table>
     <tr>
       
@@ -63,7 +63,7 @@
  {
       <tr>
      <th colspan="2">
-      came from   @item.VillageFrom.Name 
+      came from   @item.FromVillage.Name 
      </th>
           <td >@item.Arrear</td>
           <td>@item.Current</td>
@@ -75,7 +75,7 @@
     {
         <tr>
             <th colspan="2">
-                Went To   @item.VillageTo.Name
+                Went To   @item.ToVillage.Name
             </th>
             <td>@item.Arrear</td>
             <td>@item.Current</td>

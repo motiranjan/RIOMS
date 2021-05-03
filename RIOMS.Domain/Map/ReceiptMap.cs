@@ -1,15 +1,9 @@
 ﻿using RIOMS.Domain.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RIOMS.Domain.Map
 {
-  public  class ReceiptMap : EntityTypeConfiguration<Receipt>
+    public class ReceiptMap : EntityTypeConfiguration<Receipt>
     {
         public ReceiptMap()
         {
@@ -23,8 +17,8 @@ namespace RIOMS.Domain.Map
             this.HasOptional(t => t.CollectionWaterTax).WithRequired(t => t.Receipt);
             this.HasOptional(t => t.CollectionOther).WithRequired(t => t.Receipt);
             this.HasOptional(t => t.CollectionOPDR).WithRequired(t => t.Receipt);
+            //this.HasRequired(t => t.MiscRevenue).WithMany(t => t.Receipts).HasForeignKey(t => t.MiscId);
 
-            
         }
     }
 }

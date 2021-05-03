@@ -1,4 +1,4 @@
-﻿@model RIOMS.Domain.Village
+﻿@model RIOMS.Domain.Models.Village
 
 @{
     ViewBag.Title = "Detail";
@@ -74,9 +74,9 @@
                 <td colspan="5"></td>
                 <td>@Model.DemandMiscRevenues.Sum(d => d.Arrear)</td>
                 <td colspan="2"></td>
-                <td>@(Model.Receipts.Sum(r=>r.CollectionMiscRevenue.Arrear)+Model.TahReceipts.Sum(r=>r.TahCollectionMiscRevenue.Arrear))</td>
+                <td>@(Model.Receipts.Sum(r=>r.CollectionMiscRevenue.Arrear)+Model.TahReceipts.Sum(r=>r.CollectionMiscRevenue.Arrear))</td>
                
-                <td>@(Model.DemandMiscRevenues.Sum(m => m.Arrear) - (Model.Receipts.Sum(r => r.CollectionMiscRevenue.Arrear) + Model.TahReceipts.Sum(r => r.TahCollectionMiscRevenue.Arrear)))</td>
+                <td>@(Model.DemandMiscRevenues.Sum(m => m.Arrear) - (Model.Receipts.Sum(r => r.CollectionMiscRevenue.Arrear) + Model.TahReceipts.Sum(r => r.CollectionMiscRevenue.Arrear)))</td>
             </tr>
         }
         <tr>
@@ -132,14 +132,14 @@
                 }
                @foreach (var receipt in item.MiscRevenue.TahReceipts)
                 {
-                    @(receipt.TahCollectionMiscRevenue.Current + receipt.TahCollectionMiscRevenue.Arrear);
+                    @(receipt.CollectionMiscRevenue.Current + receipt.CollectionMiscRevenue.Arrear);
 
                 }
 
             </td>
 
             <td>
-                @{var balance = item.MiscRevenue.Amount - (item.MiscRevenue.Receipts.Sum(r => r.CollectionMiscRevenue.Arrear + r.CollectionMiscRevenue.Current) + item.MiscRevenue.TahReceipts.Sum(r => r.TahCollectionMiscRevenue.Arrear + r.TahCollectionMiscRevenue.Current));}
+                @{var balance = item.MiscRevenue.Amount - (item.MiscRevenue.Receipts.Sum(r => r.CollectionMiscRevenue.Arrear + r.CollectionMiscRevenue.Current) + item.MiscRevenue.TahReceipts.Sum(r => r.CollectionMiscRevenue.Arrear + r.CollectionMiscRevenue.Current));}
                 @balance
             </td>
             <td>
@@ -154,8 +154,8 @@
                 <td colspan="5"></td>
                 <td>@Model.DemandMiscRevenues.Sum(d => d.Arrear)</td>
                 <td colspan="2"></td>
-                <td>@(Model.Receipts.Sum(r=>r.CollectionMiscRevenue.Arrear)+Model.TahReceipts.Sum(r=>r.TahCollectionMiscRevenue.Arrear))</td>
-           <td>@(Model.DemandMiscRevenues.Sum(m => m.Arrear) - (Model.Receipts.Sum(r => r.CollectionMiscRevenue.Arrear) + Model.TahReceipts.Sum(r => r.TahCollectionMiscRevenue.Arrear)))</td>
+                <td>@(Model.Receipts.Sum(r=>r.CollectionMiscRevenue.Arrear)+Model.TahReceipts.Sum(r=>r.CollectionMiscRevenue.Arrear))</td>
+           <td>@(Model.DemandMiscRevenues.Sum(m => m.Arrear) - (Model.Receipts.Sum(r => r.CollectionMiscRevenue.Arrear) + Model.TahReceipts.Sum(r => r.CollectionMiscRevenue.Arrear)))</td>
             </tr>
     }
     @if (currentCount > 0)
@@ -164,8 +164,8 @@
                 <td colspan="5"></td>
                 <td>@Model.DemandMiscRevenues.Sum(d => d.Current)</td>
                 <td colspan="2"></td>
-                <td>@(Model.Receipts.Sum(r=>r.CollectionMiscRevenue.Current)+Model.TahReceipts.Sum(r=>r.TahCollectionMiscRevenue.Current))</td>
-                <td>@(Model.DemandMiscRevenues.Sum(m => m.Current) - (Model.Receipts.Sum(r => r.CollectionMiscRevenue.Current) + Model.TahReceipts.Sum(r => r.TahCollectionMiscRevenue.Current)))</td>
+                <td>@(Model.Receipts.Sum(r=>r.CollectionMiscRevenue.Current)+Model.TahReceipts.Sum(r=>r.CollectionMiscRevenue.Current))</td>
+                <td>@(Model.DemandMiscRevenues.Sum(m => m.Current) - (Model.Receipts.Sum(r => r.CollectionMiscRevenue.Current) + Model.TahReceipts.Sum(r => r.CollectionMiscRevenue.Current)))</td>
             </tr>
     }
 </table>

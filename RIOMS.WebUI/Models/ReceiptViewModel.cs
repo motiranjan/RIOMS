@@ -1,5 +1,5 @@
-﻿using RIOMS.Domain;
-using RIOMS.Domain.Models;
+﻿using RIOMS.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -73,10 +73,12 @@ namespace RIOMS.WebUI.Models
     {
         private IEnumerable<Receipt> receipts;
         private IEnumerable<Receipt> totals;
-
-        public VillageWariViewModel(IEnumerable<Receipt> argReceipts)
+        private IForm iform;
+       // private DateTime depositeDate;
+        public VillageWariViewModel(IEnumerable<Receipt> argReceipts,IForm argIform )
         {
-            receipts = argReceipts.Where(r => r.HasCess || r.HasLandRevenue || r.HasWaterTax).OrderBy(r => r.Date).ThenBy(r => r.BookNo).ToList();
+            iform = argIform;
+            receipts = argReceipts.OrderBy(r => r.Date).ThenBy(r => r.BookNo).ToList();
             totals = receipts.GroupBy(r => r.Date).Select(t => new Receipt
             {
                 Date = t.FirstOrDefault().Date,
@@ -120,11 +122,23 @@ namespace RIOMS.WebUI.Models
                 CollectionOPDR = new CollectionOPDR
                 {
                     Amount = t.Sum(r => r.HasOPDR ? r.CollectionOPDR.Amount : 0)
+                },
+                 CollectionOther = new CollectionOther
+                 {
+                     Amount = t.Sum(r => r.HasOthers ? r.CollectionOther.Amount : 0)
+                 },
+                CollectionOLR = new CollectionOLR
+                {
+                    Premium = t.Sum(r => r.HasOLR ? r.CollectionOLR.Premium : 0),
+                     DemarcationFee= t.Sum(r => r.HasOLR ? r.CollectionOLR.DemarcationFee : 0)
                 }
             });
         }
 
         public IEnumerable<Receipt> Receipts { get { return receipts; } }
         public IEnumerable<Receipt> Totals { get { return totals; } }
+
+        public IForm IForm { get { return iform; } }
+       //public DateTime DepositeDate { get { return depositeDate; } }
     }
 }

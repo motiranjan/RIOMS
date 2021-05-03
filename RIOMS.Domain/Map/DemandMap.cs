@@ -1,10 +1,5 @@
 ﻿using RIOMS.Domain.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RIOMS.Domain.Map
 {
@@ -14,6 +9,7 @@ namespace RIOMS.Domain.Map
         {
             this.ToTable("DemandCesses");
             this.HasKey(t => new { t.VillageId, t.KhataNo, t.Year });
+            this.Ignore(t => t.InterestTotal);
         }
     }
     public class DemandLandRevenueMap : EntityTypeConfiguration<DemandLandRevenue>
@@ -22,6 +18,7 @@ namespace RIOMS.Domain.Map
         {
             this.ToTable("DemandLandRevenues");
             this.HasKey(t => new { t.VillageId, t.KhataNo, t.Year });
+            this.Ignore(t => t.InterestTotal);
         }
     }
     public class DemandWaterTaxMap : EntityTypeConfiguration<DemandWaterTax>
@@ -30,7 +27,59 @@ namespace RIOMS.Domain.Map
         {
             this.ToTable("DemandWaterTaxes");
             this.HasKey(t => new { t.VillageId, t.KhataNo, t.Year });
+            this.Ignore(t => t.InterestTotal);
         }
     }
+    public class VillageWiseDemandCessMap : EntityTypeConfiguration<VillageWiseDemandCess>
+    {
+        public VillageWiseDemandCessMap()
+        {
+            this.ToTable("VillageWiseDemandCess");
+            this.HasKey(t => new { t.VillageId, t.Year });
+            this.Ignore(t => t.InterestTotal);
+        }
+    }
+    public class VillageWiseDemandLandRevenueMap : EntityTypeConfiguration<VillageWiseDemandLandRevenue>
+    {
+        public VillageWiseDemandLandRevenueMap()
+        {
+            this.ToTable("VillageWiseDemandLandRevenue");
+            this.HasKey(t => new { t.VillageId, t.Year });
+            this.Ignore(t => t.InterestTotal);
+        }
+    }
+    public class VillageWiseDemandWaterTaxMap : EntityTypeConfiguration<VillageWiseDemandWaterTax>
+    {
+        public VillageWiseDemandWaterTaxMap()
+        {
+            this.ToTable("VillageWiseDemandWaterTax");
+            this.HasKey(t => new { t.VillageId, t.Year });
+            this.Ignore(t => t.InterestTotal);
+        }
+    }
+
+    public class VillageWiseIncreaseInDemandCessMap : EntityTypeConfiguration<VillageWiseIncreaseInDemandCess>
+    {
+        public VillageWiseIncreaseInDemandCessMap()
+        {
+            this.ToTable("VillageWiseIncreaseInDemandCesses");
+            this.HasKey(t => new { t.VillageId, t.Year });
+            this.Ignore(t => t.Advance);
+            this.Ignore(t => t.InterestTotal);
+        }
+    }
+
+    public class VillageWiseIncreaseInDemandLandrevenueMap : EntityTypeConfiguration<VillageWiseIncreaseInDemandLandrevenue>
+    {
+        public VillageWiseIncreaseInDemandLandrevenueMap()
+        {
+            this.ToTable("VillageWiseIncreaseInDemandLandrevenues");
+            this.HasKey(t => new { t.VillageId, t.Year });
+            this.Ignore(t => t.Advance);
+            this.Ignore(t => t.InterestTotal);
+        }
+    }
+
+ 
 }
 

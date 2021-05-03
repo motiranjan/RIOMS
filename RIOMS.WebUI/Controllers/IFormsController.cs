@@ -1,11 +1,7 @@
-﻿using RIOMS.Domain;
-using RIOMS.Domain.Abstract;
+﻿using RIOMS.Domain.Abstract;
 using RIOMS.Domain.Models;
 using RIOMS.WebUI.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace RIOMS.WebUI.Controllers
@@ -45,13 +41,13 @@ namespace RIOMS.WebUI.Controllers
 
             return View(new IForm());
         }
-        public ViewResult Detail(string year,int iformNo )
+        public ViewResult Detail(string year, int iformNo)
         {
             ViewBag.Villages = repository.Villages;
-            
-            return View(repository.GetIform(year,iformNo));
+
+            return View(repository.GetIform(year, iformNo));
         }
-        public  ViewResult List()
+        public ViewResult List()
         {
             ViewBag.Villages = repository.Villages;
             return View(repository.IForms);

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RIOMS.Domain.Models
+﻿namespace RIOMS.Domain.Models
 {
-   public  class CollectionPartOneRev : PartOneRev
+    public class CollectionPartOneRev : PartOneRev
     {
+
         public int ReceiptNo { get; set; }
-        public decimal? InterestTotal { get; set; }
-        public decimal? Advance { get; set; }
+      
 
     }
     public partial class CollectionCess : CollectionPartOneRev
@@ -25,4 +20,27 @@ namespace RIOMS.Domain.Models
     {
         public virtual Receipt Receipt { get; set; }
     }
+
+    public partial class VillageWiseTahCollectionCess : PartOneRev
+    {
+
+        public int VillageId { get; set; }
+
+        public string Year { get; set; }
+
+    }
+    public partial class VillageWiseTahCollectionLandRevenue : PartOneRev
+
+    {
+        public int VillageId { get; set; }
+
+        public string Year { get; set; }
+    }
+    public partial class VillageWiseTahCollectionWaterTax : PartOneRev
+    {
+        public int VillageId { get; set; }
+
+        public string Year { get; set; }
+    }
+
 }

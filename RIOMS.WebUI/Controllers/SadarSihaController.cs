@@ -1,11 +1,7 @@
-﻿using RIOMS.Domain;
-using RIOMS.Domain.Abstract;
+﻿using RIOMS.Domain.Abstract;
 using RIOMS.Domain.Models;
 using RIOMS.WebUI.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace RIOMS.WebUI.Controllers
@@ -20,7 +16,7 @@ namespace RIOMS.WebUI.Controllers
         }
         // GET: /SadarSiha/
 
-      
+
         public ViewResult Detail(string year, int iformNo)
         {
             ReceiptViewModel viewModel = new ReceiptViewModel(repository.GetReceiptsByIForm(new IForm() { IFormNo = iformNo, Year = year }));
@@ -28,7 +24,7 @@ namespace RIOMS.WebUI.Controllers
         }
         public ViewResult Index(string year)
         {
-            return View(repository.IForms.Where(i=>i.Year==year));
+            return View(repository.IForms.Where(i => i.Year == year));
         }
         public ViewResult Abstract(string year)
         {

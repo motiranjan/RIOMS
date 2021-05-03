@@ -8,7 +8,8 @@
 
 .date {
     font-family: OR-TTSarala;
-    font-size: 15px;
+    font-size: 18px;
+	font-weight:bolder;
 }
 
 .nameOfRT {
@@ -16,7 +17,11 @@
     font-size: 15px;
     width: 250px;
 }
-
+.rtname {
+    font-family: ORBW-TTMuktaEN;
+    font-size: 20px;
+    
+}
 .row-even {
     background-color: #e8e8ec;
 }
@@ -46,8 +51,9 @@
         /* Chrome, Safari, Opera */
         transform: rotate(-90deg);
         transform-origin: left top 1;
-        text-wrap: none;
-        height: 85px;
+        text-wrap: initial;
+        height: 100px;
+        width:50px;
     }
 
 table {
@@ -96,10 +102,22 @@ td.date {
 .villageWari {
     width: 1320px;
     margin: 0;
+	
 }
-
+.iform-row {
+    color: black;
+    /*font-family: OR-TTSarala;*/
+    font-size: 18px;
+    font-weight: bold;
+}
 tr.total {
     color: red;
+    /*font-family: OR-TTSarala;*/
+    font-size: 18px;
+    font-weight: bold;
+}
+.total td {
+    color: red !important;
     /*font-family: OR-TTSarala;*/
     font-size: 18px;
     font-weight: bold;
@@ -131,18 +149,20 @@ tr.total {
 
 #iform .villageWari {
     font-family: OR-TTSarala;
+    color: black;
 }
 
     #iform .villageWari td {
-        font-size: 15px;
+        font-size: 22px;
         font-weight: bold;
         text-align: center;
+        color: black;
     }
 
 #iform #chNo {
     width: 200px;
     font-family: OR-TTSarala;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
     float: left;
@@ -165,10 +185,12 @@ tr.total {
 }
 
 #iform #dur {
-    width: 450px;
-    margin-right: 350px;
+    width: 550px;
+    margin-right: 250px;
     float: right;
     text-align: center;
+	font-size:18px;
+	font-weight:bold;
 }
 
 #iform #abstract {
@@ -246,3 +268,20 @@ tr.total {
     .diaster .heading {
         text-align: center;
     }
+.total {
+    color: red;
+  /* font-family: OR-TTSarala;*/
+    
+    font-weight: bold;
+}
+
+#ledger-part2  td {
+    width: 12.3mm;
+    /*font-family: OR-TTSarala;*/
+    /*font-weight: bold;*/
+    font-size:15px;
+}
+#ledger-part2 td.date
+{
+    width: 50mm !important;
+}

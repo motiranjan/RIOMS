@@ -13,6 +13,7 @@
     <option value="2018-2019">2018-2019</option>
     <option value="2019-2020">2019-2020</option>
     <option value="2020-2021">2020-2021</option>
+    <option value="2020-2021">2021-2022</option>
 </select>
         Village @Html.DropDownList("village", (SelectList)ViewBag.Villages, new { ng_model = "VillageId", Tabindex = "1", autofocus = true }) &nbsp;&nbsp;Khata NO:<input type="text" ng-model="KhataNo" />
         <input type="button" name="name" value="Show" ng-click="GetLedger(KhataNo,VillageId,Year)" tabindex="2" />
@@ -141,7 +142,30 @@
             <td><span ng-if="!IsEditable" ng-show="Khata.DemandCesses[0].Advance>0">{{Khata.DemandCesses[0].Advance | number : 2}}</span><input type="text" name="name" ng-model="Khata.DemandCesses[0].Advance" ng-if="IsEditable" tabindex="2" /></td>
             <td><a href="#" ng-click="AllowEdit()" ng-if="!IsEditable" accesskey="e">Edit</a><a href="#" ng-click="Update()" ng-if="IsEditable" accesskey="s">Update</a></td>
         </tr>
-        <tr ng-repeat="receipt in Khata.Receipts" ng-if="receipt.HasCess || receipt.HasWaterTax">
+        <tr ng-repeat="receipt in Khata.Receipts" >
+            <td>{{receipt.Date | date:'dd/MM/yyyy'}}</td>
+            <td>{{receipt.ReceiptNo}}</td>
+            <td><span ng-show="receipt.CollectionLandRevenue.MoreThanThree>0">{{receipt.CollectionLandRevenue.MoreThanThree | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionLandRevenue.Third>0">{{receipt.CollectionLandRevenue.Third | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionLandRevenue.Second>0">{{receipt.CollectionLandRevenue.Second | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionLandRevenue.Previous>0">{{receipt.CollectionLandRevenue.Previous | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionLandRevenue.Current>0">{{receipt.CollectionLandRevenue.Current | number : 2}}</span></td>
+            <td></td>
+
+            <td><span ng-show="receipt.CollectionWaterTax.MoreThanThree>0">{{receipt.CollectionWaterTax.MoreThanThree | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionWaterTax.Third>0">{{receipt.CollectionWaterTax.Third | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionWaterTax.Second>0">{{receipt.CollectionWaterTax.Second | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionWaterTax.Previous>0">{{receipt.CollectionWaterTax.Previous | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionWaterTax.Current>0">{{receipt.CollectionWaterTax.Current | number : 2}}</span></td>
+            <td></td>
+            <td><span ng-show="receipt.CollectionCess.MoreThanThree>0">{{receipt.CollectionCess.MoreThanThree | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionCess.Third>0">{{receipt.CollectionCess.Third | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionCess.Second>0">{{receipt.CollectionCess.Second | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionCess.Previous>0">{{receipt.CollectionCess.Previous | number : 2}}</span></td>
+            <td><span ng-show="receipt.CollectionCess.Current>0">{{receipt.CollectionCess.Current | number : 2}}</span></td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="receipt in Khata.TahReceipts" >
             <td>{{receipt.Date | date:'dd/MM/yyyy'}}</td>
             <td>{{receipt.ReceiptNo}}</td>
             <td><span ng-show="receipt.CollectionLandRevenue.MoreThanThree>0">{{receipt.CollectionLandRevenue.MoreThanThree | number : 2}}</span></td>

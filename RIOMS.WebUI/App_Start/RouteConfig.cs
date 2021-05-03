@@ -22,11 +22,11 @@ namespace RIOMS.WebUI
                 url: "{controller}/{action}/{year}/{vid}/{iformNo}/{kisam}",
                 defaults: new { controller = "VillageWari", action = "index", year = UrlParameter.Optional, iformNo = UrlParameter.Optional, vid = UrlParameter.Optional, kisam = UrlParameter.Optional }
             );
-          //  routes.MapRoute(
-          //    name: "MFORM",
-          //    url: "{controller}/{action}/{year}/{vid}/{arrear}",
-          //    defaults: new { controller = "VillageWari", action = "index", year = UrlParameter.Optional, arrear = UrlParameter.Optional, vid = UrlParameter.Optional, }
-          //);
+            //  routes.MapRoute(
+            //    name: "MFORM",
+            //    url: "{controller}/{action}/{year}/{vid}/{arrear}",
+            //    defaults: new { controller = "VillageWari", action = "index", year = UrlParameter.Optional, arrear = UrlParameter.Optional, vid = UrlParameter.Optional, }
+            //);
         }
     }
 }

@@ -1,14 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
 namespace RIOMS.WebUI.Extensions
 {
-    public class JsonNetResult:JsonResult
+    public class JsonNetResult : JsonResult
     {
         public Encoding ContentEncoding { get; set; }
         public string ContentType { get; set; }

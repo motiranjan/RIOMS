@@ -1,0 +1,61 @@
+﻿@model RIOMS.Domain.Models.TahReceipt
+
+@{
+    ViewBag.Title = "OnlineReceipt";
+}
+
+<h2>OnlineReceipt</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>TahReceipt</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VillageId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VillageId)
+            @Html.ValidationMessageFor(model => model.VillageId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Date)
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Year)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Year)
+            @Html.ValidationMessageFor(model => model.Year)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.KhataNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.KhataNo)
+            @Html.ValidationMessageFor(model => model.KhataNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MIscId)
+        </div>
+       
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
