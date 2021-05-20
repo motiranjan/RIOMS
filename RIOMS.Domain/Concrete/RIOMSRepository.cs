@@ -359,6 +359,7 @@ namespace RIOMS.Domain.Concrete
                     {
                         context.Entry(receipt).Reference(r => r.CollectionCess).Load();
                         context.Entry(receipt).Reference(r => r.CollectionWaterTax).Load();
+                        context.Entry(receipt).Reference(r => r.CollectionLandRevenue).Load();
                     }
                     if (khata.DemandCesses.Count == 0 && argKhata.DemandCesses.Count > 0)
                     {
@@ -408,6 +409,7 @@ namespace RIOMS.Domain.Concrete
                         khata.DemandLandRevenues.ElementAt(0).Previous = argKhata.DemandLandRevenues.ElementAt(0).Previous;
                         khata.DemandLandRevenues.ElementAt(0).Current = argKhata.DemandLandRevenues.ElementAt(0).Current;
                         khata.DemandLandRevenues.ElementAt(0).Advance = argKhata.DemandLandRevenues.ElementAt(0).Advance;
+                        khata.DemandLandRevenues.ElementAt(0).Annual = argKhata.DemandLandRevenues.ElementAt(0).Annual;
                     }
                 }
                 context.SaveChanges();

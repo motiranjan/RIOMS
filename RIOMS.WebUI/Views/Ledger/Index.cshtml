@@ -13,7 +13,7 @@
     <option value="2018-2019">2018-2019</option>
     <option value="2019-2020">2019-2020</option>
     <option value="2020-2021">2020-2021</option>
-    <option value="2020-2021">2021-2022</option>
+    <option value="2021-2022">2021-2022</option>
 </select>
         Village @Html.DropDownList("village", (SelectList)ViewBag.Villages, new { ng_model = "VillageId", Tabindex = "1", autofocus = true }) &nbsp;&nbsp;Khata NO:<input type="text" ng-model="KhataNo" />
         <input type="button" name="name" value="Show" ng-click="GetLedger(KhataNo,VillageId,Year)" tabindex="2" />
@@ -39,8 +39,12 @@
                     <tr>
                         <td>
                             <span style="font-family:ORBW-TTMuktaEN;font-size:24px;">{{Khata.NameOfRT}}</span>
+							
                         </td>
+						
                     </tr>
+					<tr>
+					
                 </table>
             </td>
         </tr>
@@ -48,14 +52,20 @@
             <th>{{Khata.DemandCesses[0].Year}}</th>
             <td>{{Khata.TotalArea | number : 2}}</td>
             <td>{{Khata.SpecialCase}}</td>
-            <td>{{Khata.Khajana}}</td>
+            <td>
+               
+                @*As per ROR {{Khata.Khajana}}
+                As per Ledger*@
+                <span ng-if="!IsEditable" ng-show="Khata.DemandLandRevenues[0].Annual>0">{{Khata.DemandLandRevenues[0].Annual | number : 2}}</span><input type="text" name="name" ng-model="Khata.DemandLandRevenues[0].Annual" ng-if="IsEditable" tabindex="2" />
+
+            </td>
             <td>{{Khata.JalaKara}}</td>
             <td>
-                As per ROR {{Khata.Cess}}
-                As per Ledger
+                @*As per ROR {{Khata.Cess}}
+                As per Ledger*@
                 <span ng-if="!IsEditable" ng-show="Khata.DemandCesses[0].Annual>0">{{Khata.DemandCesses[0].Annual | number : 2}}</span><input type="text" name="name" ng-model="Khata.DemandCesses[0].Annual" ng-if="IsEditable" tabindex="2" />
             </td>
-            <td></td>
+            <td>{{(Khata.DemandLandRevenues[0].Annual+Khata.DemandCesses[0].Annual) | number : 2}}</td>
         </tr>
     </table>
     <br />
@@ -142,9 +152,9 @@
             <td><span ng-if="!IsEditable" ng-show="Khata.DemandCesses[0].Advance>0">{{Khata.DemandCesses[0].Advance | number : 2}}</span><input type="text" name="name" ng-model="Khata.DemandCesses[0].Advance" ng-if="IsEditable" tabindex="2" /></td>
             <td><a href="#" ng-click="AllowEdit()" ng-if="!IsEditable" accesskey="e">Edit</a><a href="#" ng-click="Update()" ng-if="IsEditable" accesskey="s">Update</a></td>
         </tr>
-        <tr ng-repeat="receipt in Khata.Receipts" >
+        <tr style="font-size:18px;" ng-repeat="receipt in Khata.Receipts" >
             <td>{{receipt.Date | date:'dd/MM/yyyy'}}</td>
-            <td>{{receipt.ReceiptNo}}</td>
+            <td>0{{receipt.ReceiptNo}}</td>
             <td><span ng-show="receipt.CollectionLandRevenue.MoreThanThree>0">{{receipt.CollectionLandRevenue.MoreThanThree | number : 2}}</span></td>
             <td><span ng-show="receipt.CollectionLandRevenue.Third>0">{{receipt.CollectionLandRevenue.Third | number : 2}}</span></td>
             <td><span ng-show="receipt.CollectionLandRevenue.Second>0">{{receipt.CollectionLandRevenue.Second | number : 2}}</span></td>
